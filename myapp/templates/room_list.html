@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room List - Room Rental System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-blue-100 via-white to-blue-200 min-h-screen flex flex-col items-center justify-between font-sans space-y-6">
+
+    <!-- Header -->
+    <header class="text-white p-6 text-center w-full shadow-md">
+        <h1 class="text-3xl font-bold text-black">Available Rooms</h1>
+        <p class="text-black">Browse and find rooms ready for rent</p>
+    </header>
+
+    <!-- Navigation (Back to Home in Top Right Corner) -->
+    <nav class="absolute top-4 right-10">
+        <ul class="flex space-x-6">
+            <li><a href="{% url 'all_rooms' %}" class="text-black hover:text-blue-400 font-medium text-lg">All Rooms</a></li>
+            <li><a href="{% url 'home' %}" class="text-black hover:text-blue-400 font-medium text-lg">Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- Room Filter Section (Centered) -->
+    <section class="container mx-auto p-6 flex flex-col items-center justify-center space-y-4">
+        <form action="{% url 'room_list' %}" method="get" class="items-center space-y-4">
+            <div class="flex flex-wrap gap-4 justify-center w-full">
+                <!-- Dorm Name -->
+                <input type="text" name="dorm_name" placeholder="Dorm Name"
+                       class="px-4 py-2 border border-gray-300 rounded-lg w-48 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       value="{{ request.GET.dorm_name }}">
+                
+                <!-- Room Name -->
+                <input type="text" name="room_name" placeholder="Room Name"
+                       class="px-4 py-2 border border-gray-300 rounded-lg w-48 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       value="{{ request.GET.room_name }}">
+                
+                <!-- Min Price -->
+                <input type="number" name="min_price" placeholder="Min Price"
+                       class="px-4 py-2 border border-gray-300 rounded-lg w-36 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       min="0" value="{{ request.GET.min_price }}">
+                
+                <!-- Max Price -->
+                <input type="number" name="max_price" placeholder="Max Price"
+                       class="px-4 py-2 border border-gray-300 rounded-lg w-36 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       value="{{ request.GET.max_price }}">
+                
+                <!-- Search Button -->
+                <button type="submit" class="bg-black text-white font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+                    Search
+                </button>
+            </div>
+        </form>
+        
+    </section>
+
+   <!-- Room List Section  -->
+   <section class="container mx-auto p-6 w-full max-w-7xl">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for room in rooms|slice:":8" %}
+        <a href="{% url 'room_detail' pk=room.pk %}" class="block bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-300">
+            <div class="relative">
+                {% if room.image %}
+                <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-64 object-cover">
+                {% else %}
+                <div class="w-full h-64 bg-gray-300 flex items-center justify-center text-white">No Image</div>
+                {% endif %}
+            </div>
+            <div class="p-4">
+                <h3 class="text-xl font-semibold text-center">{{ room.dorm_name }}</h3>
+                <p class="text-lg text-center text-gray-600">{{ room.room_name }}</p>
+                <p class="text-center text-blue-500 font-semibold">{{ room.price }} THB</p>
+            </div>
+        </a>
+        {% empty %}
+        <p class="text-center text-lg col-span-full">No rooms found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- View All Button -->
+    <div class="text-center mt-8">
+        <a href="{% url 'all_rooms' %}" class="inline-block bg-black text-white px-6 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
+            View All Rooms
+        </a>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 w-full mt-6">
+        <p>&copy; 2025 Rent Near TU - All rights reserved</p>
+    </footer>
+
+</body>
+
+</html>

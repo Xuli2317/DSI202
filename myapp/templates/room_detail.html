@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details - Room Rental System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body
+    class="bg-gradient-to-br from-blue-100 via-white to-blue-200 min-h-screen flex flex-col items-center justify-between font-sans space-y-6">
+
+    <!-- Header -->
+    <header class="text-white p-6 text-center w-full shadow-md">
+        <h1 class="text-3xl font-bold text-black">Room Details</h1>
+        <p class="text-black">Information about the selected room</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="absolute top-4 right-10">
+        <ul class="flex space-x-6">
+            <li><a href="{% url 'home' %}" class="text-black hover:text-blue-400 font-medium text-lg">Home</a></li>
+        </ul>
+    </nav>
+    <nav class="absolute top-4 left-10">
+        <ul class="flex space-x-6">
+            <li><a href="{% url 'room_list' %}" class="text-black hover:text-blue-400 font-medium text-lg">Back to
+                    List</a></li>
+        </ul>
+    </nav>
+
+    <!-- Room Details Section -->
+    <section class="container mx-auto p-6 w-full max-w-3xl flex-1">
+        <div class=" text-center">
+
+            <!-- Room Image Centered -->
+            <div class="mb-6">
+                {% if room.image %}
+                <img src="{{ room.image.url }}" alt="Room Image"
+                    class="mx-auto w-full max-w-md h-64 object-cover rounded-xl shadow-md">
+                {% else %}
+                <div
+                    class="mx-auto w-full max-w-md h-64 bg-gray-300 flex items-center justify-center text-white rounded-xl shadow-md">
+                    No Image
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="bg-white shadow-lg rounded-2xl p-6 text-center space-y-4">
+                <!-- Room Name -->
+                <h2 class="text-2xl font-semibold text-gray-800">
+                    {{ room.dorm_name }} - {{ room.room_name }}
+                </h2>
+
+                <!-- Price -->
+                <p class="text-xl font-bold text-blue-500">
+                    {{ room.price }} THB/month
+                </p>
+
+                <!-- Location -->
+                <div class="text-gray-700">
+                    <strong>Location:</strong> {{ room.location }}
+                </div>
+
+                <!-- Furniture -->
+                <div class="text-gray-700">
+                    <strong>Furniture:</strong> {{ room.furniture }}
+                </div>
+
+                <div class="text-gray-700">
+                    <strong></strong> {{ room.description }}
+                </div>
+
+            </div>
+
+
+            <!-- Booking Button -->
+            <a href="{% if room.pk %}{% url 'booking_create' pk=room.pk %}{% else %}#{% endif %}"
+                class="inline-block bg-black text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600 transition duration-300 mt-4">
+                Book this Room
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 w-full mt-6">
+        <p>&copy; 2025 Rent Near TU - All rights reserved</p>
+    </footer>
+</body>
+
+</html>
