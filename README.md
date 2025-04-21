@@ -1,2 +1,2 @@
 # DSI202
-basic Django project for finding a room 
+Django project for finding a room 
