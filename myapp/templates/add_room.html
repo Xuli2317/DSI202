@@ -1,0 +1,7 @@
+<form method="POST" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="w-full bg-black text-white py-3 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
+        Add Room
+    </button>
+</form>

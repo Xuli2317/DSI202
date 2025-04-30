@@ -21,6 +21,18 @@
         <ul class="flex space-x-6">
             <li><a href="{% url 'all_rooms' %}" class="text-black hover:text-blue-400 font-medium text-lg">All Rooms</a></li>
             <li><a href="{% url 'home' %}" class="text-black hover:text-blue-400 font-medium text-lg">Home</a></li>
+            <a href="{% url 'register' %}"
+            class="inline-block bg-white text-black font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            register
+        </a>
+        <a href="{% url 'login' %}"
+            class="inline-block bg-white text-black font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            Login
+        </a>
+        <a href="{% url 'room_create' %}"
+            class="inline-block bg-white text-black font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            add room
+        </a>
         </ul>
     </nav>
 

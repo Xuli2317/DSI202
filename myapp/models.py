@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
+
 
 class CustomUser(AbstractUser):
     # ลบ UUIDField ออก
@@ -8,7 +12,7 @@ class CustomUser(AbstractUser):
         ('tenant', 'Tenant'),
         ('landlord', 'Landlord'),
     )
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='tenant')
+    role = models.CharField(max_length=20, choices=[('tenant', 'Tenant'), ('landlord', 'Landlord')])
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='customuser_set',  # แก้ไขชื่อของ reverse accessor ที่ไม่ซ้ำกับ auth.User
@@ -23,13 +27,16 @@ class CustomUser(AbstractUser):
 
 # Tenant Model
 class Tenant(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='tenant_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    budget = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     preferences = models.TextField(blank=True, null=True)
-    budget = models.DecimalField(max_digits=10, decimal_places=2)
 
-# Landlord Model
 class Landlord(models.Model):
-   user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='landlord_profile')
+    user = models.OneToOneField('myapp.CustomUser', on_delete=models.CASCADE, related_name='landlord_profile')
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} - Landlord'
 
 # Room Model
 class Room(models.Model):
@@ -60,13 +67,17 @@ class Review(models.Model):
 
 # Booking Model
 class Booking(models.Model):
-    tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE, related_name='bookings')
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='bookings')
-    STATUS_CHOICES = (
+    ROOM_STATUS_CHOICES = [
         ('pending', 'Pending'),
         ('confirmed', 'Confirmed'),
-        ('cancelled', 'Cancelled'),
-    )
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+        ('canceled', 'Canceled'),
+    ]
+
+    room = models.ForeignKey('Room', on_delete=models.CASCADE)
+    tenant = models.ForeignKey('Tenant', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10, choices=ROOM_STATUS_CHOICES, default='pending')
+
+    def __str__(self):
+        return f"Booking {self.id} for {self.room.room_name} by {self.tenant.user.username}"
 

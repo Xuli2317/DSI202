@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Complete - Room Rental System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-blue-100 via-white to-blue-200 min-h-screen flex flex-col items-center justify-between font-sans space-y-6">
+
+    <!-- Header -->
+    <header class="text-white p-6 text-center w-full shadow-md">
+        <h1 class="text-3xl font-bold text-black">Booking Complete</h1>
+        <p class="text-black">Your booking has been successfully completed!</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="absolute top-4 right-10">
+        <ul class="flex space-x-6">
+            <li><a href="{% url 'home' %}" class="text-black hover:text-blue-400 font-medium text-lg">Home</a></li>
+            <li><a href="{% url 'room_list' %}" class="text-black hover:text-blue-400 font-medium text-lg">Back to Room List</a></li>
+        </ul>
+    </nav>
+
+    <!-- Booking Details Section -->
+    <section class="container mx-auto p-6 w-full max-w-3xl flex-1">
+        <div class="bg-white shadow-lg rounded-2xl p-6 text-center space-y-4">
+            <h2 class="text-2xl font-semibold text-gray-800">Booking Details</h2>
+
+            <!-- Room Name -->
+            <p class="text-xl font-bold text-blue-500">
+                Room: {{ booking.room.dorm_name }} - {{ booking.room.room_name }}
+            </p>
+
+            <!-- Booking Date -->
+            <p class="text-gray-700">
+                <strong>Booking Date:</strong> {{ booking.created_at|date:"D, d M Y H:i" }}
+            </p>
+
+            <!-- Tenant Information -->
+            <p class="text-gray-700">
+                <strong>Tenant:</strong> {{ booking.tenant.user.username }}
+            </p>
+
+            <!-- Additional Information (if any) -->
+            <p class="text-gray-700">
+                <strong>Room Price:</strong> {{ booking.room.price }} THB/month
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 w-full mt-6">
+        <p>&copy; 2025 Rent Near TU - All rights reserved</p>
+    </footer>
+
+</body>
+
+</html>

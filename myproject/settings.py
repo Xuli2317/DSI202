@@ -40,6 +40,12 @@ INSTALLED_APPS = [
     "myapp",
 ]
 
+AUTH_USER_MODEL = 'myapp.CustomUser'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/rooms/'  # ✅ เพิ่มบรรทัดนี้
+LOGOUT_REDIRECT_URL = '/login/'  # (ใส่ก็ได้ ถ้าอยากให้ logout แล้วกลับไป login)
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -125,3 +131,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
