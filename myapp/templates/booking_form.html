@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load widget_tweaks %}
+<head>
+    <meta charset="UTF-8">
+    <title>Book Room</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 py-10 px-4">
+    <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4">Book {{ room.dorm_name }} - {{ room.room_name }}</h2>
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="block font-medium">Full Name</label>
+                {{ form.full_name|add_class:"border p-2 w-full rounded" }}
+            </div>
+            <div>
+                <label class="block font-medium">Phone</label>
+                {{ form.phone|add_class:"border p-2 w-full rounded" }}
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Book Now</button>
+        </form>
+    </div>
+</body>
+</html>

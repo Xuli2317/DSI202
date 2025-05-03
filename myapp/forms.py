@@ -52,11 +52,25 @@ class RoomForm(forms.ModelForm):
             }),
         }
 
-
-class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField()
-    role = forms.ChoiceField(choices=CustomUser.ROLE_CHOICES)  
-
+class BookingForm(forms.ModelForm):
     class Meta:
-        model = CustomUser
-        fields = ['username', 'email', 'password1', 'password2', 'role'] 
+        model = Booking
+        fields = ['room']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['room'].queryset = Room.objects.filter(available=True) 
+
+    def save(self, commit=True):
+        booking = super().save(commit=False)
+        # ถ้าผู้ใช้ล็อกอินเป็น tenant กำหนด tenant
+        if self.request and self.request.user.is_authenticated and hasattr(self.request.user, 'tenant_profile'):
+            booking.tenant = self.request.user.tenant_profile
+        if commit:
+            booking.save()
+        return booking
+    
+class GuestBookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['full_name', 'phone']

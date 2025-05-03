@@ -8,8 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body
-    class="bg-gradient-to-br from-blue-100 via-white to-blue-200 min-h-screen flex flex-col items-center justify-between font-sans space-y-6">
+<body class="bg-gradient-to-br from-blue-100 via-white to-blue-200 min-h-screen flex flex-col items-center justify-between font-sans space-y-6">
 
     <!-- Header -->
     <header class="text-white p-6 text-center w-full shadow-md">
@@ -25,26 +24,22 @@
     </nav>
     <nav class="absolute top-4 left-10">
         <ul class="flex space-x-6">
-            <li><a href="{% url 'room_list' %}" class="text-black hover:text-blue-400 font-medium text-lg">Back to
-                    List</a></li>
+            <li><a href="{% url 'room_list' %}" class="text-black hover:text-blue-400 font-medium text-lg">Back to List</a></li>
         </ul>
-
     </nav>
 
     <!-- Room Details Section -->
     <section class="container mx-auto p-6 w-full max-w-3xl flex-1">
-        <div class=" text-center">
+        <div class="text-center">
 
             <!-- Room Image Centered -->
             <div class="mb-6">
                 {% if room.image %}
-                <img src="{{ room.image.url }}" alt="Room Image"
-                    class="mx-auto w-full max-w-md h-64 object-cover rounded-xl shadow-md">
+                    <img src="{{ room.image.url }}" alt="Room Image" class="mx-auto w-full max-w-md h-64 object-cover rounded-xl shadow-md">
                 {% else %}
-                <div
-                    class="mx-auto w-full max-w-md h-64 bg-gray-300 flex items-center justify-center text-white rounded-xl shadow-md">
-                    No Image
-                </div>
+                    <div class="mx-auto w-full max-w-md h-64 bg-gray-300 flex items-center justify-center text-white rounded-xl shadow-md">
+                        No Image Available
+                    </div>
                 {% endif %}
             </div>
 
@@ -69,27 +64,22 @@
                     <strong>Furniture:</strong> {{ room.furniture }}
                 </div>
 
-                <div class="text-gray-700">
-                    <strong></strong> {{ room.description }}
+                <!-- Description -->
+                {% if room.description %}
+                    <div class="text-gray-700">
+                        <strong>Description:</strong> {{ room.description }}
+                    </div>
+                {% endif %}
+
+                <!-- Booking Button -->
+                <div class="mt-6">
+                    <a href="{% url 'booking_create' room.id %}" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300">
+                        Book This Room
+                    </a>
                 </div>
 
             </div>
 
-
-            <!-- Booking Button -->
-            <!-- แสดงปุ่มจองในหน้า detail -->
-            {% if user.is_authenticated and user.role == 'tenant' %}
-            <form method="post" action="{% url 'booking_create' pk=room.pk %}">
-                {% csrf_token %}
-                <button type="submit" class="bg-black text-white px-6 py-3 rounded-full">
-                    Book this Room
-                </button>
-            </form>
-            {% elif not user.is_authenticated %}
-            <a href="{% url 'login' %}" class="bg-blue-500 text-white px-6 py-3 rounded-full">
-                Login to Book
-            </a>
-            {% endif %}
         </div>
     </section>
 

@@ -4,9 +4,8 @@ from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
 
-
+# Custom User Model with additional fields for phone and role
 class CustomUser(AbstractUser):
-    # ลบ UUIDField ออก
     phone = models.CharField(max_length=15, blank=True, null=True)
     ROLE_CHOICES = (
         ('tenant', 'Tenant'),
@@ -15,12 +14,12 @@ class CustomUser(AbstractUser):
     role = models.CharField(max_length=20, choices=[('tenant', 'Tenant'), ('landlord', 'Landlord')])
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='customuser_set',  # แก้ไขชื่อของ reverse accessor ที่ไม่ซ้ำกับ auth.User
+        related_name='customuser_set',  
         blank=True
     )
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='customuser_permissions',  # แก้ไขชื่อของ reverse accessor ที่ไม่ซ้ำกับ auth.User
+        related_name='customuser_permissions', 
         blank=True
     )
 
@@ -31,6 +30,7 @@ class Tenant(models.Model):
     budget = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     preferences = models.TextField(blank=True, null=True)
 
+# Landlord Model
 class Landlord(models.Model):
     user = models.OneToOneField('myapp.CustomUser', on_delete=models.CASCADE, related_name='landlord_profile')
     phone_number = models.CharField(max_length=15, null=True, blank=True)
@@ -40,11 +40,9 @@ class Landlord(models.Model):
 
 # Room Model
 class Room(models.Model):
-    landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, related_name='rooms')
-    
-    dorm_name = models.CharField(max_length=255)  # 🏢 ชื่อหอพัก
-    room_name = models.CharField(max_length=255)  # 🚪 ชื่อห้อง (หรือเลขห้อง)
-
+    landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, related_name='rooms', null=True, blank=True) 
+    dorm_name = models.CharField(max_length=255)
+    room_name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='room_images/', blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     location = models.CharField(max_length=255)
@@ -57,14 +55,6 @@ class Room(models.Model):
     def __str__(self):
         return f"{self.dorm_name} - {self.room_name}"
 
-# Review Model
-class Review(models.Model):
-    tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE, related_name='reviews')
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='reviews')
-    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
-    comment = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
 # Booking Model
 class Booking(models.Model):
     ROOM_STATUS_CHOICES = [
@@ -74,10 +64,15 @@ class Booking(models.Model):
     ]
 
     room = models.ForeignKey('Room', on_delete=models.CASCADE)
-    tenant = models.ForeignKey('Tenant', on_delete=models.CASCADE)
+    tenant = models.ForeignKey('Tenant', on_delete=models.CASCADE, null=True, blank=True) 
+    full_name = models.CharField(max_length=255, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    email = models.EmailField(blank=True)  
+    check_in = models.DateField(null=True, blank=True)  
+    check_out = models.DateField(null=True, blank=True) 
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=ROOM_STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return f"Booking {self.id} for {self.room.room_name} by {self.tenant.user.username}"
+        return f"Booking {self.id} for {self.room.room_name}"
 
