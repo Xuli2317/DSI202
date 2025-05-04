@@ -76,7 +76,7 @@ def room_create(request):
         room_image_form = RoomImageForm(request.POST, request.FILES)
 
         if room_form.is_valid() and room_image_form.is_valid():
-            room = room_form.save()  # บันทึกห้องใหม่
+            room = room_form.save()  
 
             # รับไฟล์ที่อัปโหลด
             image1 = request.FILES.get('image1')
@@ -90,7 +90,7 @@ def room_create(request):
                 room_image2 = RoomImage(room=room, image=image2)
                 room_image2.save()
 
-            return redirect('room_detail')  # เปลี่ยนไปหน้ารายละเอียดห้อง
+            return redirect('room_detail', room_id=room.id)  # เปลี่ยนไปหน้ารายละเอียดห้อง พร้อมกับส่ง `room_id`
     else:
         room_form = RoomForm()
         room_image_form = RoomImageForm()
@@ -99,6 +99,4 @@ def room_create(request):
         'room_form': room_form,
         'room_image_form': room_image_form
     })
-
-
 

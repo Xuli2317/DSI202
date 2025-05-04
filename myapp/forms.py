@@ -21,11 +21,10 @@ class RoomCreateForm(forms.ModelForm):
     size = forms.FloatField(required=True, label="Room Size")
 
 
-# RoomForm
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['dorm_name', 'room_name', 'price', 'location', 'description']
+        fields = ['dorm_name', 'room_name', 'price', 'location', 'description', 'size']  # เปลี่ยนจาก room_size เป็น size
         widgets = {
             'dorm_name': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
@@ -48,7 +47,14 @@ class RoomForm(forms.ModelForm):
                 'placeholder': 'Room Description',
                 'rows': 4
             }),
+            'size': forms.NumberInput(attrs={  # เปลี่ยนจาก room_size เป็น size
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Room Size (in sq. meters)',
+                'step': '0.1'
+            }),
         }
+
+
 
 
 class RoomImageForm(forms.Form):
