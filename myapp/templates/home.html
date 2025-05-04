@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,24 +7,178 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Room Rental System</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body
-    class="bg-gradient-to-br from-blue-100 via-white to-blue-200 min-h-screen flex flex-col items-center justify-center font-sans space-y-6">
-    <!-- Welcome Card -->
-    <div class="text-center">
-        <h1 class="text-4xl font-extrabold text-black mb-4">Welcome to Rent Near TU</h1>
-        <p class="text-gray-600 text-lg mb-8">Find your perfect place to stay with us</p>
+<body class="bg-[#f5f5f5] font-sans">
 
-        <a href="{% url 'room_list' %}"
-            class="inline-block bg-white text-black font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-            View Available Rooms
-        </a>
-        <a href="{% url 'room_create' %}"
-            class="inline-block bg-white text-black font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-            Add a New Room
+    <!-- Header with transparent background -->
+    <div class="relative flex items-center justify-between p-4 bg-[#f5f5f5] bg-opacity-80 shadow-md">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-16 object-contain">
         </a>
     </div>
+
+    <!-- Navigation -->
+    <nav class="absolute top-5 right-10 z-10">
+        <ul class="flex space-x-6 px-6 py-3 gap-4">
+            <li>
+                <a href="{% url 'room_create' %}"
+                    class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    <i class="fas fa-user-tie"></i>
+                    Landlord
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'room_create' %}"
+                    class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    <i class="fas fa-user"></i>
+                    Tenant
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'room_create' %}"
+                    class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-96 bg-cover bg-center"
+        style="background-image: url('{% static 'image/hero1.jpg' %}');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 text-center text-white flex items-center justify-center h-full">
+            <div>
+                <h1 class="text-5xl font-bold mb-4">Find Your Perfect Place to Stay with Us</h1>
+                <p class="text-lg mb-8">Discover a variety of affordable and comfortable rooms just for you.</p>
+
+                <!-- Search Box -->
+                <div class="space-y-4">
+                    <section class="container mx-auto p-6 flex flex-col items-center justify-center space-y-4">
+                        <form action="{% url 'home' %}" method="get" class="items-center space-y-4">
+
+                            <!-- Description -->
+                            <div class="flex justify-center w-full">
+                                <input type="text" name="description" placeholder="Tell us what you are looking for"
+                                    class="px-4 py-2 border border-gray-300 rounded-lg w-full max-w-4xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
+                                    value="{{ request.GET.description }}">
+                            </div>
+
+                            <!-- Other Search Fields (Dorm Name, Min Price, Max Price) -->
+                            <div class="flex flex-wrap gap-4 justify-center w-full">
+                                <!-- Dorm Name -->
+                                <input type="text" name="dorm_name" placeholder="Dorm Name"
+                                    class="px-4 py-2 border border-gray-300 rounded-lg w-48 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
+                                    value="{{ request.GET.dorm_name }}">
+
+                                <!-- Min Price -->
+                                <input type="number" name="min_price" placeholder="Min Price"
+                                    class="px-4 py-2 border border-gray-300 rounded-lg w-36 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
+                                    min="0" value="{{ request.GET.min_price }}">
+
+                                <!-- Max Price -->
+                                <input type="number" name="max_price" placeholder="Max Price"
+                                    class="px-4 py-2 border border-gray-300 rounded-lg w-36 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
+                                    value="{{ request.GET.max_price }}">
+                            </div>
+
+                            <!-- Search Button -->
+                            <div class="flex justify-center w-full">
+                                <button type="submit"
+                                    class="bg-black text-white font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+                                    Search
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room List Introduction Section -->
+    <section class="container mx-auto p-6 text-center">
+        <h2 class="text-3xl font-semibold mb-4">Available Rooms for Rent</h2>
+        <p class="text-lg text-gray-600 mb-6">Browse through our wide range of rooms available near TU. Whether you're
+            looking for a budget-friendly option or a more luxurious stay, we have something for everyone.</p>
+    </section>
+
+    <!-- Room List Section -->
+    <section class="container mx-auto p-6 w-full max-w-7xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for room in rooms %}
+            <a href="{% url 'room_detail' pk=room.pk %}"
+                class="block bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-300">
+                <div class="relative">
+                    {% if room.image %}
+                    <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-64 object-cover">
+                    {% else %}
+                    <div class="w-full h-64 bg-gray-300 flex items-center justify-center text-white">No Image</div>
+                    {% endif %}
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold text-center">{{ room.dorm_name }}</h3>
+                    <p class="text-lg text-center text-gray-600">{{ room.room_name }}</p>
+                    <p class="text-center text-blue-500 font-semibold">{{ room.price }} THB</p>
+                </div>
+            </a>
+            {% empty %}
+            <p class="text-center text-lg col-span-full">No rooms found.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- View All Button -->
+    <div class="text-center mt-8">
+        <a href="{% url 'all_rooms' %}"
+            class="inline-block bg-black text-white px-6 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
+            View All Rooms
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#f5f5f5] text-white text-center p-6 mt-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+
+        <div class="container mx-auto">
+            <!-- Logo -->
+            <div class="mb-4">
+                <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-12 mx-auto">
+            </div>
+
+            <!-- ข้อความลิขสิทธิ์ -->
+            <p class="text-sm md:text-base text-black">&copy; 2025 Rent Near TU. All rights reserved.</p>
+
+            <!-- ลิงก์สำหรับข้อตกลงหรือข้อมูลเพิ่มเติม -->
+            <div class="mt-4 space-x-4">
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Terms & Conditions</a>
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Contact Us</a>
+            </div>
+
+            <!-- เพิ่มช่องทางการติดต่อหรือ Social Media -->
+            <div class="mt-6 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">
+                    <i class="fab fa-facebook-f"></i> <!-- ตัวอย่างการใช้ไอคอน -->
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
 
 </body>
 

@@ -8,26 +8,24 @@ from .models import CustomUser, Tenant, Landlord
 def home(request):
     return render(request, 'home.html')
 
-class RoomListView(ListView):
-    model = Room
-    template_name = 'room_list.html'
-    context_object_name = 'rooms'
+def home(request):
+    max_price = request.GET.get('max_price')
+    min_price = request.GET.get('min_price')
+    dorm_name = request.GET.get('dorm_name')
+    description = request.GET.get('description')
 
-    def get_queryset(self):
-        max_price = self.request.GET.get('max_price')
-        min_price = self.request.GET.get('min_price')
-        dorm_name = self.request.GET.get('dorm_name')
+    queryset = Room.objects.all()
 
-        queryset = Room.objects.all()
+    if max_price:
+        queryset = queryset.filter(price__lte=max_price)  # Filter rooms with price <= max_price
+    if min_price:
+        queryset = queryset.filter(price__gte=min_price)  # Filter rooms with price >= min_price
+    if dorm_name:
+        queryset = queryset.filter(dorm_name__icontains=dorm_name)  # Filter rooms with dorm_name containing the input text
+    if description:
+        queryset = queryset.filter(description__icontains=description)  # Filter by description
 
-        if max_price:
-            queryset = queryset.filter(price__lte=max_price)  # Filter rooms with price <= max_price
-        if min_price:
-            queryset = queryset.filter(price__gte=min_price)  # Filter rooms with price >= min_price
-        if dorm_name:
-            queryset = queryset.filter(dorm_name__icontains=dorm_name)  # Filter rooms with dorm_name containing the input text
-
-        return queryset
+    return render(request, 'home.html', {'rooms': queryset})
 
 class RoomDetailView(DetailView):
     model = Room
@@ -55,8 +53,6 @@ def booking_complete(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     return render(request, 'booking_complete.html', {'booking': booking})
 
-def some_error_page(request):
-    return render(request, 'some_error_page.html')
 
 def booking_create(request, pk):
     room = get_object_or_404(Room, pk=pk)
