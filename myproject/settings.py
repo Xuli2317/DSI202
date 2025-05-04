@@ -59,7 +59,7 @@ ROOT_URLCONF = "myproject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'myapp' / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -123,8 +123,11 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static", 
+    BASE_DIR / 'myapp' / 'static',
 ]
+
+# เวลาใช้ collectstatic จะเอาไปเก็บที่นี่ (production)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -134,3 +137,5 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     # Home page (รวมฟอร์มค้นหาและผลลัพธ์)
@@ -19,9 +21,8 @@ urlpatterns = [
     path('booking/<int:booking_id>/complete/', views.booking_complete, name='booking_complete'),  # ยืนยันการจอง
 
     # Add room functionality
-    path('room/add/', views.room_create, name='room_create'),  # เพิ่มห้อง
-    path('add-room/', views.add_room, name='add_room'),  # เพิ่มห้อง
+    path('room/add/', views.room_create, name='room_create'),
 
     # Booking Complete page
     path('booking/complete/<int:booking_id>/', views.booking_complete, name='booking_complete'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

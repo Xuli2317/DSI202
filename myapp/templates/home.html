@@ -7,107 +7,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Room Rental System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const swipers = document.querySelectorAll('.room-swiper');
+        swipers.forEach((el) => {
+            new Swiper(el, {
+                loop: true,
+                pagination: {
+                    el: el.querySelector('.swiper-pagination'),
+                    clickable: true,
+                },
+            });
+        });
+    });
+</script>
+
 <body class="bg-[#f5f5f5] font-sans">
-            <!-- Header with transparent background -->
-            <div class="relative flex items-center justify-between p-4 bg-[#f5f5f5] bg-opacity-80 shadow-md">
-                <a href="{% url 'home' %}">
-                    <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-16 object-contain">
+    <!-- Header with transparent background -->
+    <div class="relative flex items-center justify-between p-4 bg-[#f5f5f5] bg-opacity-80 shadow-md">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-16 object-contain">
+        </a>
+    </div>
+
+    <!-- Hamburger Menu Button: Mobile only -->
+    <div class="lg:hidden absolute top-7 right-10  z-20">
+        <button id="hamburger-icon" class="text-black focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="hidden lg:flex absolute top-5 right-10 z-10">
+        <ul class="flex space-x-6 px-6 py-3 gap-4">
+            <li>
+                <a href="{% url 'room_create' %}"
+                    class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    Landlord
                 </a>
-            </div>
-    
-            <!-- Navigation -->
-            <nav class="absolute top-5 right-10 z-10">
-                <ul class="flex space-x-6 px-6 py-3 gap-4">
-                    <li>
-                        <a href="{% url 'room_create' %}"
-                            class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                            <i class="fas fa-user-tie"></i>
-                            Landlord
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'room_create' %}"
-                            class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                            <i class="fas fa-user"></i>
-                            Tenant
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'room_create' %}"
-                            class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                            <i class="fas fa-sign-in-alt"></i>
-                            Login
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-    
+            </li>
+            <li>
+                <a href="{% url 'room_create' %}"
+                    class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    Tenant
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'room_create' %}"
+                    class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    Login
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="lg:hidden absolute top-20 right-0 w-full bg-white z-50 hidden shadow-md">
+        <ul class="flex flex-col items-center justify-center py-6 space-y-6">
+            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Landlord</a></li>
+            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Tenant</a></li>
+            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Login</a></li>
+        </ul>
+    </nav>
+
     <div data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+
         <!-- Hero Section -->
-        <section class="relative w-full h-96 bg-cover bg-center"
+        <section class="relative w-full h-[650px] bg-cover bg-center"
             style="background-image: url('{% static 'image/hero1.jpg' %}');">
             <div class="absolute inset-0 bg-black opacity-50"></div>
-            <div class="relative z-10 text-center text-white flex items-center justify-center h-full">
-                <div>
-                    <h1 class="text-5xl font-bold mb-4">Find Your Perfect Place to Stay with Us</h1>
-                    <p class="text-lg mb-8">Discover a variety of affordable and comfortable rooms just for you.</p>
 
-                    <!-- Search Box -->
-                    <div class="space-y-4">
-                        <section class="container mx-auto p-6 flex flex-col items-center justify-center space-y-4">
-                            <form action="{% url 'home' %}" method="get" class="items-center space-y-4">
-
-                                <!-- Description -->
-                                <div class="flex justify-center w-full">
-                                    <input type="text" name="description" placeholder="Tell us what you are looking for"
-                                        class="px-4 py-2 border border-gray-300 rounded-lg w-full max-w-4xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
-                                        value="{{ request.GET.description }}">
-                                </div>
-
-                                <!-- Other Search Fields (Dorm Name, Min Price, Max Price) -->
-                                <div class="flex flex-wrap gap-4 justify-center w-full">
-                                    <!-- Dorm Name -->
-                                    <input type="text" name="dorm_name" placeholder="Dorm Name"
-                                        class="px-4 py-2 border border-gray-300 rounded-lg w-48 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
-                                        value="{{ request.GET.dorm_name }}">
-
-                                    <!-- Min Price -->
-                                    <input type="number" name="min_price" placeholder="Min Price"
-                                        class="px-4 py-2 border border-gray-300 rounded-lg w-36 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
-                                        min="0" value="{{ request.GET.min_price }}">
-
-                                    <!-- Max Price -->
-                                    <input type="number" name="max_price" placeholder="Max Price"
-                                        class="px-4 py-2 border border-gray-300 rounded-lg w-36 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
-                                        value="{{ request.GET.max_price }}">
-                                </div>
-
-                                <!-- Search Button -->
-                                <div class="flex justify-center w-full">
-                                    <button type="submit"
-                                        class="bg-black text-white font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-                                        Search
-                                    </button>
-                                </div>
-                            </form>
-                        </section>
-                    </div>
+            <div class="relative z-10 flex flex-col justify-center items-center text-white text-center h-full px-4">
+                <!-- Title and Subtitle -->
+                <div class="max-w-2xl mb-8" data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Find Your Perfect Place to Stay with Us</h1>
+                    <p class="text-lg md:text-xl">Discover a variety of affordable and comfortable rooms just for you.
+                    </p>
                 </div>
+
+                <!-- Search Form -->
+                <form action="{% url 'home' %}" method="get"
+                    class="bg-white bg-opacity-90 rounded-xl p-6 space-y-4 w-full max-w-4xl shadow-lg"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <!-- Description -->
+                    <input type="text" name="description" placeholder="Tell us what you are looking for"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
+                        value="{{ request.GET.description }}">
+
+                    <!-- Dorm name, price -->
+                    <div class="flex flex-wrap justify-between gap-4">
+                        <input type="text" name="dorm_name" placeholder="Dorm Name"
+                            class="flex-1 min-w-[140px] px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
+                            value="{{ request.GET.dorm_name }}">
+
+                        <input type="number" name="min_price" placeholder="Min Price"
+                            class="w-36 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
+                            min="0" value="{{ request.GET.min_price }}">
+
+                        <input type="number" name="max_price" placeholder="Max Price"
+                            class="w-36 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-black"
+                            value="{{ request.GET.max_price }}">
+                    </div>
+
+                    <!-- Search Button -->
+                    <div class="flex justify-center">
+                        <button type="submit"
+                            class="bg-black text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:bg-gray-800 transition duration-300 flex items-center gap-2">
+                            <!-- Search icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z" />
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+                </form>
             </div>
         </section>
 
-        <!-- Room List Introduction Section -->
-        <section class="container mx-auto p-6 text-center">
-            <h2 class="text-3xl font-semibold mb-4">Available Rooms for Rent</h2>
-            <p class="text-lg text-gray-600 mb-6">Browse through our wide range of rooms available near TU. Whether
-                you're
-                looking for a budget-friendly option or a more luxurious stay, we have something for everyone.</p>
+        <!-- Room List Section -->
+        <section class="container mx-auto px-6 py-12 max-w-7xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                {% for room in rooms %}
+                <div data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                    <a href="{% url 'room_detail' pk=room.pk %}"
+                        class="group block bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-1">
+
+                        <!-- Swiper Container -->
+                        <div class="room-swiper swiper relative w-full h-60">
+                            <div class="swiper-wrapper">
+                                {% for img in room.images.all %}
+                                <div class="swiper-slide">
+                                    <img src="{{ img.image.url }}" alt="Room Image"
+                                        class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                {% empty %}
+                                <div class="swiper-slide">
+                                    <div class="w-full h-60 bg-gray-300 flex items-center justify-center text-white">
+                                        No Image
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Pagination/Dots -->
+                            <div class="swiper-pagination absolute bottom-2 left-0 w-full text-center"></div>
+                        </div>
+
+                        <!-- Room Info -->
+                        <div class="p-4 text-center space-y-1">
+                            <h3 class="text-lg font-bold text-gray-800">{{ room.dorm_name }}</h3>
+                            <p class="text-sm text-gray-600">{{ room.room_name }}</p>
+                            <p class="text-blue-500 font-semibold">{{ room.price }} THB</p>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <p class="text-center text-lg text-gray-500 col-span-full">No rooms found.</p>
+                {% endfor %}
+            </div>
         </section>
+
+
 
         <!-- Room List Section -->
         <section class="container mx-auto p-6 w-full max-w-7xl">
@@ -152,7 +222,7 @@
                 </div>
 
                 <!-- ข้อความลิขสิทธิ์ -->
-                <p class="text-sm md:text-base text-black">&copy; 2025 Rent Near TU. All rights reserved.</p>
+                <p class="text-sm md:text-base text-black">&copy; 2025 Rent Near. All rights reserved.</p>
 
                 <!-- ลิงก์สำหรับข้อตกลงหรือข้อมูลเพิ่มเติม -->
                 <div class="mt-4 space-x-4">
@@ -160,28 +230,21 @@
                     <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Terms & Conditions</a>
                     <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Contact Us</a>
                 </div>
-
-                <!-- เพิ่มช่องทางการติดต่อหรือ Social Media -->
-                <div class="mt-6 flex justify-center space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">
-                        <i class="fab fa-facebook-f"></i> <!-- ตัวอย่างการใช้ไอคอน -->
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
             </div>
         </footer>
         <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
         <script>
             AOS.init();
         </script>
+        <script>
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const mobileMenu = document.getElementById('mobile-menu');
 
+            hamburgerIcon.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        </script>
     </div>
-
 
 </body>
 

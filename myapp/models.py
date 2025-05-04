@@ -43,7 +43,7 @@ class Room(models.Model):
     landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, related_name='rooms', null=True, blank=True) 
     dorm_name = models.CharField(max_length=255)
     room_name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='room_images/', blank=True, null=True)
+    # image = models.ImageField(upload_to='room_images/', blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     location = models.CharField(max_length=255)
     furniture = models.TextField()
@@ -54,6 +54,13 @@ class Room(models.Model):
 
     def __str__(self):
         return f"{self.dorm_name} - {self.room_name}"
+
+class RoomImage(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='room_images/')
+
+    def __str__(self):
+        return f"Image for {self.room.dorm_name} - {self.room.room_name}"
 
 # Booking Model
 class Booking(models.Model):
@@ -75,4 +82,3 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.id} for {self.room.room_name}"
-

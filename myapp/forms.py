@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Room, Booking
+from .models import Room, Booking, RoomImage
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
@@ -15,16 +15,17 @@ class CustomUserCreationForm(UserCreationForm):
 class RoomCreateForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['dorm_name', 'room_name', 'location', 'price', 'furniture', 'description', 'image', 'size']
+        fields = ['dorm_name', 'room_name', 'location', 'price', 'furniture', 'description', 'size']
 
     # ตรวจสอบให้ฟิลด์ `size` แสดงขึ้นมาในฟอร์ม
     size = forms.FloatField(required=True, label="Room Size")
 
 
+# RoomForm
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['dorm_name', 'room_name', 'price', 'location', 'description', 'image']
+        fields = ['dorm_name', 'room_name', 'price', 'location', 'description']
         widgets = {
             'dorm_name': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
@@ -47,10 +48,14 @@ class RoomForm(forms.ModelForm):
                 'placeholder': 'Room Description',
                 'rows': 4
             }),
-            'image': forms.ClearableFileInput(attrs={
-                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
-            }),
         }
+
+
+class RoomImageForm(forms.Form):
+    image1 = forms.FileField(required=False)
+    image2 = forms.FileField(required=False)
+
+
 
 class BookingForm(forms.ModelForm):
     class Meta:

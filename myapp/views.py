@@ -2,10 +2,11 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Booking
-from .forms import RoomCreateForm, RoomForm, BookingForm, Booking, GuestBookingForm
+from .forms import RoomCreateForm, RoomForm, BookingForm, Booking, GuestBookingForm, RoomImage, RoomImageForm
 from .models import CustomUser, Tenant, Landlord
+from django.forms import modelformset_factory
 
-def home(request):
+def home1(request):
     return render(request, 'home.html')
 
 def home(request):
@@ -69,35 +70,35 @@ def booking_create(request, pk):
 
     return render(request, 'booking_form.html', {'form': form, 'room': room})
 
-# Room creation without login
 def room_create(request):
     if request.method == 'POST':
-        form = RoomCreateForm(request.POST, request.FILES)  # To support file uploads
-        if form.is_valid():
-            room = form.save(commit=False)
-            room.landlord = None  # If no login, assume the user is an anonymous landlord, or handle it differently
-            room.save()
-            return redirect('room_list')  # Redirect to the list of rooms
+        room_form = RoomForm(request.POST)
+        room_image_form = RoomImageForm(request.POST, request.FILES)
+
+        if room_form.is_valid() and room_image_form.is_valid():
+            room = room_form.save()  # บันทึกห้องใหม่
+
+            # รับไฟล์ที่อัปโหลด
+            image1 = request.FILES.get('image1')
+            image2 = request.FILES.get('image2')
+
+            if image1:
+                room_image1 = RoomImage(room=room, image=image1)
+                room_image1.save()
+
+            if image2:
+                room_image2 = RoomImage(room=room, image=image2)
+                room_image2.save()
+
+            return redirect('room_detail')  # เปลี่ยนไปหน้ารายละเอียดห้อง
     else:
-        form = RoomCreateForm()
-    return render(request, 'room_create.html', {'form': form})
+        room_form = RoomForm()
+        room_image_form = RoomImageForm()
 
-# Add room functionality (still open for anyone)
-def add_room(request):
-    if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES)
-        if form.is_valid():
-            room = form.save(commit=False)
+    return render(request, 'room_create.html', {
+        'room_form': room_form,
+        'room_image_form': room_image_form
+    })
 
-            # ไม่ต้องเชื่อมโยงกับ landlord (ห้องอาจไม่มีเจ้าของ)
-            room.landlord = None  # หรือไม่ต้องกำหนดเลยหากไม่จำเป็น
-
-            room.save()
-            return redirect('room_list')  
-        else:
-            return redirect('some_error_page')  
-    else:
-        form = RoomForm()
-    return render(request, 'add_room.html', {'form': form})
 
 

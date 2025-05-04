@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, Tenant, Landlord, Room, Booking
+from .models import CustomUser, Tenant, Landlord, Room, Booking, RoomImage
 
 # Custom CustomUser Admin
 @admin.register(CustomUser)
@@ -20,12 +20,18 @@ class LandlordAdmin(admin.ModelAdmin):
     list_display = ('id', 'user')  
     search_fields = ('user__username', 'user__email')  
 
-# Room Admin
+# Room Image Inline
+class RoomImageInline(admin.TabularInline):
+    model = RoomImage
+    extra = 1
+
+# Room Admin (รวม inline และ config)
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('id', 'dorm_name','room_name', 'price', 'location', 'available')
     search_fields = ('dorm_name', 'room_name', 'location', 'landlord__user__username')
     list_filter = ('available', 'price')
+    inlines = [RoomImageInline]
 
 # Booking Admin
 @admin.register(Booking)
@@ -33,5 +39,3 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('id', 'tenant', 'room', 'status', 'created_at')
     search_fields = ('tenant__user__username', 'room__room_name')
     list_filter = ('status',)
-
-
