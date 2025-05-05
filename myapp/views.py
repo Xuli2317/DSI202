@@ -2,14 +2,15 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Booking
-from .forms import RoomCreateForm, RoomForm, BookingForm, Booking, GuestBookingForm, RoomImage, RoomImageForm
+from .forms import RoomCreateForm, RoomForm, BookingForm, Booking, GuestBookingForm
 from .models import CustomUser, Tenant, Landlord
 from django.forms import modelformset_factory
 
-def home1(request):
-    return render(request, 'home.html')
-
 def home(request):
+    rooms = Room.objects.all()  # หรือ filter ตามที่ต้องการ
+    return render(request, 'home.html', {'rooms': rooms})
+
+def room_list(request):
     max_price = request.GET.get('max_price')
     min_price = request.GET.get('min_price')
     dorm_name = request.GET.get('dorm_name')
@@ -72,31 +73,13 @@ def booking_create(request, pk):
 
 def room_create(request):
     if request.method == 'POST':
-        room_form = RoomForm(request.POST)
-        room_image_form = RoomImageForm(request.POST, request.FILES)
-
-        if room_form.is_valid() and room_image_form.is_valid():
-            room = room_form.save()  
-
-            # รับไฟล์ที่อัปโหลด
-            image1 = request.FILES.get('image1')
-            image2 = request.FILES.get('image2')
-
-            if image1:
-                room_image1 = RoomImage(room=room, image=image1)
-                room_image1.save()
-
-            if image2:
-                room_image2 = RoomImage(room=room, image=image2)
-                room_image2.save()
-
-            return redirect('room_detail', room_id=room.id)  # เปลี่ยนไปหน้ารายละเอียดห้อง พร้อมกับส่ง `room_id`
+        room_form = RoomForm(request.POST, request.FILES)
+        
+        if room_form.is_valid():
+            room = room_form.save()
+            return redirect('home')  # เมื่อสร้างห้องเสร็จแล้วให้ไปหน้า Home
     else:
         room_form = RoomForm()
-        room_image_form = RoomImageForm()
 
-    return render(request, 'room_create.html', {
-        'room_form': room_form,
-        'room_image_form': room_image_form
-    })
+    return render(request, 'room_create.html', {'room_form': room_form})
 

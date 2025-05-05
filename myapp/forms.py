@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Room, Booking, RoomImage
+from .models import Room, Booking
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
@@ -24,7 +24,7 @@ class RoomCreateForm(forms.ModelForm):
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['dorm_name', 'room_name', 'price', 'location', 'description', 'size']  # เปลี่ยนจาก room_size เป็น size
+        fields = ['dorm_name', 'room_name', 'price', 'location', 'description', 'image', 'size']
         widgets = {
             'dorm_name': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
@@ -47,19 +47,15 @@ class RoomForm(forms.ModelForm):
                 'placeholder': 'Room Description',
                 'rows': 4
             }),
-            'size': forms.NumberInput(attrs={  # เปลี่ยนจาก room_size เป็น size
+            'size': forms.NumberInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
                 'placeholder': 'Room Size (in sq. meters)',
                 'step': '0.1'
             }),
+            'image': forms.ClearableFileInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg bg-white'
+            }),
         }
-
-
-
-
-class RoomImageForm(forms.Form):
-    image1 = forms.FileField(required=False)
-    image2 = forms.FileField(required=False)
 
 
 

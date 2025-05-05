@@ -81,7 +81,7 @@
                 </ul>
             {% endif %}
         </div>
-
+    
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Room Size (in sq. meters)</label>
             {{ room_form.size }}
@@ -96,23 +96,11 @@
     
         <!-- Room Image Upload -->
         <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Room Image 1</label>
-            {{ room_image_form.image1 }}
-            {% if room_image_form.image1.errors %}
+            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Room Image</label>
+            {{ room_form.image }}
+            {% if room_form.image.errors %}
                 <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_image_form.image1.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Room Image 2</label>
-            {{ room_image_form.image2 }}
-            {% if room_image_form.image2.errors %}
-                <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_image_form.image2.errors %}
+                    {% for error in room_form.image.errors %}
                         <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
@@ -125,6 +113,8 @@
             </button>
         </div>
     </form>
+    
+
     
 </body>
 </html>
