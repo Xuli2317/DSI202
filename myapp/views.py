@@ -6,6 +6,7 @@ from .forms import RoomCreateForm, RoomForm, BookingForm, Booking, GuestBookingF
 from .models import CustomUser, Tenant, Landlord
 from django.forms import modelformset_factory
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 def home(request):
     max_price = request.GET.get('max_price')
@@ -27,6 +28,7 @@ def home(request):
     return render(request, 'home.html', {'rooms': queryset})
 
 
+
 class RoomDetailView(DetailView):
     model = Room
     template_name = 'room_detail.html'
@@ -46,8 +48,14 @@ class RoomSearchView(ListView):
         ) if query else Room.objects.all()
 
 def all_rooms(request):
-    rooms = Room.objects.all()
-    return render(request, 'all_rooms.html', {'rooms': rooms})
+    rooms = Room.objects.filter(available=True)  # เริ่มจากเฉพาะห้องที่ available=True
+    # rooms = Room.objects.all()  # ดึงห้องทั้งหมด
+    paginator = Paginator(rooms, 8)  # จำนวนห้องต่อหน้า
+    page_number = request.GET.get('page')  # รับหมายเลขหน้าจาก query parameter
+    page_obj = paginator.get_page(page_number)  # สร้างหน้า
+
+    # ส่งข้อมูลไปที่เทมเพลต
+    return render(request, 'all_rooms.html', {'page_obj': page_obj})
 
 def booking_complete(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
