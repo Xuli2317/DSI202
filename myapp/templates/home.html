@@ -154,7 +154,7 @@
         <!-- Room List Section -->
 <section class="container mx-auto p-6 w-full max-w-7xl">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {% for room in rooms|slice:":8" %}
+        {% for room in rooms|slice:":4" %}
         <a href="{% url 'room_detail' pk=room.pk %}"
             class="block bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
             <div class="relative">
@@ -169,7 +169,7 @@
             <div class="p-6 text-center">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-2" style="font-family: 'Didact Gothic','Prompt', sans-serif;">{{ room.dorm_name }}</h3>
                 <p class="text-lg text-gray-600 mb-4" style="font-family: 'Didact Gothic', sans-serif;">Room {{ room.room_name }}</p>
-                <p class="text-2xl font-bold text-blue-600" style="font-family: 'Didact Gothic', sans-serif;">{{ room.price }} THB</p>
+                <p class="text-2xl font-bold text-blue-600" style="font-family: 'Didact Gothic', sans-serif;">{{ room.price|floatformat:0 }} THB</p>
             </div>
         </a>
         {% empty %}

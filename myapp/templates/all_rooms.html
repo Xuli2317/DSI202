@@ -90,8 +90,20 @@
         </ul>
     </nav>
 
+     <!-- Back Button -->
+<div class="w-full">
+    <a href="{% url 'home' %}"
+       class="inline-block mb-6 text-sm md:text-base text-gray-600 hover:text-black  px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-3">
+      <!-- Left Arrow Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-600 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      <span>Back to home</span>
+    </a>
+  </div>
+
     <!-- Room Filter Section (Centered) -->
-    <section class="container mx-auto p-6 flex flex-col items-center justify-center space-y-4">
+    <section class="container mx-auto p-100 flex flex-col items-center justify-center space-y-4">
         <h2 class="text-3xl font-semibold text-gray-800">Search for Available Rooms</h2>
         <p class="text-lg text-gray-600">Use the filters below to find rooms that match your needs. You can filter by
             dorm name, price range, and more.</p>
@@ -155,7 +167,7 @@
             <div class="p-6 text-center">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-2" style="font-family: 'Didact Gothic','Prompt', sans-serif;">{{ room.dorm_name }}</h3>
                 <p class="text-lg text-gray-600 mb-4" style="font-family: 'Didact Gothic', sans-serif;">Room {{ room.room_name }}</p>
-                <p class="text-2xl font-bold text-blue-600" style="font-family: 'Didact Gothic', sans-serif;">{{ room.price }} THB</p>
+                <p class="text-2xl font-bold text-blue-600" style="font-family: 'Didact Gothic', sans-serif;">{{ room.price|floatformat:0 }} THB</p>
             </div>
         </a>
         {% empty %}
@@ -181,7 +193,6 @@
     </div>
 
 
-
     <!-- Footer -->
     <footer class="bg-[#f5f5f5] text-white text-center p-6 mt-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
         <div class="container mx-auto">
@@ -201,18 +212,7 @@
             </div>
         </div>
     </footer>
-    <!-- Pagination controls -->
-    <div class="paginati">
-        {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
-
-        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-
-        {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">Next</a>
-        {% endif %}
-    </div>
+    
 
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>

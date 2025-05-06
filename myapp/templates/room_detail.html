@@ -11,6 +11,8 @@
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
 </head>
 
 <body class="bg-[#f5f5f5] font-sans">
@@ -87,58 +89,142 @@
         </ul>
     </nav>
 
-
-    <!-- Room Details Section -->
-    <section class="container mx-auto p-6 w-full max-w-3xl">
-        <div class="text-center">
-            <!-- Room Image -->
-            <div class="mb-6">
-                {% if room.image %}
-                    <img src="{{ room.image.url }}" alt="Room Image" class="mx-auto w-full max-w-md h-64 object-cover rounded-xl shadow-md">
-                {% else %}
-                    <div class="mx-auto w-full max-w-md h-64 bg-gray-300 flex items-center justify-center text-white rounded-xl shadow-md">
-                        No Image Available
-                    </div>
-                {% endif %}
+    <!-- Back Button -->
+<div class="w-full">
+    <a href="{% url 'all_rooms' %}"
+       class="inline-block mb-6 text-sm md:text-base text-gray-600 hover:text-black  px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-3">
+      <!-- Left Arrow Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-600 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      <span>Back to All Rooms</span>
+    </a>
+  </div>
+  
+    <section class="max-w-2xl mx-auto px-4 py-100">
+        <!-- Title -->
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">Room Details</h2>
+      
+        <div class="flex flex-col items-center space-y-8">
+          <!-- Room Image -->
+          <div class="w-full">
+            {% if room.image %}
+              <img src="{{ room.image.url }}" alt="Room Image"
+                   class="w-full h-72 md:h-96 object-cover rounded-2xl shadow-md border border-gray-200 transition duration-300 hover:shadow-lg">
+            {% else %}
+              <div class="w-full h-72 bg-gray-200 flex items-center justify-center text-gray-500 rounded-2xl shadow-inner text-base">
+                No Image Available
+              </div>
+            {% endif %}
+      
+            <!-- Slider Placeholder -->
+            <div id="bxslider-placeholder" class="text-center text-sm text-gray-400 italic mt-2">
+              (Slider will be added here)
             </div>
-
-            <!-- Room Details Card -->
-            <div class="bg-white shadow-lg rounded-2xl p-6 text-center space-y-4">
-                <h2 class="text-3xl font-semibold text-gray-800">{{ room.dorm_name }} - {{ room.room_name }}</h2>
-                <p class="text-xl font-bold text-blue-600">{{ room.price }} THB/month</p>
-                <div class="text-gray-700">
-                    <strong>Location:</strong> {{ room.location }}
-                </div>
-                <div class="text-gray-700">
-                    <strong>Furniture:</strong> {{ room.furniture }}
-                </div>
-                {% if room.description %}
-                    <div class="text-gray-700">
-                        <strong>Description:</strong> {{ room.description }}
-                    </div>
-                {% endif %}
-
-                <!-- Booking Button -->
-                <div class="mt-6">
-                    <a href="{% url 'booking_create' room.id %}" class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition duration-300">
-                        Book This Room
-                    </a>
-                </div>
+          </div>
+      
+          <!-- Room Details -->
+          <div class="bg-white w-full rounded-2xl shadow-md border border-gray-100 p-6 space-y-6">
+            
+            <!-- Name & Price -->
+            <div>
+              <h3 class="text-xl md:text-2xl font-semibold text-gray-900">{{ room.dorm_name }} - Room {{ room.room_name }}</h3>
+              <p class="text-lg text-blue-600 font-semibold mt-1">{{ room.price }} THB / month</p>
             </div>
+      
+            <!-- Availability Badge -->
+            <div>
+              {% if room.available %}
+                <span class="inline-block bg-green-100 text-green-700 text-sm font-medium px-3 py-1.5 rounded-full shadow-sm">
+                  Currently Available
+                </span>
+              {% else %}
+                <span class="inline-block bg-red-100 text-red-700 text-sm font-medium px-3 py-1.5 rounded-full shadow-sm">
+                  Not Available
+                </span>
+              {% endif %}
+            </div>
+      
+            <!-- Room Info -->
+            <div class="text-gray-700 space-y-2 text-base leading-relaxed">
+              <p><strong>Location:</strong> {{ room.location }}</p>
+              <p><strong>Room Size:</strong> {{ room.size }} m²</p>
+              {% if room.description %}
+                <p><strong>Description:</strong> {{ room.description }}</p>
+              {% endif %}
+            </div>
+      
+            <!-- Furniture Section -->
+<div>
+    <h4 class="text-base font-semibold text-gray-800 mb-3">Furniture Included</h4>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-800 text-sm">
+      <a href="#" class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition">
+        <i class="fas fa-table text-gray-700"></i>
+        <span>{{ room.table_count }} Tables</span>
+      </a>
+      <a href="#" class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition">
+        <i class="fas fa-bed text-gray-700"></i>
+        <span>{{ room.bed_count }} Beds</span>
+      </a>
+      <a href="#" class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition">
+        <i class="fas fa-chair text-gray-700"></i>
+        <span>{{ room.chair_count }} Chairs</span>
+      </a>
+      <a href="#" class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition">
+        <i class="fas fa-snowflake text-gray-700"></i>
+        <span>{{ room.aircon_count }} Air Conditioners</span>
+      </a>
+    </div>
+  </div>
+  
+      
+            <!-- Booking Button -->
+            {% if room.available %}
+              <div class="pt-2">
+                <a href="{% url 'booking_create' room.id %}"
+                   class="block text-center bg-black text-white text-sm md:text-base font-medium px-6 py-3 rounded-lg hover:bg-gray-800 transition duration-300">
+                  Book This Room
+                </a>
+              </div>
+            {% endif %}
+          </div>
         </div>
-    </section>
+      </section>
+      
+
+    
 
     <!-- Footer -->
-    <footer class="bg-[#f5f5f5] text-center p-6 shadow-md mt-10">
+    <footer class="bg-[#f5f5f5] text-white text-center p-6 mt-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
         <div class="container mx-auto">
-            <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-12 mx-auto">
-            <p class="text-sm text-gray-600">&copy; 2025 Rent Near. All rights reserved.</p>
+            <!-- Logo -->
+            <div class="mb-4">
+                <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-12 mx-auto">
+            </div>
+
+            <!-- ข้อความลิขสิทธิ์ -->
+            <p class="text-sm md:text-base text-black">&copy; 2025 Rent Near. All rights reserved.</p>
+
+            <!-- ลิงก์สำหรับข้อตกลงหรือข้อมูลเพิ่มเติม -->
+            <div class="mt-4 space-x-4">
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Terms & Conditions</a>
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Contact Us</a>
+            </div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+    <script>
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerIcon.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
 
 </body>
