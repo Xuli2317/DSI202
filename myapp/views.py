@@ -7,27 +7,24 @@ from .models import CustomUser, Tenant, Landlord
 from django.forms import modelformset_factory
 
 def home(request):
-    rooms = Room.objects.all()  # หรือ filter ตามที่ต้องการ
-    return render(request, 'home.html', {'rooms': rooms})
-
-def room_list(request):
     max_price = request.GET.get('max_price')
     min_price = request.GET.get('min_price')
     dorm_name = request.GET.get('dorm_name')
     description = request.GET.get('description')
 
-    queryset = Room.objects.all()
+    queryset = Room.objects.filter(available=True)  # เริ่มจากเฉพาะห้องที่ available=True
 
     if max_price:
-        queryset = queryset.filter(price__lte=max_price)  # Filter rooms with price <= max_price
+        queryset = queryset.filter(price__lte=max_price)
     if min_price:
-        queryset = queryset.filter(price__gte=min_price)  # Filter rooms with price >= min_price
+        queryset = queryset.filter(price__gte=min_price)
     if dorm_name:
-        queryset = queryset.filter(dorm_name__icontains=dorm_name)  # Filter rooms with dorm_name containing the input text
+        queryset = queryset.filter(dorm_name__icontains=dorm_name)
     if description:
-        queryset = queryset.filter(description__icontains=description)  # Filter by description
+        queryset = queryset.filter(description__icontains=description)
 
     return render(request, 'home.html', {'rooms': queryset})
+
 
 class RoomDetailView(DetailView):
     model = Room

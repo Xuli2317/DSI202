@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.dispatch import receiver
+from django.db.models.signals import post_save, post_delete
 
 User = settings.AUTH_USER_MODEL
 
@@ -74,3 +76,27 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.id} for {self.room.room_name}"
+
+@receiver(post_save, sender=Booking)
+def update_room_availability_on_booking_save(sender, instance, **kwargs):
+    if instance.status in ['pending', 'confirmed']:
+        instance.room.available = False
+        instance.room.save()
+    elif instance.status == 'canceled':
+        # ถ้าไม่มี booking อื่นที่ pending หรือ confirmed อยู่
+        other_active = Booking.objects.filter(
+            room=instance.room, status__in=['pending', 'confirmed']
+        ).exclude(id=instance.id).exists()
+        if not other_active:
+            instance.room.available = True
+            instance.room.save()
+
+
+@receiver(post_delete, sender=Booking)
+def update_room_availability_on_booking_delete(sender, instance, **kwargs):
+    other_active = Booking.objects.filter(
+        room=instance.room, status__in=['pending', 'confirmed']
+    ).exclude(id=instance.id).exists()
+    if not other_active:
+        instance.room.available = True
+        instance.room.save()
