@@ -24,13 +24,13 @@
     </nav>
     <nav class="absolute top-4 left-10">
         <ul class="flex space-x-6">
-            <li><a href="{% url 'room_list' %}" class="text-black hover:text-blue-400 font-medium text-lg">Room List</a></li>
+            <li><a href="{% url 'home' %}" class="text-black hover:text-blue-400 font-medium text-lg">Room List</a></li>
         </ul>
     </nav>
 
     <!-- Room Filter Section (Centered) -->
     <section class="container mx-auto p-6 flex flex-col items-center justify-center space-y-4">
-        <form action="{% url 'room_list' %}" method="get" class="items-center space-y-4">
+        <form action="{% url 'home' %}" method="get" class="items-center space-y-4">
             <div class="flex flex-wrap gap-4 justify-center w-full">
                 <input type="text" name="dorm_name" placeholder="Dorm Name"
                     class="px-4 py-2 border border-gray-300 rounded-lg w-48 focus:outline-none focus:ring-2 focus:ring-blue-500">

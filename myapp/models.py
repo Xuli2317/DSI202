@@ -39,6 +39,7 @@ class Landlord(models.Model):
     def __str__(self):
         return f'{self.user.username} - Landlord'
 
+
 # Room Model
 class Room(models.Model):
     landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, related_name='rooms', null=True, blank=True) 
@@ -47,14 +48,21 @@ class Room(models.Model):
     image = models.ImageField(upload_to='room_images/', blank=True, null=True) 
     price = models.DecimalField(max_digits=10, decimal_places=2)
     location = models.CharField(max_length=255)
-    furniture = models.TextField()
+     # เฟอร์นิเจอร์พร้อมจำนวน
+    table_count = models.PositiveIntegerField(default=0, verbose_name="table_count")
+    bed_count = models.PositiveIntegerField(default=0, verbose_name="bed_count")
+    chair_count = models.PositiveIntegerField(default=0, verbose_name="chair_count")
+    aircon_count = models.PositiveIntegerField(default=0, verbose_name="aircon_count")
+
     size = models.FloatField()
+
     description = models.TextField(blank=True, null=True)
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.dorm_name} - {self.room_name}"
+
 
 # Booking Model
 class Booking(models.Model):

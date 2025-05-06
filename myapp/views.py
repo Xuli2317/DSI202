@@ -5,6 +5,7 @@ from .models import Room, Booking
 from .forms import RoomCreateForm, RoomForm, BookingForm, Booking, GuestBookingForm
 from .models import CustomUser, Tenant, Landlord
 from django.forms import modelformset_factory
+from django.contrib import messages
 
 def home(request):
     max_price = request.GET.get('max_price')
@@ -74,7 +75,9 @@ def room_create(request):
         
         if room_form.is_valid():
             room = room_form.save()
-            return redirect('home')  # เมื่อสร้างห้องเสร็จแล้วให้ไปหน้า Home
+            return redirect('home')
+        else:
+            print(room_form.errors)  # <== เพิ่มบรรทัดนี้เพื่อ debug
     else:
         room_form = RoomForm()
 

@@ -15,16 +15,22 @@ class CustomUserCreationForm(UserCreationForm):
 class RoomCreateForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['dorm_name', 'room_name', 'location', 'price', 'furniture', 'description', 'size']
+        fields = [
+            'dorm_name', 'room_name', 'location', 'price', 'description',
+            'table_count', 'bed_count', 'chair_count', 'aircon_count','size'
+        ]
 
-    # ตรวจสอบให้ฟิลด์ `size` แสดงขึ้นมาในฟอร์ม
     size = forms.FloatField(required=True, label="Room Size")
 
 
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['dorm_name', 'room_name', 'price', 'location', 'description', 'image', 'size']
+        fields = [
+            'dorm_name', 'room_name', 'location', 
+            'table_count', 'bed_count', 'chair_count', 'aircon_count',
+            'size', 'price', 'description', 'image'
+        ]
         widgets = {
             'dorm_name': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
@@ -34,23 +40,39 @@ class RoomForm(forms.ModelForm):
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
                 'placeholder': 'Room Name'
             }),
-            'price': forms.NumberInput(attrs={
-                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
-                'placeholder': 'Price'
-            }),
             'location': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
                 'placeholder': 'Location'
             }),
-            'description': forms.Textarea(attrs={
+            'table_count': forms.NumberInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
-                'placeholder': 'Room Description',
-                'rows': 4
+                'placeholder': 'Number of Tables'
+            }),
+            'bed_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of Beds'
+            }),
+            'chair_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of Chairs'
+            }),
+            'aircon_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of Air Conditioners'
             }),
             'size': forms.NumberInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
                 'placeholder': 'Room Size (in sq. meters)',
                 'step': '0.1'
+            }),
+            'price': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Price'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Room Description',
+                'rows': 4
             }),
             'image': forms.ClearableFileInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg bg-white'

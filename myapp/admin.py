@@ -34,3 +34,4 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('id', 'tenant', 'room', 'status', 'created_at')
     search_fields = ('tenant__user__username', 'room__room_name')
     list_filter = ('status',)
+

@@ -1,120 +1,174 @@
+{% load static %}
 <!DOCTYPE html>
-
-{% load widget_tweaks %}
-
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Add Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Room - Room Rental System</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
-<body class="bg-gradient-to-br from-blue-100 via-white to-blue-200 min-h-screen flex flex-col items-center justify-between font-sans space-y-6">
+<body class="bg-[#f5f5f5] font-sans">
     <!-- Header -->
-    <header class="text-white p-6 text-center w-full shadow-md">
-        <h1 class="text-3xl font-bold text-black">Add New Room</h1>
-        <p class="text-black">Information about the selected room</p>
-    </header>
-    
-    <form method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-xl shadow-xl max-w-2xl mx-auto space-y-6">
-        {% csrf_token %}
-        
-        <h2 class="text-2xl font-bold text-gray-800">Add New Room</h2>
-    
-        <!-- Room Form Fields -->
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Dorm Name</label>
-            {{ room_form.dorm_name }}
-            {% if room_form.dorm_name.errors %}
-                <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_form.dorm_name.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Room Name</label>
-            {{ room_form.room_name }}
-            {% if room_form.room_name.errors %}
-                <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_form.room_name.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Price</label>
-            {{ room_form.price }}
-            {% if room_form.price.errors %}
-                <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_form.price.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-            {{ room_form.location }}
-            {% if room_form.location.errors %}
-                <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_form.location.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-            {{ room_form.description }}
-            {% if room_form.description.errors %}
-                <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_form.description.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Room Size (in sq. meters)</label>
-            {{ room_form.size }}
-            {% if room_form.size.errors %}
-                <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_form.size.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    
-        <!-- Room Image Upload -->
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Room Image</label>
-            {{ room_form.image }}
-            {% if room_form.image.errors %}
-                <ul class="text-red-500 text-sm mt-1">
-                    {% for error in room_form.image.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    
-        <div class="text-right">
-            <button type="submit" class="inline-flex items-center px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition">
-                Save Room
-            </button>
-        </div>
-    </form>
-    
+    <div class="relative flex items-center justify-between p-4 bg-white shadow-md">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-16 object-contain">
+        </a>
+    </div>
 
-    
+    <!-- Navigation -->
+    <nav class="hidden lg:flex absolute top-5 right-10 z-10">
+        <ul class="flex space-x-6 px-6 py-3 gap-4">
+            <li>
+                <a href="{% url 'all_rooms' %}"
+                    class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    Rooms
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home' %}"
+                    class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'room_create' %}"
+                    class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    My Account
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Form Section -->
+    <section class="container mx-auto px-6 py-10">
+        <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Create a Room Listing</h2>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="space-y-10">
+
+                    <!-- Section: Basic Info -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Basic Information</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="dorm_name" class="block text-sm font-medium text-gray-700 mb-1">Dorm Name</label>
+                                <input type="text" name="dorm_name" id="dorm_name"
+                                    class="w-full p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                                    value="{{ room_form.dorm_name.value|default_if_none:'' }}" required>
+                            </div>
+
+                            <div>
+                                <label for="room_name" class="block text-sm font-medium text-gray-700 mb-1">Room Number</label>
+                                <input type="text" name="room_name" id="room_name"
+                                    class="w-full p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                                    value="{{ room_form.room_name.value|default_if_none:'' }}" required>
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                                <input type="text" name="location" id="location"
+                                    class="w-full p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                                    value="{{ room_form.location.value|default_if_none:'' }}" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-gray-300">
+
+                    <!-- Section: Furniture -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Furniture</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Number of Tables</label>
+                                {{ room_form.table_count }}
+                                {% if room_form.table_count.errors %}
+                                {% include "partials/field_errors.html" with errors=room_form.table_count.errors %}
+                                {% endif %}
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Number of Beds</label>
+                                {{ room_form.bed_count }}
+                                {% if room_form.bed_count.errors %}
+                                {% include "partials/field_errors.html" with errors=room_form.bed_count.errors %}
+                                {% endif %}
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Number of Chairs</label>
+                                {{ room_form.chair_count }}
+                                {% if room_form.chair_count.errors %}
+                                {% include "partials/field_errors.html" with errors=room_form.chair_count.errors %}
+                                {% endif %}
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Number of Air Conditioners</label>
+                                {{ room_form.aircon_count }}
+                                {% if room_form.aircon_count.errors %}
+                                {% include "partials/field_errors.html" with errors=room_form.aircon_count.errors %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-gray-300">
+
+                    <!-- Section: Room Details -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Room Details</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="size" class="block text-sm font-medium text-gray-700 mb-1">Room Size (sq.m.)</label>
+                                <input type="number" name="size" id="size"
+                                    class="w-full p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                                    value="{{ room_form.size.value|default_if_none:'' }}" required>
+                            </div>
+                            <div>
+                                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price (THB)</label>
+                                <input type="number" name="price" id="price"
+                                    class="w-full p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                                    value="{{ form.price.value|default_if_none:'' }}" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Room Description</label>
+                                <textarea name="description" id="description" rows="4"
+                                    class="w-full p-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">{{ form.description.value|default_if_none:'' }}</textarea>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Room Image</label>
+                                <input type="file" name="image" id="image"
+                                    class="w-full p-2 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                                {% if room_form.image.errors %}
+                                <ul class="mt-2 text-red-500 text-sm">
+                                    {% for error in room_form.image.errors %}
+                                    <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-right">
+                        <button type="submit"
+                            class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition duration-300 shadow-lg">
+                            Save Room
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
+
 </html>
