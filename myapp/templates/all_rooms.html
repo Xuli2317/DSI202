@@ -38,12 +38,12 @@
     <!-- Navigation -->
     <nav class="hidden lg:flex absolute top-5 right-10 z-10">
         <ul class="flex space-x-6 px-6 py-3 gap-4">
-            <li>
+            <!-- <li>
                 <a href="{% url 'home' %}"
                     class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
                     Home
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="{% url 'room_create' %}"
                     class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
@@ -68,12 +68,12 @@
                     Register
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="{% url 'room_create' %}"
                     class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
                     My Account
                 </a>
-            </li>
+            </li> -->
         </ul>
     </nav>
 
@@ -86,7 +86,7 @@
             <li><a href="{% url 'room_create' %}" class="text-black text-xl">Tenant</a></li>
             <li><a href="{% url 'room_create' %}" class="text-black text-xl">Login</a></li>
             <li><a href="{% url 'room_create' %}" class="text-black text-xl">Register</a></li>
-            <li><a href="{% url 'room_create' %}" class="text-black text-xl">My Account</a></li>
+            <!-- <li><a href="{% url 'room_create' %}" class="text-black text-xl">My Account</a></li> -->
         </ul>
     </nav>
 
@@ -103,12 +103,15 @@
   </div>
 
     <!-- Room Filter Section (Centered) -->
-    <section class="container mx-auto p-100 flex flex-col items-center justify-center space-y-4">
-        <h2 class="text-3xl font-semibold text-gray-800">Search for Available Rooms</h2>
-        <p class="text-lg text-gray-600">Use the filters below to find rooms that match your needs. You can filter by
-            dorm name, price range, and more.</p>
-        <!-- Search Form -->
-        <form action="{% url 'home' %}" method="get" class="p-6 space-y-4 w-full max-w-4xl "
+<section class="container mx-auto px-4 py-10 text-center">
+    <h2 class="text-3xl font-semibold text-gray-800">Search for Available Rooms</h2>
+    <p class="text-lg text-gray-600">Use the filters below to find rooms that match your needs. You can filter by
+        dorm name, price range, and more.</p>
+
+    <!-- Search Form -->
+    <div class="flex justify-center mt-8">
+        <form action="{% url 'home' %}" method="get"
+            class="p-6 space-y-4 w-full max-w-4xl"
             style="font-family: 'Didact Gothic','Prompt', sans-serif;" data-aos="fade-up" data-aos-delay="200">
 
             <!-- Description -->
@@ -145,9 +148,8 @@
                 </button>
             </div>
         </form>
-        </div>
-
-    </section>
+    </div>
+</section>
 
     <!-- Room List Section -->
 <section class="container mx-auto p-6 w-full max-w-7xl">
