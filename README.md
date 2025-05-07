@@ -9,4 +9,4 @@ Responsive UI: Built with Tailwind CSS, AOS animations, and Swiper.js for mobile
 
 Search & Filter: Search rooms by description, dorm name, and price range.
 
-Booking Workflow: Tenants can request bookings; landlords can confirm or cancel.
+Booking Workflow: Tenants can request bookings; landlords can confirm or cancel. 5555
