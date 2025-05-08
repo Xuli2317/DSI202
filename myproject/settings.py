@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "myapp",
     "widget_tweaks",
-    'django.contrib.sites', #new
-    'allauth', #new
-    'allauth.account', #new
-    'allauth.socialaccount', #new
-    'allauth.socialaccount.providers.google', #new
+    "django.contrib.sites", #new
+    "allauth", #new
+    "allauth.account", #new
+    "allauth.socialaccount", #new
+    "allauth.socialaccount.providers.google", #new
 ]
 
 AUTH_USER_MODEL = 'myapp.CustomUser'
@@ -68,8 +68,8 @@ ROOT_URLCONF = "myproject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'myapp' / 'templates'],
-        "APP_DIRS": True,
+        "DIRS": [BASE_DIR / 'myapp' / 'templates', BASE_DIR / 'myapp' / 'templates' / 'account'],  # เพิ่มเส้นทาง account
+        "APP_DIRS": True,  
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -166,18 +166,15 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-
-
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = '/home'
-LOGOUT_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
-
+SOCIALACCOUNT_AUTO_SIGNUP = True
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-LOGIN_REDIRECT_URL = 'home'

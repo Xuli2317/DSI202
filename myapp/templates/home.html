@@ -16,45 +16,50 @@
 
 <body class="bg-[#f5f5f5] font-sans">
     <!-- Header with transparent background -->
-    <div class="relative flex items-center justify-between p-4 bg-[#f5f5f5] bg-opacity-80 shadow-md">
-        <a href="{% url 'home' %}">
-            <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-16 object-contain">
-        </a>
-    </div>
+<div class="relative flex items-center justify-between p-4 bg-[#f5f5f5] bg-opacity-80 shadow-md">
+    <a href="{% url 'home' %}">
+        <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-16 object-contain">
+    </a>
+</div>
 
-    <!-- Hamburger Menu Button: Mobile only -->
-    <div class="lg:hidden absolute top-7 right-10  z-20">
-        <button id="hamburger-icon" class="text-black focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
-    </div>
+<!-- Hamburger Menu Button: Mobile only -->
+<div class="lg:hidden absolute top-7 right-10 z-20">
+    <button id="hamburger-icon" class="text-black focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+</div>
 
-    <!-- Navigation -->
-    <nav class="hidden lg:flex absolute top-5 right-10 z-10">
-        <ul class="flex space-x-6 px-6 py-3 gap-4">
-            <li>
-                <a href="{% url 'account_login' %}"
-                    class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    Login
-                </a>
-            </li>
+<!-- Navigation -->
+<nav class="hidden lg:flex absolute top-5 right-10 z-10">
+    <ul class="flex space-x-6 px-6 py-3 gap-4">
+        {% if user.is_authenticated %}
+            <!-- If the user is logged in -->
             <li>
                 <a href="{% url 'account_logout' %}"
-                    class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    logout
+                   class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    Logout
                 </a>
             </li>
+            <!-- Optionally, you can add a "My Account" or "Profile" link here -->
             <!-- <li>
-                <a href="{% url 'room_create' %}"
-                    class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                <a href="{% url 'profile' %}" class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
                     My Account
                 </a>
             </li> -->
-        </ul>
-    </nav>
+        {% else %}
+            <!-- If the user is not logged in -->
+            <li>
+                <a href="{% url 'account_login' %}"
+                   class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                    Login
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
 
     <!-- Mobile Navigation -->
     <nav id="mobile-menu"
