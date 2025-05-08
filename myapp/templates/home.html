@@ -36,18 +36,6 @@
     <nav class="hidden lg:flex absolute top-5 right-10 z-10">
         <ul class="flex space-x-6 px-6 py-3 gap-4">
             <li>
-                <a href="{% url 'room_create' %}"
-                    class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    Landlord
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'room_create' %}"
-                    class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    Tenant
-                </a>
-            </li>
-            <li>
                 <a href="{% url 'account_login' %}"
                     class="flex items-center justify-center  px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
                     Login
@@ -72,8 +60,7 @@
     <nav id="mobile-menu"
         class="lg:hidden absolute top-20 right-0 w-full bg-white bg-opacity-45 backdrop-blur-sm z-50 hidden shadow-lg transition-all duration-300">
         <ul class="flex flex-col items-center justify-center py-6 space-y-6">
-            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Landlord</a></li>
-            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Tenant</a></li>
+
             <li><a href="{% url 'room_create' %}" class="text-black text-xl">Login</a></li>
             <li><a href="{% url 'room_create' %}" class="text-black text-xl">Register</a></li>
             <!-- <li><a href="{% url 'room_create' %}" class="text-black text-xl">My Account</a></li> -->

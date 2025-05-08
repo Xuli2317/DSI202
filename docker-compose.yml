@@ -11,3 +11,5 @@ services:
     working_dir: /app
     environment:
       - DEBUG=True
+    env_file:
+      - .env

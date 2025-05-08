@@ -8,6 +8,8 @@ from django.forms import modelformset_factory
 from django.contrib import messages
 from django.core.paginator import Paginator
 
+
+
 def home(request):
     max_price = request.GET.get('max_price')
     min_price = request.GET.get('min_price')

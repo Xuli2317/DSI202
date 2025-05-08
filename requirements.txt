@@ -11,3 +11,7 @@ django-widget-tweaks
 
 # Authentication
 django-allauth
+social-auth-app-django
+
+python-dotenv==0.21.0
+

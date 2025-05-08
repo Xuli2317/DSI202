@@ -19,13 +19,13 @@ from django.urls import path
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('myapp.urls')),
-    # Include auth_app URLs
-    path('auth/', include('auth_app.urls')),
-    path('accounts/', include('allauth.urls')), # new
+    path('auth/', include('allauth.urls')),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

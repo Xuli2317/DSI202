@@ -10,5 +10,8 @@ COPY . /app
 # ติดตั้ง dependency
 RUN pip install -r requirements.txt
 
+# Install python-dotenv
+RUN pip install python-dotenv
+
 # รันเซิร์ฟเวอร์ Django
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

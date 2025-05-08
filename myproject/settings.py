@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv()  
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,7 +47,6 @@ INSTALLED_APPS = [
     'allauth.account', #new
     'allauth.socialaccount', #new
     'allauth.socialaccount.providers.google', #new
-    'auth_app',
 ]
 
 AUTH_USER_MODEL = 'myapp.CustomUser'
@@ -140,7 +142,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-import os
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -152,16 +153,27 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {
+            'access_type': 'offline',
+            'prompt': 'select_account',  # เพื่อให้บังคับให้แสดงหน้าล็อกอินทุกครั้ง
+        },
         'APP': {
-            'client_id': '',
-            'secret': '',
-            'key': ''
+            'client_id': os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY"),
+            'secret': os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET"),
         }
     }
 }
+
+
+
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = '/home'
+
+
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",

@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
+from django.urls import path, include
 
 urlpatterns = [
     # ✅ ตั้งให้หน้าแรกใช้ room_list ที่กรอง available=True
@@ -23,4 +24,7 @@ urlpatterns = [
 
     # เพิ่มห้องใหม่
     path('room/add/', views.room_create, name='room_create'),
+
+    path('auth/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
