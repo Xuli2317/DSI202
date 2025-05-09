@@ -6,14 +6,15 @@ from django.db.models.signals import post_save, post_delete
 
 User = settings.AUTH_USER_MODEL
 
-# Custom User Model with additional fields for phone and role
 class CustomUser(AbstractUser):
     phone = models.CharField(max_length=15, blank=True, null=True)
+    
     ROLE_CHOICES = (
         ('tenant', 'Tenant'),
         ('landlord', 'Landlord'),
     )
-    role = models.CharField(max_length=20, choices=[('tenant', 'Tenant'), ('landlord', 'Landlord')])
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, null=True, blank=True)
+
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='customuser_set',  
@@ -24,6 +25,7 @@ class CustomUser(AbstractUser):
         related_name='customuser_permissions', 
         blank=True
     )
+
 
 # Tenant Model
 class Tenant(models.Model):
@@ -108,3 +110,10 @@ def update_room_availability_on_booking_delete(sender, instance, **kwargs):
     if not other_active:
         instance.room.available = True
         instance.room.save()
+
+@receiver(post_save, sender=CustomUser)
+def create_profile_based_on_role(sender, instance, created, **kwargs):
+    if instance.role == 'tenant':
+        Tenant.objects.get_or_create(user=instance)
+    elif instance.role == 'landlord':
+        Landlord.objects.get_or_create(user=instance)

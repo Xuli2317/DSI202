@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Room, Booking
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
+from allauth.account.forms import SignupForm
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField()
@@ -103,3 +104,16 @@ class GuestBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['full_name', 'phone']
+
+class CustomSignupForm(SignupForm):
+    ROLE_CHOICES = (
+        ('tenant', 'Tenant'),
+        ('landlord', 'Landlord'),
+    )
+    role = forms.ChoiceField(choices=ROLE_CHOICES, widget=forms.RadioSelect)
+
+    def save(self, request):
+        user = super().save(request)
+        user.role = self.cleaned_data['role']
+        user.save()
+        return user

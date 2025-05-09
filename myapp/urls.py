@@ -13,6 +13,7 @@ urlpatterns = [
     path('booking/complete/<int:booking_id>/', views.booking_complete, name='booking_complete'),
     path('room/add/', views.room_create, name='room_create'),
     path('profile/', views.profile_view, name='profile'),
+    path('choose-role/', views.choose_role, name='choose_role'),
 
     path('accounts/', include('allauth.urls')),  # default path allauth
 

@@ -7,6 +7,7 @@ from .models import CustomUser, Tenant, Landlord
 from django.forms import modelformset_factory
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     max_price = request.GET.get('max_price')
@@ -26,7 +27,6 @@ def home(request):
         queryset = queryset.filter(description__icontains=description)
 
     return render(request, 'home.html', {'rooms': queryset})
-
 
 
 class RoomDetailView(DetailView):
@@ -85,7 +85,7 @@ def room_create(request):
             room = room_form.save()
             return redirect('home')
         else:
-            print(room_form.errors)  # <== เพิ่มบรรทัดนี้เพื่อ debug
+            print(room_form.errors)  
     else:
         room_form = RoomForm()
 
@@ -93,3 +93,23 @@ def room_create(request):
 
 def profile_view(request):
     return render(request, 'profile.html') 
+
+@login_required
+def choose_role(request):
+    if request.user.role:
+        return redirect('home')  # หรือ dashboard ตาม role
+
+    if request.method == 'POST':
+        role = request.POST.get('role')
+        if role in ['tenant', 'landlord']:
+            request.user.role = role
+            request.user.save()
+            return redirect('home')
+
+    return render(request, 'choose_role.html')
+
+@login_required
+def room_create(request):
+    if request.user.role != 'landlord':
+        return redirect('no_permission')  # หรือแสดงข้อความ
+    # ดำเนินการสร้างห้องต่อได้

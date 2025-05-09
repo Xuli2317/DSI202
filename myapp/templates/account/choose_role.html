@@ -1,0 +1,11 @@
+<!-- templates/choose_role.html -->
+<form method="post">
+  {% csrf_token %}
+  <label>
+    <input type="radio" name="role" value="tenant"> Tenant
+  </label>
+  <label>
+    <input type="radio" name="role" value="landlord"> Landlord
+  </label>
+  <button type="submit">Continue</button>
+</form>
