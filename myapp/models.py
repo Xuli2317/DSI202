@@ -86,6 +86,22 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.id} for {self.room.room_name}"
+    
+    def clean(self):
+        if not self.tenant and not (self.full_name and self.phone):
+            raise ValidationError("Either a tenant or guest details (full_name and phone) must be provided.")
+
+
+class Review(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='reviews')
+    tenant = models.ForeignKey('CustomUser', on_delete=models.CASCADE)  # Assuming CustomUser model
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
+    comfort = models.TextField(blank=True)
+    cleanliness = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review by {self.tenant.username} for {self.room.room_name}"
 
 @receiver(post_save, sender=Booking)
 def update_room_availability_on_booking_save(sender, instance, **kwargs):

@@ -80,30 +80,28 @@ class RoomForm(forms.ModelForm):
             }),
         }
 
-
-
 class BookingForm(forms.ModelForm):
-    class Meta:
-        model = Booking
-        fields = ['room']
-
     def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
         super().__init__(*args, **kwargs)
-        self.fields['room'].queryset = Room.objects.filter(available=True) 
+        self.fields['room'].queryset = Room.objects.filter(available=True)
 
     def save(self, commit=True):
         booking = super().save(commit=False)
-        # ถ้าผู้ใช้ล็อกอินเป็น tenant กำหนด tenant
         if self.request and self.request.user.is_authenticated and hasattr(self.request.user, 'tenant_profile'):
             booking.tenant = self.request.user.tenant_profile
         if commit:
             booking.save()
         return booking
-    
+
+    class Meta:
+        model = Booking
+        fields = ['room']
+
 class GuestBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['full_name', 'phone']
+        fields = ['full_name', 'phone', 'email', 'check_in', 'check_out']
 
 class CustomSignupForm(SignupForm):
     ROLE_CHOICES = (

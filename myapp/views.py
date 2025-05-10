@@ -40,12 +40,24 @@ class RoomSearchView(ListView):
     context_object_name = 'rooms'
 
     def get_queryset(self):
+        queryset = Room.objects.all()
         query = self.request.GET.get('q')
-        return Room.objects.filter(
-            Q(name__icontains=query) |
-            Q(location__icontains=query) |
-            Q(furniture__icontains=query)
-        ) if query else Room.objects.all()
+        if query:
+            queryset = queryset.filter(
+                Q(room_name__icontains=query) |
+                Q(location__icontains=query) |
+                Q(description__icontains=query)
+            )
+
+        # Furniture filters
+        if self.request.GET.get('table'):
+            queryset = queryset.filter(table_count__gt=0)
+        if self.request.GET.get('bed'):
+            queryset = queryset.filter(bed_count__gt=0)
+        if self.request.GET.get('chair'):
+            queryset = queryset.filter(chair_count__gt=0)
+
+        return queryset
 
 def all_rooms(request):
     rooms = Room.objects.filter(available=True)  # เริ่มจากเฉพาะห้องที่ available=True
@@ -64,32 +76,42 @@ def booking_complete(request, booking_id):
 
 def booking_create(request, pk):
     room = get_object_or_404(Room, pk=pk)
+    if request.user.is_authenticated and request.user.role == 'tenant':
+        form_class = BookingForm
+        extra_kwargs = {'request': request}
+    else:
+        form_class = GuestBookingForm
+        extra_kwargs = {}
 
     if request.method == 'POST':
-        form = GuestBookingForm(request.POST)
+        form = form_class(request.POST, **extra_kwargs)
         if form.is_valid():
             booking = form.save(commit=False)
             booking.room = room
+            if request.user.is_authenticated and request.user.role == 'tenant':
+                booking.tenant = request.user.tenant_profile
             booking.save()
             return redirect('booking_complete', booking_id=booking.id)
     else:
-        form = GuestBookingForm()
-
+        form = form_class(**extra_kwargs)
     return render(request, 'booking_form.html', {'form': form, 'room': room})
 
+@login_required
 def room_create(request):
+    if request.user.role != 'landlord':
+        messages.error(request, "Only landlords can create rooms.")
+        return redirect('home')
     if request.method == 'POST':
-        room_form = RoomForm(request.POST, request.FILES)
-        
-        if room_form.is_valid():
-            room = room_form.save()
+        form = RoomForm(request.POST, request.FILES)
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.landlord = request.user.landlord_profile
+            room.save()
+            messages.success(request, "Room created successfully.")
             return redirect('home')
-        else:
-            print(room_form.errors)  
     else:
-        room_form = RoomForm()
-
-    return render(request, 'room_create.html', {'room_form': room_form})
+        form = RoomForm()
+    return render(request, 'room_create.html', {'form': form})
 
 def profile_view(request):
     return render(request, 'profile.html') 
@@ -108,8 +130,11 @@ def choose_role(request):
 
     return render(request, 'choose_role.html')
 
-@login_required
-def room_create(request):
-    if request.user.role != 'landlord':
-        return redirect('no_permission')  # หรือแสดงข้อความ
-    # ดำเนินการสร้างห้องต่อได้
+def profile_view(request):
+    profile = None
+    if request.user.is_authenticated:
+        if request.user.role == 'tenant':
+            profile = request.user.tenant_profile
+        elif request.user.role == 'landlord':
+            profile = request.user.landlord_profile
+    return render(request, 'profile.html', {'profile': profile})

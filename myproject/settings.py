@@ -170,7 +170,7 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/choose-role/'
 LOGOUT_REDIRECT_URL = 'home'
-
+SOCIALACCOUNT_LOGIN_ON_GET = True
 SOCIALACCOUNT_AUTO_SIGNUP = True
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
@@ -178,3 +178,6 @@ AUTHENTICATION_BACKENDS = (
 )
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_FORMS = {
+    'signup': 'yourapp.forms.CustomSignupForm',
+}
