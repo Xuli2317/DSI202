@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Room Rental System{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@100..900&family=Prompt:wght@100;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-[#f5f5f5] font-sans">
+
+    <!-- Header -->
+    <header class="relative flex items-center justify-between p-4 bg-[#f5f5f5] bg-opacity-80 shadow-md"
+    style="height: 85px;">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-16 object-contain">
+        </a>
+
+        <!-- Hamburger for mobile -->
+        <div class="lg:hidden absolute top-7 right-10 z-20">
+            <button id="hamburger-icon" class="text-black focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex absolute top-5 right-10 z-10">
+            <ul class="flex space-x-6 px-6 py-3 gap-4">
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'account_logout' %}"
+                        class="px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                        Logout
+                    </a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'account_login' %}"
+                        class="px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
+                        Login
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu"
+            class="lg:hidden absolute top-20 right-0 w-full bg-white bg-opacity-45 backdrop-blur-sm z-50 hidden shadow-lg transition-all duration-300">
+            <ul class="flex flex-col items-center justify-center py-6 space-y-6">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'account_logout' %}" class="text-black text-xl">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'account_login' %}" class="text-black text-xl">Login</a></li>
+                <li><a href="{% url 'account_signup' %}" class="text-black text-xl">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content block -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#f5f5f5] text-white text-center p-6 mt-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <div class="container mx-auto">
+            <div class="mb-4">
+                <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-12 mx-auto">
+            </div>
+            <p class="text-sm md:text-base text-black">&copy; 2025 Rent Near. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Terms & Conditions</a>
+                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerIcon?.addEventListener('click', () => {
+            mobileMenu?.classList.toggle('hidden');
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>
