@@ -1,9 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Room, Booking
+from .models import Room, Booking, Landlord
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
+from .models import Landlord
 from allauth.account.forms import SignupForm
 
 class CustomUserCreationForm(UserCreationForm):
@@ -12,6 +12,11 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class LandlordApplicationForm(forms.ModelForm):
+    class Meta:
+        model = Landlord
+        fields = ['phone_number']
 
 class RoomCreateForm(forms.ModelForm):
     class Meta:

@@ -2,6 +2,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
+from django.shortcuts import redirect
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -12,7 +13,7 @@ urlpatterns = [
     path('booking/<int:booking_id>/complete/', views.booking_complete, name='booking_complete'),
     path('room/add/', views.room_create, name='room_create'),
     path('profile/', views.profile_view, name='profile'),
-    path('choose-role/', views.choose_role, name='choose_role'),
     path('accounts/', include('allauth.urls')),
     path('login/', lambda request: redirect('/accounts/google/login/'), name='login'),
+    path('apply-landlord/', views.apply_landlord, name='apply_landlord'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

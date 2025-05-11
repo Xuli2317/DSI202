@@ -13,19 +13,18 @@ class CustomUser(AbstractUser):
         ('tenant', 'Tenant'),
         ('landlord', 'Landlord'),
     )
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, null=True, blank=True)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='tenant')  # ค่าเริ่มต้นเป็น tenant
 
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='customuser_set',  
+        related_name='customuser_set',
         blank=True
     )
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='customuser_permissions', 
+        related_name='customuser_permissions',
         blank=True
     )
-
 
 # Tenant Model
 class Tenant(models.Model):
@@ -94,7 +93,7 @@ class Booking(models.Model):
 
 class Review(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='reviews')
-    tenant = models.ForeignKey('CustomUser', on_delete=models.CASCADE)  # Assuming CustomUser model
+    tenant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
     comfort = models.TextField(blank=True)
     cleanliness = models.TextField(blank=True)

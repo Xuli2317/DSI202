@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Booking
-from .forms import RoomCreateForm, RoomForm, BookingForm, Booking, GuestBookingForm
+from .forms import RoomCreateForm, RoomForm, BookingForm, Booking, GuestBookingForm, LandlordApplicationForm
 from .models import CustomUser, Tenant, Landlord
 from django.forms import modelformset_factory
 from django.contrib import messages
@@ -27,6 +27,35 @@ def home(request):
         queryset = queryset.filter(description__icontains=description)
 
     return render(request, 'home.html', {'rooms': queryset})
+
+@login_required
+def apply_landlord(request):
+    if request.user.role == 'landlord':
+        messages.error(request, "You are already a landlord.")
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = LandlordApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            # ลบโปรไฟล์ Tenant
+            Tenant.objects.filter(user=request.user).delete()
+            
+            # เปลี่ยน role เป็น landlord
+            request.user.role = 'landlord'
+            request.user.save()
+            
+            # สร้างโปรไฟล์ Landlord
+            landlord = form.save(commit=False)
+            landlord.user = request.user
+            landlord.is_verified = False
+            landlord.save()
+            
+            messages.success(request, "Your landlord application has been submitted.")
+            return redirect('home')
+    else:
+        form = LandlordApplicationForm()
+    
+    return render(request, 'apply_landlord.html', {'form': form})
 
 
 class RoomDetailView(DetailView):
@@ -116,25 +145,7 @@ def room_create(request):
 def profile_view(request):
     return render(request, 'profile.html') 
 
+
 @login_required
-def choose_role(request):
-    if request.user.role:
-        return redirect('home')  # หรือ dashboard ตาม role
-
-    if request.method == 'POST':
-        role = request.POST.get('role')
-        if role in ['tenant', 'landlord']:
-            request.user.role = role
-            request.user.save()
-            return redirect('home')
-
-    return render(request, 'choose_role.html')
-
-def profile_view(request):
-    profile = None
-    if request.user.is_authenticated:
-        if request.user.role == 'tenant':
-            profile = request.user.tenant_profile
-        elif request.user.role == 'landlord':
-            profile = request.user.landlord_profile
-    return render(request, 'profile.html', {'profile': profile})
+def profile(request):
+    return render(request, 'myapp/profile.html', {'user': request.user})

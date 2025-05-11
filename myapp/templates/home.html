@@ -87,35 +87,49 @@
 </section>
 
 <!-- Room List -->
-<section class="container mx-auto p-6 w-full max-w-7xl">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {% for room in rooms|slice:":4" %}
+<section class="container mx-auto px-4 py-8 w-full max-w-7xl">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {% for room in rooms %}
         <a href="{% url 'room_detail' pk=room.pk %}"
-            class="block bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-            <div class="relative">
+            class="relative block bg-white rounded-xl overflow-hidden transition-all duration-200 transform hover:scale-105 hover:shadow-xl">
+            <!-- Image Section -->
+            <div class="relative h-56 overflow-hidden">
                 {% if room.image %}
-                <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-64 object-cover rounded-t-xl">
+                <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
                 {% else %}
-                <div
-                    class="w-full h-64 bg-gray-300 flex items-center justify-center text-white text-lg font-semibold rounded-t-xl">
-                    No Image</div>
+                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-sm font-medium">
+                    No Image Available
+                </div>
                 {% endif %}
             </div>
-            <div class="p-6 text-center">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-2"
-                    style="font-family: 'Didact Gothic','Prompt', sans-serif;">{{ room.dorm_name }}</h3>
-                <p class="text-lg text-gray-600 mb-4" style="font-family: 'Didact Gothic', sans-serif;">Room {{
-                    room.room_name }}</p>
-                <p class="text-2xl font-bold text-blue-600" style="font-family: 'Didact Gothic', sans-serif;">{{
-                    room.price|floatformat:0 }} THB</p>
+            
+            <!-- Content Section -->
+            <div class="p-4 text-center">
+                <h3 class="text-base font-semibold text-gray-900 truncate" style="font-family: 'Inter', 'Prompt', sans-serif;">
+                    {{ room.dorm_name }}
+                </h3>
+                <p class="text-sm text-gray-500 mt-1" style="font-family: 'Inter', sans-serif;">
+                    Room {{ room.room_name }}
+                </p>
+                
+                <!-- Price Badge -->
+                <div class="absolute top-4 right-4 bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
+                    {{ room.price|floatformat:0 }} THB
+                </div>
             </div>
         </a>
         {% empty %}
-        <p class="text-center text-lg col-span-full" style="font-family: 'Didact Gothic', sans-serif;">No rooms found.
-        </p>
+        <div class="col-span-full text-center py-8">
+            <p class="text-base text-gray-500" style="font-family: 'Inter', sans-serif;">
+                No rooms found.
+            </p>
+        </div>
         {% endfor %}
     </div>
 </section>
+
+
+
 
 <!-- View All Button -->
 <div class="text-center mt-8">
