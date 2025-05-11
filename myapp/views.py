@@ -105,25 +105,39 @@ def booking_complete(request, booking_id):
 
 def booking_create(request, pk):
     room = get_object_or_404(Room, pk=pk)
-    if request.user.is_authenticated and request.user.role == 'tenant':
-        form_class = BookingForm
-        extra_kwargs = {'request': request}
-    else:
-        form_class = GuestBookingForm
-        extra_kwargs = {}
 
     if request.method == 'POST':
-        form = form_class(request.POST, **extra_kwargs)
+        form = GuestBookingForm(request.POST)
         if form.is_valid():
             booking = form.save(commit=False)
             booking.room = room
-            if request.user.is_authenticated and request.user.role == 'tenant':
-                booking.tenant = request.user.tenant_profile
+
+            if request.user.is_authenticated:
+                try:
+                    tenant = request.user.tenant
+                    booking.tenant = tenant
+                    booking.full_name = request.user.get_full_name()
+                    booking.phone = request.user.phone
+                    booking.email = request.user.email
+                except Tenant.DoesNotExist:
+                    messages.error(request, "Only tenants can book rooms.")
+                    return redirect('home')
+
             booking.save()
-            return redirect('booking_complete', booking_id=booking.id)
+            messages.success(request, "Booking successful!")
+            return redirect('booking_success')
     else:
-        form = form_class(**extra_kwargs)
+        if request.user.is_authenticated:
+            form = GuestBookingForm(initial={
+                'full_name': request.user.get_full_name(),
+                'phone': request.user.phone,
+                'email': request.user.email,
+            })
+        else:
+            form = GuestBookingForm()
+
     return render(request, 'booking_form.html', {'form': form, 'room': room})
+
 
 @login_required
 def room_create(request):
@@ -147,5 +161,25 @@ def profile_view(request):
 
 
 @login_required
-def profile(request):
-    return render(request, 'myapp/profile.html', {'user': request.user})
+def quick_booking(request, room_id):
+    room = get_object_or_404(Room, id=room_id)
+
+    try:
+        tenant = request.user.tenant
+    except Tenant.DoesNotExist:
+        messages.error(request, "Only tenants can book rooms.")
+        return redirect('home')
+
+    if request.method == 'POST':
+        booking = Booking.objects.create(
+            room=room,
+            tenant=tenant,
+            full_name=request.user.get_full_name(),
+            phone=request.user.phone,
+            email=request.user.email,
+            status='pending'
+        )
+        messages.success(request, "Booking successful!")
+        return redirect('booking_complete', booking_id=booking.id)
+
+    return redirect('room_detail', pk=room_id)
