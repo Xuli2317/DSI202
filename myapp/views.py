@@ -15,18 +15,46 @@ def home(request):
     dorm_name = request.GET.get('dorm_name')
     description = request.GET.get('description')
 
-    queryset = Room.objects.filter(available=True)  # เริ่มจากเฉพาะห้องที่ available=True
+    queryset = Room.objects.filter(available=True)  # Start with rooms that are available
 
+    # Filter by max_price if provided
     if max_price:
-        queryset = queryset.filter(price__lte=max_price)
+        try:
+            max_price = float(max_price)
+            queryset = queryset.filter(price__lte=max_price)
+        except ValueError:
+            # Handle invalid max_price input, if necessary
+            pass
+
+    # Filter by min_price if provided
     if min_price:
-        queryset = queryset.filter(price__gte=min_price)
+        try:
+            min_price = float(min_price)
+            queryset = queryset.filter(price__gte=min_price)
+        except ValueError:
+            # Handle invalid min_price input, if necessary
+            pass
+
+    # Filter by dorm_name if provided
     if dorm_name:
         queryset = queryset.filter(dorm_name__icontains=dorm_name)
+
+    # Filter by description if provided
     if description:
         queryset = queryset.filter(description__icontains=description)
 
-    return render(request, 'home.html', {'rooms': queryset})
+    # Pagination (Optional)
+    rooms_per_page = 10
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, rooms_per_page)
+    try:
+        rooms = paginator.page(page)
+    except PageNotAnInteger:
+        rooms = paginator.page(1)
+    except EmptyPage:
+        rooms = paginator.page(paginator.num_pages)
+
+    return render(request, 'home.html', {'rooms': rooms})
 
 @login_required
 def apply_landlord(request):

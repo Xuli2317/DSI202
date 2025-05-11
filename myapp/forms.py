@@ -35,6 +35,8 @@ class RoomForm(forms.ModelForm):
         fields = [
             'dorm_name', 'room_name', 'location', 
             'table_count', 'bed_count', 'chair_count', 'aircon_count',
+            'sofa_count', 'wardrobe_count', 'desk_count', 'tv_count',
+            'refrigerator_count', 'water_heater_count',
             'size', 'price', 'description', 'image'
         ]
         widgets = {
@@ -65,6 +67,30 @@ class RoomForm(forms.ModelForm):
             'aircon_count': forms.NumberInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
                 'placeholder': 'Number of Air Conditioners'
+            }),
+            'sofa_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of Sofas'
+            }),
+            'wardrobe_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of Wardrobes'
+            }),
+            'desk_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of Desks'
+            }),
+            'tv_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of TVs'
+            }),
+            'refrigerator_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of Refrigerators'
+            }),
+            'water_heater_count': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Number of Water Heaters'
             }),
             'size': forms.NumberInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',

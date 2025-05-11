@@ -1,208 +1,116 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Details - Room Rental System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@100..900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-</head>
+{% block content %}
+<!-- Back Button -->
+<div class="flex justify-start px-4 md:px-8 py-6">
+    <a href="{% url 'home' %}" class="group flex items-center space-x-2 text-gray-700 hover:text-indigo-600 font-medium text-sm md:text-base transition-all duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span>Back to Home</span>
+    </a>
+</div>
 
-<body class="bg-[#f5f5f5] font-sans">
+<!-- Room Detail Section -->
+<section class="max-w-5xl mx-auto px-4 md:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Room Image -->
+        <div class="relative w-full" data-aos="fade-up">
+            {% if room.image %}
+                <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-64 md:h-96 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500">
+            {% else %}
+                <div class="w-full h-64 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 rounded-2xl shadow-lg">
+                    <span class="text-lg font-medium">No Image Available</span>
+                </div>
+            {% endif %}
+        </div>
 
-    <!-- Header with transparent background -->
-    <div class="relative flex items-center justify-between p-4 bg-[#f5f5f5] bg-opacity-80 shadow-md">
-        <a href="{% url 'home' %}">
-            <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-16 object-contain">
-        </a>
-    </div>
-
-    <!-- Hamburger Menu Button: Mobile only -->
-    <div class="lg:hidden absolute top-7 right-10 z-20">
-        <button id="hamburger-icon" class="text-black focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="hidden lg:flex absolute top-5 right-10 z-10">
-        <ul class="flex space-x-6 px-6 py-3 gap-4">
-            <li>
-                <a href="{% url 'home' %}" class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'room_create' %}" class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    Landlord
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'room_create' %}" class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    Tenant
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'room_create' %}" class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    Login
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'room_create' %}" class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    Register
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'room_create' %}" class="flex items-center justify-center px-4 py-2 text-base font-semibold text-black hover:bg-black hover:text-white rounded-md transition duration-300">
-                    My Account
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Mobile Navigation -->
-    <nav id="mobile-menu" class="lg:hidden absolute top-20 right-0 w-full bg-white bg-opacity-45 backdrop-blur-sm z-50 hidden shadow-lg transition-all duration-300">
-        <ul class="flex flex-col items-center justify-center py-6 space-y-6">
-            <li><a href="{% url 'home' %}" class="text-black text-xl">Home</a></li>
-            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Landlord</a></li>
-            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Tenant</a></li>
-            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Login</a></li>
-            <li><a href="{% url 'room_create' %}" class="text-black text-xl">Register</a></li>
-        </ul>
-    </nav>
-
-    <!-- Back Button -->
-    <div class="w-full">
-        <a href="{% url 'all_rooms' %}" class="inline-block mb-6 text-sm md:text-base text-gray-600 hover:text-black px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-3">
-            <!-- Left Arrow Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-600 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-            <span>Back to All Rooms</span>
-        </a>
-    </div>
-
-    <section class="max-w-2xl mx-auto px-4 py-10">
-        <!-- Title -->
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">Room Details</h2>
-
-        <div class="flex flex-col items-center space-y-8">
-            <!-- Room Image -->
-            <div class="w-full">
-                {% if room.image %}
-                    <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-72 md:h-96 object-cover rounded-2xl shadow-md border border-gray-200 transition duration-300 hover:shadow-lg">
-                {% else %}
-                    <div class="w-full h-72 bg-gray-200 flex items-center justify-center text-gray-500 rounded-2xl shadow-inner text-base">
-                        No Image Available
-                    </div>
-                {% endif %}
+        <!-- Room Details -->
+        <div class="space-y-6" data-aos="fade-up" data-aos-delay="100">
+            <!-- Name & Price -->
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900">{{ room.dorm_name }} - Room {{ room.room_name }}</h1>
+                <p class="text-xl md:text-2xl text-indigo-600 font-semibold mt-2">{{ room.price }} THB / month</p>
             </div>
 
-            <!-- Room Details -->
-            <div class="bg-white w-full rounded-2xl shadow-md border border-gray-100 p-6 space-y-6">
-                <!-- Name & Price -->
-                <div>
-                    <h3 class="text-xl md:text-2xl font-semibold text-gray-900">{{ room.dorm_name }} - Room {{ room.room_name }}</h3>
-                    <p class="text-lg text-blue-600 font-semibold mt-1">{{ room.price }} THB / month</p>
-                </div>
-
-                <!-- Availability Badge -->
-                <div>
-                    {% if room.available %}
-                        <span class="inline-block bg-green-100 text-green-700 text-sm font-medium px-3 py-1.5 rounded-full shadow-sm">
-                            Currently Available
-                        </span>
-                    {% else %}
-                        <span class="inline-block bg-red-100 text-red-700 text-sm font-medium px-3 py-1.5 rounded-full shadow-sm">
-                            Not Available
-                        </span>
-                    {% endif %}
-                </div>
-
-                <!-- Room Info -->
-                <div class="text-gray-700 space-y-2 text-base leading-relaxed">
-                    <p><strong>Location:</strong> {{ room.location }}</p>
-                    <p><strong>Room Size:</strong> {{ room.size }} m²</p>
-                    {% if room.description %}
-                        <p><strong>Description:</strong> {{ room.description }}</p>
-                    {% endif %}
-                </div>
-
-                <!-- Furniture Section -->
-                <div>
-                    <h4 class="text-base font-semibold text-gray-800 mb-3">Furniture Included</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-800 text-sm">
-                        <a href="#" class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition">
-                            <i class="fas fa-table text-gray-700"></i>
-                            <span>{{ room.table_count }} Tables</span>
-                        </a>
-                        <a href="#" class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition">
-                            <i class="fas fa-bed text-gray-700"></i>
-                            <span>{{ room.bed_count }} Beds</span>
-                        </a>
-                        <a href="#" class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition">
-                            <i class="fas fa-chair text-gray-700"></i>
-                            <span>{{ room.chair_count }} Chairs</span>
-                        </a>
-                        <a href="#" class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition">
-                            <i class="fas fa-snowflake text-gray-700"></i>
-                            <span>{{ room.aircon_count }} Air Conditioners</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Booking Button -->
+            <!-- Availability Badge -->
+            <div>
                 {% if room.available %}
-                    <div class="pt-2">
-                        <a href="{% url 'booking_create' room.id %}" class="block text-center bg-black text-white text-sm md:text-base font-medium px-6 py-3 rounded-lg hover:bg-gray-800 transition duration-300">
-                            Book This Room
-                        </a>
-                    </div>
+                    <span class="inline-flex items-center bg-green-100 text-green-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Available
+                    </span>
+                {% else %}
+                    <span class="inline-flex items-center bg-red-100 text-red-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        Not Available
+                    </span>
                 {% endif %}
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#f5f5f5] text-white text-center p-6 mt-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-        <div class="container mx-auto">
-            <!-- Logo -->
-            <div class="mb-4">
-                <img src="{% static 'image/logopng.png' %}" alt="Rent Near Logo" class="h-12 mx-auto">
+            <!-- Room Info -->
+            <div class="text-gray-600 space-y-3 text-base leading-relaxed">
+                <p><span class="font-semibold text-gray-800">Location:</span> {{ room.location }}</p>
+                <p><span class="font-semibold text-gray-800">Room Size:</span> {{ room.size }} m²</p>
+                {% if room.description %}
+                    <p><span class="font-semibold text-gray-800">Description:</span> {{ room.description }}</p>
+                {% endif %}
             </div>
 
-            <!-- Copyright Message -->
-            <p class="text-sm md:text-base text-black">&copy; 2025 Rent Near. All rights reserved.</p>
-
-            <!-- Additional Links -->
-            <div class="mt-4 space-x-4">
-                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Privacy Policy</a>
-                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Terms & Conditions</a>
-                <a href="#" class="text-gray-400 hover:text-gray-200 transition duration-300">Contact Us</a>
+            <!-- Furniture Section -->
+            <div>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Furniture Included</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
+                        <i class="fas fa-table text-indigo-600 text-lg"></i>
+                        <span class="text-gray-700">{{ room.table_count }} Tables</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
+                        <i class="fas fa-bed text-indigo-600 text-lg"></i>
+                        <span class="text-gray-700">{{ room.bed_count }} Beds</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
+                        <i class="fas fa-chair text-indigo-600 text-lg"></i>
+                        <span class="text-gray-700">{{ room.chair_count }} Chairs</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
+                        <i class="fas fa-snowflake text-indigo-600 text-lg"></i>
+                        <span class="text-gray-700">{{ room.aircon_count }} Air Conditioners</span>
+                    </div>
+                </div>
             </div>
+
+            <!-- Booking Button -->
+            {% if room.available %}
+                <div class="pt-4">
+                    <a href="{% url 'booking_create' room.id %}" class="inline-block w-full text-center bg-indigo-600 text-white font-semibold text-base md:text-lg px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg">
+                        Book This Room
+                    </a>
+                </div>
+            {% endif %}
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+{% endblock content %}
 
-    <script>
-        const mobileMenuButton = document.getElementById('hamburger-icon');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
+{% block scripts %}
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+    });
+</script>
+<script>
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (hamburgerIcon && mobileMenu) {
+        hamburgerIcon.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-    </script>
-</body>
-
-</html>
+    }
+</script>
+{% endblock %}

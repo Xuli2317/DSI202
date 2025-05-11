@@ -54,6 +54,12 @@ class Room(models.Model):
     bed_count = models.PositiveIntegerField(default=0, verbose_name="bed_count")
     chair_count = models.PositiveIntegerField(default=0, verbose_name="chair_count")
     aircon_count = models.PositiveIntegerField(default=0, verbose_name="aircon_count")
+    sofa_count = models.PositiveIntegerField(default=0, verbose_name="sofa_count")
+    wardrobe_count = models.PositiveIntegerField(default=0, verbose_name="wardrobe_count")
+    desk_count = models.PositiveIntegerField(default=0, verbose_name="desk_count")
+    tv_count = models.PositiveIntegerField(default=0, verbose_name="tv_count")
+    refrigerator_count = models.PositiveIntegerField(default=0, verbose_name="refrigerator_count")
+    water_heater_count = models.PositiveIntegerField(default=0, verbose_name="water_heater_count")
 
     size = models.FloatField()
 
