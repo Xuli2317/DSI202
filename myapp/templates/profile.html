@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-6">My Profile</h1>
+
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-xl">
+        <div class="flex items-center mb-4">
+            {% if user.profile_picture %}
+                <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4 object-cover">
+            {% else %}
+                <img src="{% static 'default_avatar.png' %}" alt="Default Avatar" class="w-20 h-20 rounded-full mr-4 object-cover">
+            {% endif %}
+            <div>
+                <h2 class="text-xl font-semibold">{{ user.username }}</h2>
+                <p class="text-gray-600">{{ user.email }}</p>
+                <p class="text-gray-600">Role: {{ user.get_role_display }}</p>
+                {% if user.phone %}
+                    <p class="text-gray-600">Phone: {{ user.phone }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if user.role == 'tenant' and user.tenant %}
+        <hr class="my-4">
+        <h3 class="text-lg font-semibold mb-2">Tenant Information</h3>
+        <p>Budget: {{ user.tenant.budget }}</p>
+        <p>Move-in Date: {{ user.tenant.move_in_date }}</p>
+        <p>Income Range: {{ user.tenant.get_income_range_display }}</p>
+        {% endif %}
+
+        {% if user.role == 'landlord' and user.landlord_profile %}
+        <hr class="my-4">
+        <h3 class="text-lg font-semibold mb-2">Landlord Information</h3>
+        <p>Business Name: {{ user.landlord_profile.business_name }}</p>
+        {% if user.landlord_profile.verified_document %}
+            <p>
+                Verified Document: 
+                <a href="{{ user.landlord_profile.verified_document.url }}" class="text-blue-600 hover:underline" target="_blank">View</a>
+            </p>
+        {% endif %}
+        {% endif %}
+
+        <hr class="my-4">
+        <a href="{% url 'home' %}" class="text-blue-600 hover:underline">Back to Home</a>
+    </div>
+</div>
+{% endblock %}
