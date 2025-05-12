@@ -181,18 +181,5 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_FORMS = {
-    'signup': 'yourapp.forms.CustomSignupForm',
+    'signup': 'myapp.forms.CustomSignupForm',
 }
-
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
-LANGUAGE_CODE = 'en-us'  # ภาษาเริ่มต้น
-LANGUAGES = (
-    ('en-us', 'English (United States)'),
-    ('en-uk', 'English (United Kingdom)'),
-    ('th', 'Thai (Thailand)'),
-)
-LOCALE_PATHS = [
-    BASE_DIR / 'locale',
-]
