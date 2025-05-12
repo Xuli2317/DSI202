@@ -61,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'allauth.account.middleware.AccountMiddleware', 
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = "myproject.urls"
@@ -76,6 +77,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -181,3 +183,16 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_FORMS = {
     'signup': 'yourapp.forms.CustomSignupForm',
 }
+
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+LANGUAGE_CODE = 'en-us'  # ภาษาเริ่มต้น
+LANGUAGES = (
+    ('en-us', 'English (United States)'),
+    ('en-uk', 'English (United Kingdom)'),
+    ('th', 'Thai (Thailand)'),
+)
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]

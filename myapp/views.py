@@ -8,6 +8,16 @@ from django.forms import modelformset_factory
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.utils import translation
+
+def set_language(request):
+    if request.method == 'POST':
+        language = request.POST.get('language')
+        translation.activate(language)
+        request.session[translation.LANGUAGE_SESSION_KEY] = language
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
 
 def home(request):
     max_price = request.GET.get('max_price')
