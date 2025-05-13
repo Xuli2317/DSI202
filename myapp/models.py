@@ -72,8 +72,6 @@ class Room(models.Model):
     def __str__(self):
         return f"{self.dorm_name} - {self.room_name}"
 
-
-# Booking Model
 class Booking(models.Model):
     ROOM_STATUS_CHOICES = [
         ('pending', 'Pending'),
@@ -82,25 +80,35 @@ class Booking(models.Model):
     ]
 
     room = models.ForeignKey('Room', on_delete=models.CASCADE)
-    tenant = models.ForeignKey('Tenant', on_delete=models.CASCADE, null=True, blank=True) 
+    tenant = models.ForeignKey('Tenant', on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=255, blank=True)
     phone = models.CharField(max_length=20, blank=True)
-    email = models.EmailField(blank=True)  
-    check_in = models.DateField(null=True, blank=True)  
-    check_out = models.DateField(null=True, blank=True) 
+    email = models.EmailField(blank=True)
+    check_in = models.DateField(null=True, blank=True)
+    check_out = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=ROOM_STATUS_CHOICES, default='pending')
 
     def __str__(self):
         return f"Booking {self.id} for {self.room.room_name}"
-    
+
     def clean(self):
         if not self.tenant and not (self.full_name and self.phone):
             raise ValidationError("Either a tenant or guest details (full_name and phone) must be provided.")
-        
+        if self.check_in and self.check_out:
+            if self.check_out <= self.check_in:
+                raise ValidationError({"check_out": "Check-out date must be after check-in date."})
+            overlapping_bookings = Booking.objects.filter(
+                room=self.room,
+                status__in=['pending', 'confirmed'],
+                check_in__lt=self.check_out,
+                check_out__gt=self.check_in
+            ).exclude(id=self.id)
+            if overlapping_bookings.exists():
+                raise ValidationError("This room is already booked for the selected dates.")
+
     def save(self, *args, **kwargs):
-        if self.check_in and not self.check_out and self.room:
-            # Calculate check-out date based on lease duration
+        if self.check_in and not self.check_out and self.room and self.status != 'canceled':
             self.check_out = self.check_in + relativedelta(months=self.room.lease_duration_months)
         super().save(*args, **kwargs)
 

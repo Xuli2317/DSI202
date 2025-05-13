@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .payment-container {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+        min-height: 100vh;
+        padding: 2rem 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .payment-card {
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        max-width: 32rem;
+        width: 100%;
+        padding: 2rem;
+        text-align: center;
+    }
+    .button {
+        display: inline-block;
+        background: #10b981;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.3s ease;
+        margin: 0.5rem;
+    }
+    .button:hover {
+        background: #059669;
+        transform: translateY(-2px);
+    }
+    .button.cancel {
+        background: #ef4444;
+    }
+    .button.cancel:hover {
+        background: #dc2626;
+    }
+</style>
+
+<div class="payment-container">
+    <div class="payment-card">
+        <h2 class="text-2xl font-bold mb-4" style="font-family: 'Poppins', sans-serif; color: #1f2937;">
+            Payment for Booking #{{ booking.id }}
+        </h2>
+        <p class="text-gray-600 mb-4">
+            Booking: {{ booking.room.dorm_name }} - {{ booking.room.room_name }}<br>
+            Amount: {{ booking.room.price }} THB<br>
+            Check-In: {{ booking.check_in|date:"d M Y" }}<br>
+            Check-Out: {{ booking.check_out|date:"d M Y" }}
+        </p>
+        <form method="post" action="{% url 'booking_payment_confirm' booking.id %}">
+            {% csrf_token %}
+            <button type="submit" class="button">Confirm Payment</button>
+        </form>
+        <a href="{% url 'profile' %}" class="button cancel">Back to Profile</a>
+    </div>
+</div>
+{% endblock %}

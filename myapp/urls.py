@@ -20,4 +20,7 @@ urlpatterns = [
     path('booking/<int:pk>/cancel/', views.booking_cancel, name='booking_cancel'),
     path('room/<int:pk>/edit/', views.room_edit, name='room_edit'),
     path('room/<int:pk>/delete/', views.room_delete, name='room_delete'),
+    path('booking/<int:pk>/', views.booking_create, name='booking_create'),
+    path('booking/<int:booking_id>/payment/', views.booking_payment, name='booking_payment'),
+    path('booking/<int:booking_id>/payment/confirm/', views.booking_payment_confirm, name='booking_payment_confirm'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

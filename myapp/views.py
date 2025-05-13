@@ -110,6 +110,30 @@ def booking_complete(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     return render(request, 'booking_complete.html', {'booking': booking})
 
+
+@login_required
+def room_create(request):
+    if request.user.role != 'landlord':
+        messages.error(request, "Only landlords can create rooms.")
+        return redirect('home')
+    if request.method == 'POST':
+        form = RoomForm(request.POST, request.FILES)
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.landlord = request.user.landlord_profile
+            room.save()
+            messages.success(request, "Room created successfully.")
+            return redirect('home')
+    else:
+        form = RoomForm()
+    return render(request, 'room_create.html', {'form': form})
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import Booking, Room
+from .forms import GuestBookingForm
+
 @login_required
 def booking_create(request, pk):
     room = get_object_or_404(Room, pk=pk)
@@ -136,9 +160,9 @@ def booking_create(request, pk):
                 return render(request, 'room_detail.html', {'form': form, 'room': room})
             booking.check_in = form.cleaned_data['check_in']
             booking.status = 'pending'
-            booking.save()  # check_out will be set in the model's save method
-            messages.success(request, "Booking successful!")
-            return redirect('booking_complete', booking_id=booking.id)
+            booking.save()
+            messages.success(request, "Booking created! Please proceed to payment.")
+            return redirect('booking_payment', booking_id=booking.id)
         else:
             messages.error(request, "Please correct the errors in the form.")
     else:
@@ -146,21 +170,19 @@ def booking_create(request, pk):
     return render(request, 'room_detail.html', {'form': form, 'room': room})
 
 @login_required
-def room_create(request):
-    if request.user.role != 'landlord':
-        messages.error(request, "Only landlords can create rooms.")
-        return redirect('home')
+def booking_payment(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, tenant__user=request.user, status='pending')
+    return render(request, 'payment.html', {'booking': booking})
+
+@login_required
+def booking_payment_confirm(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, tenant__user=request.user, status='pending')
     if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES)
-        if form.is_valid():
-            room = form.save(commit=False)
-            room.landlord = request.user.landlord_profile
-            room.save()
-            messages.success(request, "Room created successfully.")
-            return redirect('home')
-    else:
-        form = RoomForm()
-    return render(request, 'room_create.html', {'form': form})
+        booking.status = 'confirmed'
+        booking.save()
+        messages.success(request, "Payment confirmed! Your booking is now confirmed.")
+        return redirect('profile')
+    return redirect('booking_payment', booking_id=booking.id)
 
 @login_required
 def profile_view(request):
@@ -178,6 +200,7 @@ def profile_view(request):
         context['bookings'] = bookings
         context['rooms'] = rooms
     return render(request, 'profile.html', context)
+
 
 @login_required
 def booking_confirm(request, pk):
