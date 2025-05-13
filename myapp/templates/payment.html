@@ -1,59 +1,73 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<div class="min-h-screen flex items-center justify-center bg-cover bg-center relative px-4 py-12"
-    style="background-image: url('{% static 'image/hero1.jpg' %}');">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-<!-- Back Button -->
-<div class="flex justify-start px-4 md:px-8 py-6">
-    <a href="{% url 'profile' %}"
-       class="group flex items-center space-x-2 text-gray-700 hover:text-indigo-600 font-medium text-sm md:text-base transition-all duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-hover:text-indigo-600" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        <span>Back to Profile</span>
-    </a>
-</div>
+<section class="relative w-full min-h-[600px] bg-cover bg-center"
+         style="background-image: url('{% static 'image/hero1.jpg' %}');">
+    <div class="absolute inset-0 bg-gradient-to-t from-gray-800/70 to-transparent"></div>
 
-<!-- Payment Section -->
-<section class="max-w-5xl mx-auto px-4 md:px-8 py-12">
-    <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md mx-auto" data-aos="fade-up" data-aos-duration="800">
-        <!-- Title -->
-        <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6" style="font-family: 'Poppins', sans-serif;">
-            Payment for Booking 
-        </h2>
-
-        <!-- QR Image -->
-        <img src="{% static 'image/qr.jpg' %}" alt="QR Code for Payment" class="mx-auto mb-6 rounded-lg shadow-md">
-
-        <!-- Booking Details -->
-        <div class="text-gray-600 mb-6 text-base leading-relaxed text-center space-y-3" style="font-family: 'Inter', sans-serif;">
-            <p><span class="font-semibold text-gray-800">Room:</span> {{ booking.room.dorm_name }} - {{ booking.room.room_name }}</p>
-            <p><span class="font-semibold text-gray-800">Amount:</span> {{ booking.room.price }} THB</p>
-            <p><span class="font-semibold text-gray-800">Check-In:</span> {{ booking.check_in|date:"d M Y" }}</p>
-            <p><span class="font-semibold text-gray-800">Check-Out:</span> {{ booking.check_out|date:"d M Y" }}</p>
+    <div class="relative z-10 flex flex-col justify-between px-4 md:px-8 py-3">
+        <!-- Back Button -->
+        <div>
+            <a href="{% url 'profile' %}"
+               class="group flex items-center space-x-2 text-white hover:text-blue-300 font-medium text-sm md:text-base transition duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white group-hover:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span>Back to Profile</span>
+            </a>
         </div>
 
-        <!-- Payment Form and Buttons -->
-        <form method="post" action="{% url 'booking_payment_confirm' booking.id %}" class="space-y-4">
-            {% csrf_token %}
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <button type="submit"
-                        class="w-full sm:w-auto text-center bg-indigo-600 text-white font-semibold text-base px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02]"
-                        style="font-family: 'Inter', sans-serif;"
-                        data-aos="fade-up" data-aos-delay="100">
-                    Confirm Payment
-                </button>
-                <a href="{% url 'profile' %}"
-                   class="w-full sm:w-auto text-center bg-red-500 text-white font-semibold text-base px-6 py-3 rounded-xl hover:bg-red-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02]"
-                   style="font-family: 'Inter', sans-serif;"
-                   data-aos="fade-up" data-aos-delay="200">
-                    Cancel
-                </a>
+        <!-- Payment Section -->
+        <div class="relative z-10 flex flex-col justify-center items-center h-full px-4 py-8">
+            <div class="w-full max-w-2xl bg-white/90 rounded-xl shadow-md p-8" data-aos="fade-up" data-aos-duration="800">
+                <!-- Title -->
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6" style="font-family: 'Poppins', sans-serif;">
+                    Payment for Booking
+                </h2>
+
+                <!-- QR Image -->
+                <img src="{% static 'image/qr.jpg' %}" alt="QR Code for Payment" class="mx-auto mb-6 rounded-lg shadow-md" data-aos="zoom-in" data-aos-delay="100">
+
+                <!-- Booking Details -->
+                <div class="text-gray-600 mb-6 text-base leading-relaxed text-center space-y-3" style="font-family: 'Inter', sans-serif;">
+                    <p><span class="font-semibold text-gray-800">Room:</span> {{ booking.room.dorm_name }} - {{ booking.room.room_name }}</p>
+                    <p><span class="font-semibold text-gray-800">Amount:</span> {{ booking.room.price }} THB</p>
+                    <p><span class="font-semibold text-gray-800">Check-In:</span> {{ booking.check_in|date:"d M Y" }}</p>
+                    <p><span class="font-semibold text-gray-800">Check-Out:</span> {{ booking.check_out|date:"d M Y" }}</p>
+                </div>
+
+                <!-- Bank Details -->
+                <div class="text-gray-600 mb-6 text-base leading-relaxed text-center space-y-3" style="font-family: 'Inter', sans-serif;">
+                    <p><span class="font-semibold text-gray-800">Bank Name:</span> {{ booking.room.landlord.bank_name }}</p>
+                    <p><span class="font-semibold text-gray-800">Account Number:</span> {{ booking.room.landlord.bank_account_number }}</p>
+                    <p><span class="font-semibold text-gray-800">Account Holder:</span> {{ booking.room.landlord.account_holder_name }}</p>
+                </div>
+
+                <!-- Payment Form and Buttons -->
+                <form method="post" action="{% url 'booking_payment_confirm' booking.id %}" class="space-y-4">
+                    {% csrf_token %}
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button type="submit"
+                                class="w-full sm:w-auto text-center bg-[#4285f4] hover:bg-blue-600 text-white font-semibold text-base px-6 py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+                                style="font-family: 'Inter', sans-serif;"
+                                data-aos="fade-up" data-aos-delay="100">
+                            Confirm Payment
+                        </button>
+                        <a href="{% url 'profile' %}"
+                           class="w-full sm:w-auto text-center bg-red-400 hover:bg-red-500 text-white font-semibold text-base px-6 py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+                           style="font-family: 'Inter', sans-serif;"
+                           data-aos="fade-up" data-aos-delay="200">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </section>
 {% endblock %}
@@ -61,12 +75,6 @@
 {% block scripts %}
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof AOS !== 'undefined') {
-            AOS.init({ duration: 800, once: true });
-        } else {
-            console.error("AOS library failed to load.");
-        }
-    });
+    AOS.init({ duration: 800, once: true });
 </script>
 {% endblock %}

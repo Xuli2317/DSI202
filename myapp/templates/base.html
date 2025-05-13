@@ -69,12 +69,6 @@
                     </a>
                 </li>
                 {% if user.role == 'tenant' %}
-                <li>
-                    <a href="{% url 'apply_landlord' %}"
-                        class="px-4 py-2 text-base font-medium text-gray-600 hover:text-blue-600 transition duration-300 {% if request.path == '/apply_landlord/' %}border-b-2 border-blue-600{% endif %}">
-                        Apply Landlord
-                    </a>
-                </li>
                 {% endif %}
                 {% if user.role == 'landlord' %}
                 <li>

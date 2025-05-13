@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
         ('tenant', 'Tenant'),
         ('landlord', 'Landlord'),
     )
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='tenant')  # ค่าเริ่มต้นเป็น tenant
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='tenant')
 
     groups = models.ManyToManyField(
         'auth.Group',
@@ -29,22 +29,22 @@ class CustomUser(AbstractUser):
         blank=True
     )
 
-# Tenant Model
 class Tenant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     budget = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     preferences = models.TextField(blank=True, null=True)
 
-# Landlord Model
 class Landlord(models.Model):
     user = models.OneToOneField('myapp.CustomUser', on_delete=models.CASCADE, related_name='landlord_profile')
     phone_number = models.CharField(max_length=15, null=True, blank=True)
+    dorm_name = models.CharField(max_length=255, blank=True, null=True)
+    bank_name = models.CharField(max_length=100, blank=True, null=True)
+    bank_account_number = models.CharField(max_length=20, blank=True, null=True)
+    account_holder_name = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.username} - Landlord'
 
-
-# Room Model
 class Room(models.Model):
     landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, related_name='rooms', null=True, blank=True) 
     dorm_name = models.CharField(max_length=255)
@@ -53,7 +53,6 @@ class Room(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     location = models.CharField(max_length=255)
     lease_duration_months = models.PositiveIntegerField(default=1, verbose_name="Lease Duration (Months)")
-     # เฟอร์นิเจอร์พร้อมจำนวน
     table_count = models.PositiveIntegerField(default=0, verbose_name="table_count")
     bed_count = models.PositiveIntegerField(default=0, verbose_name="bed_count")
     chair_count = models.PositiveIntegerField(default=0, verbose_name="chair_count")
@@ -64,9 +63,7 @@ class Room(models.Model):
     tv_count = models.PositiveIntegerField(default=0, verbose_name="tv_count")
     refrigerator_count = models.PositiveIntegerField(default=0, verbose_name="refrigerator_count")
     water_heater_count = models.PositiveIntegerField(default=0, verbose_name="water_heater_count")
-
     size = models.FloatField()
-
     description = models.TextField(blank=True, null=True)
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -80,7 +77,6 @@ class Booking(models.Model):
         ('confirmed', 'Confirmed'),
         ('canceled', 'Canceled'),
     ]
-
     room = models.ForeignKey('Room', on_delete=models.CASCADE)
     tenant = models.ForeignKey('Tenant', on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=255, blank=True)
@@ -131,14 +127,12 @@ def update_room_availability_on_booking_save(sender, instance, **kwargs):
         instance.room.available = False
         instance.room.save()
     elif instance.status == 'canceled':
-        # ถ้าไม่มี booking อื่นที่ pending หรือ confirmed อยู่
         other_active = Booking.objects.filter(
             room=instance.room, status__in=['pending', 'confirmed']
         ).exclude(id=instance.id).exists()
         if not other_active:
             instance.room.available = True
             instance.room.save()
-
 
 @receiver(post_delete, sender=Booking)
 def update_room_availability_on_booking_delete(sender, instance, **kwargs):
@@ -155,10 +149,8 @@ User = get_user_model()
 def create_profile_based_on_role(sender, instance, created, **kwargs):
     with transaction.atomic():
         if instance.role == 'tenant':
-            # ลบโปรไฟล์ Landlord ถ้ามี
             Landlord.objects.filter(user=instance).delete()
             Tenant.objects.get_or_create(user=instance)
         elif instance.role == 'landlord':
-            # ลบโปรไฟล์ Tenant ถ้ามี
             Tenant.objects.filter(user=instance).delete()
             Landlord.objects.get_or_create(user=instance, defaults={'phone_number': instance.phone})

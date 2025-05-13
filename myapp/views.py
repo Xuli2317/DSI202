@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Booking, CustomUser, Tenant, Landlord
-from .forms import RoomCreateForm, RoomForm, BookingForm, LandlordApplicationForm, TenantProfileForm
+from .forms import RoomForm, BookingForm, LandlordApplicationForm, TenantProfileForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -38,7 +38,7 @@ def home(request):
         queryset = queryset.filter(description__icontains=description)
 
     rooms_per_page = 10
-    page = request.GET.get('page', 1)
+    page = request.GET.get('page', '1')
     paginator = Paginator(queryset, rooms_per_page)
     try:
         rooms = paginator.page(page)
@@ -47,14 +47,11 @@ def home(request):
 
     return render(request, 'home.html', {'rooms': rooms})
 
-from django.db import transaction
-
 @login_required
 def apply_landlord(request):
     if request.method == 'POST':
         user = request.user
         
-        # ตรวจสอบว่าเป็น Landlord แล้วหรือไม่
         if user.role == 'landlord':
             messages.error(request, 'You are already a landlord.')
             return redirect('profile')
@@ -62,20 +59,19 @@ def apply_landlord(request):
         form = LandlordApplicationForm(request.POST, request.FILES)
         if form.is_valid():
             with transaction.atomic():
-                # ลบโปรไฟล์ Tenant ถ้ามี
                 Tenant.objects.filter(user=user).delete()
-                
-                # อัปเดต role ของผู้ใช้
                 user.role = 'landlord'
                 user.phone = form.cleaned_data['phone_number']
                 user.save()
                 
-                # สร้างหรืออัปเดตโปรไฟล์ Landlord
                 landlord, created = Landlord.objects.get_or_create(user=user)
                 landlord.phone_number = form.cleaned_data['phone_number']
+                landlord.dorm_name = form.cleaned_data['dorm_name']
+                landlord.bank_name = form.cleaned_data['bank_name']
+                landlord.bank_account_number = form.cleaned_data['bank_account_number']
+                landlord.account_holder_name = form.cleaned_data['account_holder_name']
                 landlord.save()
                 
-                # จัดการกลุ่ม
                 landlord_group, _ = Group.objects.get_or_create(name='Landlord')
                 user.groups.clear()
                 user.groups.add(landlord_group)
@@ -88,7 +84,6 @@ def apply_landlord(request):
         form = LandlordApplicationForm()
     
     return render(request, 'apply_landlord.html', {'form': form})
-
 
 class RoomDetailView(DetailView):
     model = Room
@@ -128,7 +123,6 @@ def booking_complete(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     return render(request, 'booking_complete.html', {'booking': booking})
 
-
 @login_required
 def room_create(request):
     if request.user.role != 'landlord':
@@ -142,11 +136,10 @@ def room_create(request):
         return redirect('apply_landlord')
 
     if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES)
+        form = RoomForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             room = form.save(commit=False)
             room.landlord = landlord_profile
-            # Check for duplicate room name in the same dorm
             if Room.objects.filter(landlord=landlord_profile, dorm_name=room.dorm_name, room_name=room.room_name).exists():
                 form.add_error('room_name', "A room with this name already exists in this dorm.")
                 return render(request, 'room_create.html', {'form': form})
@@ -154,7 +147,7 @@ def room_create(request):
             messages.success(request, "Room created successfully.")
             return redirect('profile')
     else:
-        form = RoomForm()
+        form = RoomForm(user=request.user)
     return render(request, 'room_create.html', {'form': form})
 
 def booking_create(request, room_id):
@@ -182,13 +175,11 @@ def booking_create(request, room_id):
                 booking.phone = form.cleaned_data['phone']
                 booking.email = form.cleaned_data.get('email', '')
 
-            # Set check_in and let Booking.save() handle check_out
             booking.check_in = form.cleaned_data['check_in']
             try:
-                booking.clean()  # Validate for overlapping bookings
+                booking.clean()
                 booking.save()
                 
-                # Send email notification to landlord
                 if room.landlord and room.landlord.user.email:
                     subject = f"New Booking for {room.dorm_name} - {room.room_name}"
                     message = (
@@ -283,13 +274,13 @@ def room_edit(request, pk):
         messages.error(request, "You are not authorized to edit this room.")
         return redirect('profile')
     if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES, instance=room)
+        form = RoomForm(request.POST, request.FILES, instance=room, user=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, "Room updated successfully.")
             return redirect('profile')
     else:
-        form = RoomForm(instance=room)
+        form = RoomForm(instance=room, user=request.user)
     return render(request, 'room_edit.html', {'form': form, 'room': room})
 
 @login_required

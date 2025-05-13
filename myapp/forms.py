@@ -5,8 +5,6 @@ from .models import Room, Booking, Landlord, Tenant
 from allauth.account.forms import SignupForm
 from django.core.exceptions import ValidationError
 from datetime import date
-from django.shortcuts import render, redirect
-from datetime import date
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField()
@@ -18,23 +16,29 @@ class CustomUserCreationForm(UserCreationForm):
 class LandlordApplicationForm(forms.ModelForm):
     class Meta:
         model = Landlord
-        fields = ['phone_number']
+        fields = ['phone_number', 'dorm_name', 'bank_name', 'bank_account_number', 'account_holder_name']
         widgets = {
             'phone_number': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border rounded-lg',
                 'placeholder': 'Phone Number'
             }),
+            'dorm_name': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border rounded-lg',
+                'placeholder': 'Dorm Name'
+            }),
+            'bank_name': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border rounded-lg',
+                'placeholder': 'Bank Name (e.g., Siam Commercial Bank)'
+            }),
+            'bank_account_number': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border rounded-lg',
+                'placeholder': 'Bank Account Number'
+            }),
+            'account_holder_name': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border rounded-lg',
+                'placeholder': 'Account Holder Name'
+            }),
         }
-
-class RoomCreateForm(forms.ModelForm):
-    class Meta:
-        model = Room
-        fields = [
-            'dorm_name', 'room_name', 'location', 'price', 'description',
-            'table_count', 'bed_count', 'chair_count', 'aircon_count','size'
-        ]
-
-    size = forms.FloatField(required=True, label="Room Size")
 
 class RoomForm(forms.ModelForm):
     class Meta:
@@ -44,12 +48,13 @@ class RoomForm(forms.ModelForm):
             'table_count', 'bed_count', 'chair_count', 'aircon_count',
             'sofa_count', 'wardrobe_count', 'desk_count', 'tv_count',
             'refrigerator_count', 'water_heater_count',
-            'size', 'price', 'description', 'image','lease_duration_months' 
+            'size', 'price', 'description', 'image', 'lease_duration_months' 
         ]
         widgets = {
             'dorm_name': forms.TextInput(attrs={
                 'class': 'w-full px-5 py-3 rounded-full border border-gray-200 bg-[#f8f9fa] focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition duration-300 shadow-sm placeholder-gray-400',
-                'placeholder': 'Enter dorm name'
+                'placeholder': 'Enter dorm name',
+                'readonly': 'readonly'
             }),
             'room_name': forms.TextInput(attrs={
                 'class': 'w-full px-5 py-3 rounded-full border border-gray-200 bg-[#f8f9fa] focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition duration-300 shadow-sm placeholder-gray-400',
@@ -143,6 +148,17 @@ class RoomForm(forms.ModelForm):
             'lease_duration_months': 'Lease Duration (Months)',
         }
 
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user and user.role == 'landlord':
+            try:
+                landlord = user.landlord_profile
+                self.fields['dorm_name'].initial = landlord.dorm_name
+                self.fields['dorm_name'].widget.attrs['readonly'] = 'readonly'
+            except Landlord.DoesNotExist:
+                pass
+
 class BookingForm(forms.ModelForm):
     email = forms.EmailField(required=False, label="Email (for notifications)")
 
@@ -178,35 +194,10 @@ class BookingForm(forms.ModelForm):
         if check_in and check_in < date.today():
             raise forms.ValidationError("Check-in date cannot be in the past.")
         
-        # Require email for non-authenticated users
         if not self.instance.tenant and not email:
             raise forms.ValidationError({"email": "Email is required for guest bookings."})
         
         return cleaned_data
-
-
-def booking_create(request, room_id):
-    room = Room.objects.get(id=room_id)
-    if request.method == 'POST':
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            booking = form.save(commit=False)
-            booking.room = room
-            booking.user = request.user if request.user.is_authenticated else None
-            # คำนวณ check-out date จาก lease_duration_months
-            lease_months = room.lease_duration_months
-            check_in = form.cleaned_data['check_in']
-            check_out = check_in + datetime.timedelta(days=lease_months * 30)  # ประมาณ 30 วันต่อเดือน
-            booking.check_out = check_out
-            booking.full_name = form.cleaned_data['full_name']
-            booking.phone = form.cleaned_data['phone']
-            booking.save()
-            messages.success(request, "Booking created successfully!")
-            return redirect('booking_success')  # สมมติว่ามีหน้ายืนยันการจอง
-        else:
-            # ส่ง form ที่มีข้อผิดพลาดกลับไปยังเทมเพลต
-            return render(request, 'room_detail.html', {'room': room, 'form': form})
-    return redirect('room_detail', pk=room_id)
 
 class CustomSignupForm(SignupForm):
     ROLE_CHOICES = (
