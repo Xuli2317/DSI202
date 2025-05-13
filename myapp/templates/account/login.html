@@ -3,108 +3,90 @@
 {% load socialaccount %}
 {% load widget_tweaks %}
 
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
 {% block content %}
-<div class="min-h-screen flex items-center justify-center bg-cover bg-center relative px-4 py-12"
-    style="background-image: url('{% static 'image/hero1.jpg' %}');">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
+<section class="relative w-full min-h-screen bg-cover bg-center"
+         style="background-image: url('{% static 'image/hero1.jpg' %}');">
+    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
 
-    <div class="relative z-10 w-full max-w-md bg-white bg-opacity-90 rounded-xl shadow-lg p-8 text-black"
-        data-aos="fade-up" data-aos-duration="1000">
+    <div class="relative z-10 flex items-center justify-center px-4 py-12">
+        <div class="w-full max-w-md bg-white/95 rounded-2xl shadow-lg border border-gray-100 p-8"
+             data-aos="fade-up" data-aos-duration="800">
+            <!-- Logo -->
+            <div class="flex justify-center mb-6">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'image/logopng.png' %}" alt="Logo"
+                         class="h-20 transition duration-200 hover:scale-105">
+                </a>
+            </div>
 
-        <!-- Logo -->
-        <div class="flex justify-center mb-6">
-            <a href="{% url 'home' %}">
-                <img src="{% static 'image/logopng.png' %}" alt="Logo"
-                    class="h-20 transition duration-200 hover:scale-105">
-            </a>
-        </div>
+            <!-- Title -->
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6"
+                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                Welcome to Rent Near
+            </h2>
 
-        <!-- Title -->
-        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Welcome to Rent Near</h2>
-
-        <!-- Login Form -->
-        <form method="post" class="space-y-6">
-            {% csrf_token %}
-            {% for field in form %}
-            <div>
-                {% if field.name == "username" or field.name == "login" %}
-                {{ field|add_class:"w-full px-4 py-3 border rounded-lg bg-gray-50 text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-blue-500" }}
-                {% elif field.name == "password" %}
-                <div class="relative">
-                    {{ field|add_class:"w-full px-4 py-3 pr-12 border rounded-lg bg-gray-50 text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-blue-500"|attr:"id:password-field" }}
-                    <button type="button" onclick="togglePassword()"
-                        class="absolute right-3 top-3 text-gray-500 hover:text-gray-800">
-                        <svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7
-                                            -1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                    </button>
+            <!-- Login Form -->
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                {% for field in form %}
+                <div>
+                    {% if field.name == "username" or field.name == "login" %}
+                    {{ field|add_class:"w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm" }}
+                    {% elif field.name == "password" %}
+                    {{ field|add_class:"w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm" }}
+                    {% endif %}
+                    {% if field.errors %}
+                    <p class="text-red-500 text-xs mt-1">{{ field.errors.0 }}</p>
+                    {% endif %}
                 </div>
-                {% else %}
-                {% endif %}
-                {% if field.errors %}
-                <p class="text-red-500 text-sm mt-1">{{ field.errors.0 }}</p>
-                {% endif %}
+                {% endfor %}
+
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember_me" name="remember_me"
+                           class="h-4 w-4 text-[#4285f4] border-gray-300 rounded">
+                    <label for="remember_me" class="ml-2 text-sm text-gray-700"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        Remember Me
+                    </label>
+                </div>
+
+                <button type="submit"
+                        class="w-full px-6 py-2 bg-[#4285f4] hover:bg-blue-600 text-white rounded-3xl font-semibold text-sm transition duration-300"
+                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Google Login -->
+            <a href="{% provider_login_url 'google' %}"
+               class="w-full mt-4 px-6 py-2 bg-[#4285f4] hover:bg-blue-600 text-white rounded-3xl font-semibold text-sm transition duration-300 flex items-center justify-center space-x-2"
+               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                <i class="fab fa-google text-white text-base"></i>
+                <span>Sign in with Google</span>
+            </a>
+
+            <!-- Links -->
+            <div class="mt-4 text-center text-sm text-gray-600 space-y-2">
+                <p style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Don't have an account?
+                    <a href="{% url 'account_signup' %}" class="text-[#4285f4] hover:underline">Sign up</a>
+                </p>
+                <p style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    <a href="{% url 'account_reset_password' %}" class="text-[#4285f4] hover:underline">Forgot password?</a>
+                </p>
             </div>
-            {% endfor %}
-
-            <div class="flex items-center">
-                <input type="checkbox" id="remember_me" name="remember_me"
-                    class="h-4 w-4 text-blue-600 border-gray-300 rounded">
-                <label for="remember_me" class="ml-2 text-sm text-gray-700">Remember Me</label>
-            </div>
-
-            <button type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-sm font-semibold transition duration-200">
-                Sign In
-            </button>
-        </form>
-
-        <!-- Google Login -->
-        <a href="{% provider_login_url 'google' %}"
-            class="w-full mt-6 bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg flex items-center justify-center space-x-2 text-sm font-semibold transition duration-200">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                    d="M12.24 10.667H7.937v2.666h4.303c-.409 1.333-1.637 2.667-4.303 2.667-2.637 0-4.773-2.187-4.773-4.833S5.3 6.333 7.937 6.333c1.227 0 2.363.467 3.227 1.233l1.927-1.933C11.573 4.267 9.837 3.5 7.937 3.5 4.1 3.5 1 6.667 1 11s3.1 7.5 6.937 7.5c3.837 0 6.937-3.167 6.937-7.5 0-.833-.073-1.633-.2-2.333z" />
-                <path
-                    d="M22 11.5c0-.733-.073-1.467-.2-2.167H12v4.333h5.563c-.273 1.133-1.1 2.133-2.363 2.833v2.333h3.837c2.237-2.067 3.563-5.133 3.563-8.833z" />
-            </svg>
-            <span>Sign in with Google</span>
-        </a>
-
-        <!-- Links -->
-        <div class="mt-6 text-sm text-center text-gray-600 space-y-2">
-            <p>
-                Don't have an account?
-                <a href="{% url 'account_signup' %}" class="text-blue-600 hover:underline">Sign up</a>
-            </p>
-            <p>
-                <a href="{% url 'account_reset_password' %}" class="text-blue-600 hover:underline">Forgot password?</a>
-            </p>
         </div>
     </div>
-</div>
-
-
-<!-- JS for Password Toggle -->
-<script>
-    function togglePassword() {
-        const passwordField = document.getElementById("password-field");
-        const eyeIcon = document.getElementById("eye-icon");
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m2.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M3 3l3.59 3.59M12 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411"/>`;
-        } else {
-            passwordField.type = "password";
-            eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>`;
-        }
-    }
-</script>
+</section>
 {% endblock %}
 
 {% block scripts %}
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>AOS.init();</script>
+<script>
+    AOS.init({ duration: 800, once: true });
+</script>
 {% endblock %}

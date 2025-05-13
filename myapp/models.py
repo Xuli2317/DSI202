@@ -38,6 +38,7 @@ class Landlord(models.Model):
     user = models.OneToOneField('myapp.CustomUser', on_delete=models.CASCADE, related_name='landlord_profile')
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     dorm_name = models.CharField(max_length=255, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)  # เพิ่มฟิลด์ที่อยู่
     bank_name = models.CharField(max_length=100, blank=True, null=True)
     bank_account_number = models.CharField(max_length=20, blank=True, null=True)
     account_holder_name = models.CharField(max_length=255, blank=True, null=True)

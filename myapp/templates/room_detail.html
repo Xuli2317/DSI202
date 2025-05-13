@@ -3,8 +3,7 @@
 {% load widget_tweaks %}
 
 {% block head %}
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <style>
     [data-aos] {
@@ -31,117 +30,151 @@
 
 {% block content %}
 <!-- Back Button -->
-<div class="flex justify-start px-4 md:px-8 py-6">
-    <a href="{% url 'home' %}" class="group flex items-center space-x-2 text-gray-700 hover:text-blue-600 font-medium text-sm md:text-base transition duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        <span>Back to Home</span>
+<div class="flex justify-start px-4 md:px-6 py-5">
+    <a href="{% url 'home' %}" class="group flex items-center space-x-2 text-gray-700 hover:text-blue-600 font-medium text-sm transition duration-300">
+        <i class="fas fa-arrow-left text-gray-500 group-hover:text-blue-600"></i>
+        <span style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">Back to Home</span>
     </a>
 </div>
 
 <!-- Room Detail Section -->
-<section class="max-w-5xl mx-auto px-4 md:px-8 py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<section class="max-w-4xl mx-auto px-4 md:px-6 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Room Image + Furniture Included -->
-        <div class="space-y-8" data-aos="fade-up">
+        <div class="space-y-6" data-aos="fade-up">
             {% if room.image %}
-            <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-64 md:h-96 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500">
+            <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-56 md:h-80 object-cover rounded-2xl shadow-sm transform hover:scale-[1.02] transition-transform duration-500">
             {% else %}
-            <div class="w-full h-64 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 rounded-2xl shadow-lg">
-                <span class="text-lg font-medium font-inter">No Image Available</span>
+            <div class="w-full h-56 md:h-80 bg-gray-100 flex items-center justify-center text-gray-500 rounded-2xl shadow-sm">
+                <span class="text-sm font-medium"
+                      style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    No Image Available
+                </span>
             </div>
             {% endif %}
 
             <!-- Furniture Section -->
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 gap-3">
                 {% if room.table_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-table text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.table_count }} Tables</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-table text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.table_count }} Tables
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.bed_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-bed text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.bed_count }} Beds</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-bed text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.bed_count }} Beds
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.chair_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-chair text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.chair_count }} Chairs</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-chair text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.chair_count }} Chairs
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.aircon_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-snowflake text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.aircon_count }} Air Conditioners</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-snowflake text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.aircon_count }} Air Conditioners
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.sofa_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-couch text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.sofa_count }} Sofas</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-couch text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.sofa_count }} Sofas
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.wardrobe_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-tshirt text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.wardrobe_count }} Wardrobes</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-tshirt text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.wardrobe_count }} Wardrobes
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.desk_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-desktop text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.desk_count }} Desks</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-desktop text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.desk_count }} Desks
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.tv_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-tv text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.tv_count }} TVs</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-tv text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.tv_count }} TVs
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.refrigerator_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-door-closed text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.refrigerator_count }} Refrigerators</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-door-closed text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.refrigerator_count }} Refrigerators
+                    </span>
                 </div>
                 {% endif %}
                 {% if room.water_heater_count > 0 %}
-                <div class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:border-blue-500 transition">
-                    <i class="fas fa-shower text-blue-500 text-lg"></i>
-                    <span class="text-gray-700 font-inter">{{ room.water_heater_count }} Water Heaters</span>
+                <div class="flex items-center gap-2 bg-white border border-gray-100 p-2 rounded-lg shadow-sm hover:border-blue-500 transition">
+                    <i class="fas fa-shower text-[#4285f4] text-base"></i>
+                    <span class="text-xs text-gray-700"
+                          style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        {{ room.water_heater_count }} Water Heaters
+                    </span>
                 </div>
                 {% endif %}
             </div>
         </div>
 
         <!-- Room Details -->
-        <div class="space-y-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
             <div>
-                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 font-poppins">{{ room.dorm_name }} - {{ room.room_name }}</h1>
-                <p class="text-xl md:text-2xl text-blue-600 font-semibold mt-2">{{ room.price }} THB / month</p>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-900"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    {{ room.dorm_name }} - {{ room.room_name }}
+                </h1>
+                <p class="text-lg md:text-xl text-[#4285f4] font-semibold mt-1"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    {{ room.price }} THB / month
+                </p>
             </div>
             <div>
                 {% if room.available %}
-                <span class="inline-flex items-center bg-green-100 text-green-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
+                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+                    <i class="fas fa-check w-3 h-3 mr-1"></i>
                     Available
                 </span>
                 {% else %}
-                <span class="inline-flex items-center bg-red-100 text-red-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+                <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+                    <i class="fas fa-times w-3 h-3 mr-1"></i>
                     Not Available
                 </span>
                 {% endif %}
             </div>
-            <div class="text-gray-600 space-y-3 text-base leading-relaxed font-inter">
+            <div class="text-gray-600 space-y-2 text-sm leading-relaxed"
+                 style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                 <p><span class="font-semibold text-gray-800">Location:</span> {{ room.location }}</p>
                 <p><span class="font-semibold text-gray-800">Room Size:</span> {{ room.size }} m²</p>
                 <p><span class="font-semibold text-gray-800">Lease Duration:</span> {{ room.lease_duration_months }} months</p>
@@ -152,13 +185,17 @@
 
             <!-- Booking Button -->
             {% if room.available %}
-            <div class="pt-4">
+            <div class="pt-3">
                 {% if request.user.is_authenticated %}
-                <button onclick="showBookingPopup()" class="w-full text-center bg-blue-600 text-white font-medium text-base md:text-lg px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200 shadow-sm">
+                <button onclick="showBookingPopup()"
+                        class="w-full sm:w-32 px-5 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-xs flex items-center justify-center mx-auto"
+                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Book This Room
                 </button>
                 {% else %}
-                <a href="{% url 'login' %}?next={% url 'room_detail' pk=room.pk %}" class="block w-full text-center bg-blue-600 text-white font-medium text-base md:text-lg px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200 shadow-sm">
+                <a href="{% url 'login' %}?next={% url 'room_detail' pk=room.pk %}"
+                   class="block w-full sm:w-32 px-5 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-xs flex items-center justify-center mx-auto"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Book This Room
                 </a>
                 {% endif %}
@@ -171,36 +208,64 @@
 {% if request.user.is_authenticated %}
 <!-- Booking Details Popup -->
 <div id="booking-details-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full" data-aos="zoom-in">
-        <h2 class="text-lg font-semibold mb-4 font-poppins text-gray-900">Enter Booking Details</h2>
-        <div id="booking-form-errors" class="hidden bg-red-100 text-red-700 p-3 rounded-lg mb-4 border border-red-300">
-            <ul id="error-list" class="list-disc pl-5"></ul>
+    <div class="bg-white/95 p-5 rounded-2xl shadow-lg max-w-md w-full border border-gray-100" data-aos="zoom-in">
+        <h2 class="text-base font-semibold mb-3 text-gray-900"
+            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+            Enter Booking Details
+        </h2>
+        <div id="booking-form-errors" class="hidden bg-red-100 text-red-700 p-2 rounded-lg mb-3 border border-red-300">
+            <ul id="error-list" class="list-disc pl-4 text-xs"></ul>
         </div>
-        <div class="space-y-4" id="booking-details-form">
+        <div class="space-y-3" id="booking-details-form">
             <div>
-                <label for="check_in" class="block text-sm font-medium text-gray-700 font-inter">Check-in Date</label>
-                <input type="date" id="check_in" name="check_in" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                <label for="check_in" class="block text-xs font-medium text-gray-700"
+                       style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Check-in Date
+                </label>
+                <input type="date" id="check_in" name="check_in" class="w-full px-3 py-1.5 border rounded-lg focus:ring-2 focus:ring-[#4285f4] text-sm" required>
             </div>
             <div>
-                <label for="full_name" class="block text-sm font-medium text-gray-700 font-inter">Full Name</label>
-                <input type="text" id="full_name" name="full_name" value="{{ user.username }}" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" {% if user.is_authenticated %}readonly{% endif %}>
+                <label for="full_name" class="block text-xs font-medium text-gray-700"
+                       style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Full Name
+                </label>
+                <input type="text" id="full_name" name="full_name" value="{{ user.username }}"
+                       class="w-full px-3 py-1.5 border rounded-lg focus:ring-2 focus:ring-[#4285f4] text-sm" {% if user.is_authenticated %}readonly{% endif %}>
             </div>
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 font-inter">Email</label>
-                <input type="email" id="email" name="email" value="{{ user.email|default:'' }}" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" {% if user.is_authenticated and user.email %}readonly{% endif %}>
+                <label for="email" class="block text-xs font-medium text-gray-700"
+                       style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Email
+                </label>
+                <input type="email" id="email" name="email" value="{{ user.email|default:'' }}"
+                       class="w-full px-3 py-1.5 border rounded-lg focus:ring-2 focus:ring-[#4285f4] text-sm" {% if user.is_authenticated and user.email %}readonly{% endif %}>
             </div>
             <div>
-                <label for="phone" class="block text-sm font-medium text-gray-700 font-inter">Phone Number</label>
-                <input type="tel" id="phone" name="phone" value="{{ user.phone|default:'' }}" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                <label for="phone" class="block text-xs font-medium text-gray-700"
+                       style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Phone Number
+                </label>
+                <input type="tel" id="phone" name="phone" value="{{ user.phone|default:'' }}"
+                       class="w-full px-3 py-1.5 border rounded-lg focus:ring-2 focus:ring-[#4285f4] text-sm" required>
             </div>
             <div>
-                <p class="text-sm text-gray-600 font-inter">Lease Duration: {{ room.lease_duration_months }} months</p>
-                <p class="text-sm text-gray-600 font-inter">Check-out date will be calculated automatically.</p>
+                <p class="text-xs text-gray-600"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Lease Duration: {{ room.lease_duration_months }} months
+                </p>
+                <p class="text-xs text-gray-600"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Check-out date will be calculated automatically.
+                </p>
             </div>
-            <button type="button" onclick="proceedToConfirm()" class="w-full bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition font-inter">
+            <button type="button" onclick="proceedToConfirm()"
+                    class="w-full px-5 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                 Proceed
             </button>
-            <button type="button" onclick="closeBookingDetailsPopup()" class="mt-4 w-full text-center text-gray-600 hover:text-gray-800 font-inter">
+            <button type="button" onclick="closeBookingDetailsPopup()"
+                    class="mt-2 w-full text-center text-gray-600 hover:text-gray-800 text-xs"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                 Cancel
             </button>
         </div>
@@ -209,9 +274,13 @@
 
 <!-- Confirmation Popup -->
 <div id="booking-confirm-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full" data-aos="zoom-in">
-        <h2 class="text-lg font-semibold mb-4 font-poppins text-gray-900">Confirm Booking</h2>
-        <div class="space-y-4">
+    <div class="bg-white/95 p-5 rounded-2xl shadow-lg max-w-md w-full border border-gray-100" data-aos="zoom-in">
+        <h2 class="text-base font-semibold mb-3 text-gray-900"
+            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+            Confirm Booking
+        </h2>
+        <div class="space-y-2 text-sm"
+             style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
             <p><strong>Room:</strong> {{ room.dorm_name }} - {{ room.room_name }}</p>
             <p><strong>Check-in Date:</strong> <span id="confirm_check_in"></span></p>
             <p><strong>Full Name:</strong> <span id="confirm_full_name"></span></p>
@@ -224,11 +293,15 @@
                 <input type="hidden" name="full_name" id="form_full_name">
                 <input type="hidden" name="email" id="form_email">
                 <input type="hidden" name="phone" id="form_phone">
-                <button type="submit" class="w-full bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition font-inter">
+                <button type="submit"
+                        class="w-full px-5 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
+                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Confirm Booking
                 </button>
             </form>
-            <button onclick="backToDetails()" class="mt-4 w-full text-center text-gray-600 hover:text-gray-800 font-inter">
+            <button onclick="backToDetails()"
+                    class="mt-2 w-full text-center text-gray-600 hover:text-gray-800 text-xs"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                 Back
             </button>
         </div>
@@ -242,7 +315,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if (typeof AOS !== 'undefined') {
-            AOS.init({ duration: 800, once: true });
+            AOS.init({ duration: 600, once: true });
         } else {
             console.error("AOS library failed to load.");
         }
@@ -250,7 +323,6 @@
         window.showBookingPopup = function () {
             const popup = document.getElementById('booking-details-popup');
             if (popup) {
-                // Clear previous errors
                 const errorDiv = document.getElementById('booking-form-errors');
                 const errorList = document.getElementById('error-list');
                 errorDiv.classList.add('hidden');
@@ -269,14 +341,12 @@
         };
 
         window.proceedToConfirm = function () {
-            // Get input values
             const checkIn = document.getElementById('check_in').value;
             const fullName = document.getElementById('full_name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             let errors = [];
 
-            // Validate inputs
             if (!checkIn) errors.push("Check-in date is required.");
             if (!fullName) errors.push("Full name is required.");
             if (!phone) errors.push("Phone number is required.");
@@ -284,28 +354,24 @@
             if (!email) errors.push("Email is required for guest bookings.");
             {% endif %}
 
-            // Display errors if any
             if (errors.length > 0) {
                 const errorDiv = document.getElementById('booking-form-errors');
                 const errorList = document.getElementById('error-list');
-                errorList.innerHTML = errors.map(err => `<li class="text-sm">${err}</li>`).join('');
+                errorList.innerHTML = errors.map(err => `<li>${err}</li>`).join('');
                 errorDiv.classList.remove('hidden');
                 return;
             }
 
-            // Populate confirmation popup
             document.getElementById('confirm_check_in').textContent = checkIn;
             document.getElementById('confirm_full_name').textContent = fullName;
             document.getElementById('confirm_email').textContent = email || 'Not provided';
             document.getElementById('confirm_phone').textContent = phone;
 
-            // Populate hidden form fields
             document.getElementById('form_check_in').value = checkIn;
             document.getElementById('form_full_name').value = fullName;
             document.getElementById('form_email').value = email;
             document.getElementById('form_phone').value = phone;
 
-            // Show confirmation popup
             document.getElementById('booking-details-popup').classList.add('hidden');
             document.getElementById('booking-confirm-popup').classList.remove('hidden');
         };
@@ -322,7 +388,7 @@
         errorList.innerHTML = `
             {% for field, errors in form.errors.items %}
                 {% for error in errors %}
-                    <li class="text-sm">{{ field|title }}: {{ error }}</li>
+                    <li>{{ field|title }}: {{ error }}</li>
                 {% endfor %}
             {% endfor %}
         `;

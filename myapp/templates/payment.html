@@ -2,71 +2,170 @@
 {% load static %}
 
 {% block head %}
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 
 {% block content %}
-<section class="relative w-full min-h-[600px] bg-cover bg-center"
+<section class="relative w-full min-h-[550px] bg-cover bg-center"
          style="background-image: url('{% static 'image/hero1.jpg' %}');">
-    <div class="absolute inset-0 bg-gradient-to-t from-gray-800/70 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
 
-    <div class="relative z-10 flex flex-col justify-between px-4 md:px-8 py-3">
-        <!-- Back Button -->
-        <div>
-            <a href="{% url 'profile' %}"
-               class="group flex items-center space-x-2 text-white hover:text-blue-300 font-medium text-sm md:text-base transition duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white group-hover:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                <span>Back to Profile</span>
-            </a>
-        </div>
+    <div class="relative z-10 flex flex-col justify-center items-center px-4 md:px-6 py-8">
+        <!-- Payment Card -->
+        <div class="w-full max-w-2xl bg-white/95 rounded-2xl shadow-lg border border-gray-100 p-5 sm:p-6" data-aos="fade-up" data-aos-duration="800">
+            <!-- Title -->
+            <h2 class="text-xl md:text-2xl font-bold text-center text-gray-800 mb-6"
+                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                Payment for Booking
+            </h2>
 
-        <!-- Payment Section -->
-        <div class="relative z-10 flex flex-col justify-center items-center h-full px-4 py-8">
-            <div class="w-full max-w-2xl bg-white/90 rounded-xl shadow-md p-8" data-aos="fade-up" data-aos-duration="800">
-                <!-- Title -->
-                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6" style="font-family: 'Poppins', sans-serif;">
-                    Payment for Booking
-                </h2>
-
-                <!-- QR Image -->
-                <img src="{% static 'image/qr.jpg' %}" alt="QR Code for Payment" class="mx-auto mb-6 rounded-lg shadow-md" data-aos="zoom-in" data-aos-delay="100">
-
-                <!-- Booking Details -->
-                <div class="text-gray-600 mb-6 text-base leading-relaxed text-center space-y-3" style="font-family: 'Inter', sans-serif;">
-                    <p><span class="font-semibold text-gray-800">Room:</span> {{ booking.room.dorm_name }} - {{ booking.room.room_name }}</p>
-                    <p><span class="font-semibold text-gray-800">Amount:</span> {{ booking.room.price }} THB</p>
-                    <p><span class="font-semibold text-gray-800">Check-In:</span> {{ booking.check_in|date:"d M Y" }}</p>
-                    <p><span class="font-semibold text-gray-800">Check-Out:</span> {{ booking.check_out|date:"d M Y" }}</p>
-                </div>
-
-                <!-- Bank Details -->
-                <div class="text-gray-600 mb-6 text-base leading-relaxed text-center space-y-3" style="font-family: 'Inter', sans-serif;">
-                    <p><span class="font-semibold text-gray-800">Bank Name:</span> {{ booking.room.landlord.bank_name }}</p>
-                    <p><span class="font-semibold text-gray-800">Account Number:</span> {{ booking.room.landlord.bank_account_number }}</p>
-                    <p><span class="font-semibold text-gray-800">Account Holder:</span> {{ booking.room.landlord.account_holder_name }}</p>
-                </div>
-
-                <!-- Payment Form and Buttons -->
-                <form method="post" action="{% url 'booking_payment_confirm' booking.id %}" class="space-y-4">
-                    {% csrf_token %}
-                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                        <button type="submit"
-                                class="w-full sm:w-auto text-center bg-[#4285f4] hover:bg-blue-600 text-white font-semibold text-base px-6 py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
-                                style="font-family: 'Inter', sans-serif;"
-                                data-aos="fade-up" data-aos-delay="100">
-                            Confirm Payment
-                        </button>
-                        <a href="{% url 'profile' %}"
-                           class="w-full sm:w-auto text-center bg-red-400 hover:bg-red-500 text-white font-semibold text-base px-6 py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
-                           style="font-family: 'Inter', sans-serif;"
-                           data-aos="fade-up" data-aos-delay="200">
-                            Cancel
-                        </a>
+            <!-- QR Image -->
+            <div class="flex justify-center mb-6" data-aos="zoom-in" data-aos-delay="100">
+                <div class="relative w-40 h-40 bg-gray-50 rounded-xl p-2 shadow-sm border border-gray-100">
+                    <img src="{% static 'image/qr.jpg' %}" alt="QR Code for Payment"
+                         class="w-full h-full object-cover rounded-lg">
+                    <div class="absolute -top-2 -left-2 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-qrcode text-[#4285f4] text-[10px]"></i>
                     </div>
-                </form>
+                </div>
             </div>
+
+            <!-- Booking Details -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 mb-6 bg-gray-50/80 rounded-xl p-5 max-w-2xl mx-auto shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                <!-- Room -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-home text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Room
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.room.dorm_name }} - {{ booking.room.room_name }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Amount -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-wallet text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Amount
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.room.price|floatformat:0 }} THB
+                        </p>
+                    </div>
+                </div>
+                <!-- Check-In -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-sign-in-alt text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Check-In
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.check_in|date:"d M Y" }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Check-Out -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-sign-out-alt text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Check-Out
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.check_out|date:"d M Y" }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bank Details -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 mb-8 bg-gray-50/80 rounded-xl p-5 max-w-2xl mx-auto shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+                <!-- Bank Name -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-university text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Bank Name
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.room.landlord.bank_name }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Account Number -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-credit-card text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Account Number
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.room.landlord.bank_account_number }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Account Holder -->
+                <div class="flex items-center space-x-3 sm:col-span-2">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-user text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Account Holder
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.room.landlord.account_holder_name }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Form and Buttons -->
+            <form method="post" action="{% url 'booking_payment_confirm' booking.id %}" class="space-y-3">
+                {% csrf_token %}
+                <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-3">
+                    <button type="submit"
+                            class="w-full sm:w-32 px-5 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        Confirm Payment
+                    </button>
+                    <a href="{% url 'profile' %}"
+                       class="w-full sm:w-32 px-5 py-2 bg-red-400 text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
+                       style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        Cancel
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
 </section>

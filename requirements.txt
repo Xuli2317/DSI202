@@ -15,3 +15,7 @@ social-auth-app-django
 
 python-dotenv==0.21.0
 python-dateutil
+djangorestframework
+djangorestframework-simplejwt
+
+

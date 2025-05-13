@@ -2,73 +2,97 @@
 {% load static %}
 
 {% block head %}
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 
 {% block content %}
-<section class="relative w-full min-h-[600px] bg-cover bg-center"
+<section class="relative w-full min-h-[550px] bg-cover bg-center"
          style="background-image: url('{% static 'image/hero1.jpg' %}');">
     <div class="absolute inset-0 bg-gradient-to-t from-gray-800/70 to-transparent"></div>
 
-    <div class="relative z-10 flex flex-col h-full justify-between px-4 md:px-8 py-6">
+    <div class="relative z-10 flex flex-col h-full justify-between px-4 md:px-6 py-6">
         <!-- Back Button -->
         <div>
             <a href="{% url 'home' %}"
-               class="group flex items-center space-x-2 text-white hover:text-blue-300 font-medium text-sm md:text-base transition duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white group-hover:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                <span>Back to Home</span>
+               class="group flex items-center space-x-2 text-white hover:text-blue-300 font-medium text-sm transition duration-300">
+                <i class="fas fa-arrow-left text-white group-hover:text-blue-300"></i>
+                <span style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">Back to Home</span>
             </a>
         </div>
 
         <div class="relative z-10 flex flex-col justify-center items-center h-full px-4 py-8">
-            <div class="w-full max-w-2xl bg-white/90 rounded-xl shadow-md p-8" data-aos="fade-up" data-aos-duration="800">
+            <div class="w-full max-w-2xl bg-white/95 rounded-2xl shadow-md border border-gray-100 p-5 sm:p-6" data-aos="fade-up" data-aos-duration="600">
                 <!-- Title -->
-                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6" style="font-family: 'Poppins', sans-serif;">
+                <h2 class="text-xl md:text-2xl font-bold text-center text-gray-800 mb-6"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Apply to be a Landlord
                 </h2>
                 <!-- Form -->
-                <form method="post" enctype="multipart/form-data" class="space-y-6">
+                <form method="post" enctype="multipart/form-data" class="space-y-4">
                     {% csrf_token %}
-                    <div class="space-y-4">
+                    <div class="space-y-3">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" style="font-family: 'Inter', sans-serif;">{{ form.phone_number.label }}</label>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1"
+                                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                {{ form.phone_number.label }}
+                            </label>
                             {{ form.phone_number }}
                             {% if form.phone_number.errors %}
-                                <p class="text-red-500 text-sm mt-1">{{ form.phone_number.errors.as_text }}</p>
+                                <p class="text-red-500 text-xs mt-1">{{ form.phone_number.errors.as_text }}</p>
                             {% endif %}
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" style="font-family: 'Inter', sans-serif;">{{ form.dorm_name.label }}</label>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1"
+                                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                {{ form.dorm_name.label }}
+                            </label>
                             {{ form.dorm_name }}
                             {% if form.dorm_name.errors %}
-                                <p class="text-red-500 text-sm mt-1">{{ form.dorm_name.errors.as_text }}</p>
+                                <p class="text-red-500 text-xs mt-1">{{ form.dorm_name.errors.as_text }}</p>
                             {% endif %}
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" style="font-family: 'Inter', sans-serif;">{{ form.bank_name.label }}</label>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1"
+                                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                {{ form.address.label }}
+                            </label>
+                            {{ form.address }}
+                            {% if form.address.errors %}
+                                <p class="text-red-500 text-xs mt-1">{{ form.address.errors.as_text }}</p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1"
+                                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                {{ form.bank_name.label }}
+                            </label>
                             {{ form.bank_name }}
                             {% if form.bank_name.errors %}
-                                <p class="text-red-500 text-sm mt-1">{{ form.bank_name.errors.as_text }}</p>
+                                <p class="text-red-500 text-xs mt-1">{{ form.bank_name.errors.as_text }}</p>
                             {% endif %}
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" style="font-family: 'Inter', sans-serif;">{{ form.bank_account_number.label }}</label>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1"
+                                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                {{ form.bank_account_number.label }}
+                            </label>
                             {{ form.bank_account_number }}
                             {% if form.bank_account_number.errors %}
-                                <p class="text-red-500 text-sm mt-1">{{ form.bank_account_number.errors.as_text }}</p>
+                                <p class="text-red-500 text-xs mt-1">{{ form.bank_account_number.errors.as_text }}</p>
                             {% endif %}
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" style="font-family: 'Inter', sans-serif;">{{ form.account_holder_name.label }}</label>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1"
+                                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                {{ form.account_holder_name.label }}
+                            </label>
                             {{ form.account_holder_name }}
                             {% if form.account_holder_name.errors %}
-                                <p class="text-red-500 text-sm mt-1">{{ form.account_holder_name.errors.as_text }}</p>
+                                <p class="text-red-500 text-xs mt-1">{{ form.account_holder_name.errors.as_text }}</p>
                             {% endif %}
                         </div>
                         {% if form.errors %}
-                        <div class="text-red-600 text-sm bg-red-100 p-3 rounded-lg">
+                        <div class="text-red-600 text-xs bg-red-100 p-2 rounded-lg">
                             {% for field in form %}
                                 {% for error in field.errors %}
                                     <p>{{ field.label }}: {{ error }}</p>
@@ -80,13 +104,17 @@
                         </div>
                         {% endif %}
                     </div>
-                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                        <button type="submit" class="w-full sm:w-auto bg-[#4285f4] hover:bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold text-sm transition duration-300 shadow-md hover:shadow-lg"
-                                style="font-family: 'Inter', sans-serif;" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-3">
+                        <button type="submit"
+                                class="w-full sm:w-32 px-5 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
+                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                data-aos="fade-up" data-aos-delay="100">
                             Submit Application
                         </button>
-                        <a href="{% url 'home' %}" class="w-full sm:w-auto text-center bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg font-semibold text-sm transition duration-300 shadow-md hover:shadow-lg"
-                           style="font-family: 'Inter', sans-serif;" data-aos="fade-up" data-aos-delay="200">
+                        <a href="{% url 'home' %}"
+                           class="w-full sm:w-32 px-5 py-2 bg-red-400 text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                           data-aos="fade-up" data-aos-delay="200">
                             Cancel
                         </a>
                     </div>
@@ -100,6 +128,6 @@
 {% block scripts %}
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 600, once: true });
 </script>
 {% endblock %}

@@ -1,27 +1,165 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
-<section class="max-w-5xl mx-auto px-4 md:px-8 py-12 text-center">
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Booking Confirmed!</h1>
-    <p class="text-base md:text-lg text-gray-600 mb-8">Your booking has been successfully completed. Below are the details:</p>
-    
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
-        <p class="text-lg font-semibold">Room: {{ booking.room.dorm_name }} - {{ booking.room.room_name }}</p>
-        <p class="text-gray-600 mt-2">Booking Date: {{ booking.created_at|date:"D, d M Y H:i" }}</p>
-        <p class="text-gray-600 mt-2">Tenant: {{ booking.tenant.user.username }}</p>
-        <p class="text-gray-600 mt-2">Price: {{ booking.room.price }} THB / month</p>
-        {% if booking.check_in %}
-            <p class="text-gray-600 mt-2">Check-in: {{ booking.check_in|date:"d M Y" }}</p>
-        {% endif %}
-        {% if booking.check_out %}
-            <p class="text-gray-600 mt-2">Check-out: {{ booking.check_out|date:"d M Y" }}</p>
-        {% endif %}
-    </div>
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
 
-    <div class="mt-8 space-y-4">
-        <a href="{% url 'profile' %}" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition">Go to My Profile</a>
-        <a href="{% url 'home' %}" class="inline-block bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-lg hover:bg-gray-300 transition">Explore More Rooms</a>
+{% block content %}
+<section class="relative w-full min-h-[550px] bg-cover bg-center"
+         style="background-image: url('{% static 'image/hero1.jpg' %}');">
+    <div class="absolute inset-0 bg-gradient-to-t from-gray-800/80 via-[#0000]/30 to-transparent"></div>
+    <div class="relative z-10 flex flex-col justify-center items-center text-center h-full px-4 py-10">
+        <div class="max-w-2xl mb-6" data-aos="fade-up" data-aos-duration="600">
+            <h1 class="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-3"
+                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                Booking Confirmed!
+            </h1>
+            <p class="text-sm sm:text-base md:text-lg text-gray-200 mb-6"
+               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                Your booking has been successfully completed. Below are the details:
+            </p>
+        </div>
+
+        <!-- Booking Details -->
+        <div class="w-full max-w-2xl bg-white/95 rounded-2xl p-5 sm:p-6 shadow-lg border border-gray-100"
+             data-aos="fade-up" data-aos-delay="200">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+                <!-- Room and Price -->
+                <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-home text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Room
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.room.dorm_name }} - {{ booking.room.room_name }}
+                        </p>
+                        <p class="text-xs text-gray-600 mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Price: {{ booking.room.price|floatformat:0 }} THB / month
+                        </p>
+                    </div>
+                </div>
+                <!-- Booking Date -->
+                <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="350">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-calendar-alt text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Booking Date
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.created_at|date:"D, d M Y H:i" }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Tenant -->
+                <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-user text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Tenant
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ booking.tenant.user.username|default:booking.full_name }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Landlord -->
+                <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="450">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-user-tie text-[#4285f4] text-base" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Landlord
+                        </p>
+                        <p class="text-base text-gray-900 font-medium mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {% if booking.room.landlord %}
+                                {{ booking.room.landlord.user.username }}
+                            {% else %}
+                                Not assigned
+                            {% endif %}
+                        </p>
+                        <p class="text-xs text-gray-600 mt-0.5"
+                           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Contact: {{ booking.room.landlord.phone_number|default:"Not provided" }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Check-in -->
+                {% if booking.check_in %}
+                    <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                            <i class="fas fa-sign-in-alt text-[#4285f4] text-base" aria-hidden="true"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                Check-in
+                            </p>
+                            <p class="text-base text-gray-900 font-medium mt-0.5"
+                               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                {{ booking.check_in|date:"d M Y" }}
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- Check-out -->
+                {% if booking.check_out %}
+                    <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="550">
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                            <i class="fas fa-sign-out-alt text-[#4285f4] text-base" aria-hidden="true"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                Check-out
+                            </p>
+                            <p class="text-base text-gray-900 font-medium mt-0.5"
+                               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                {{ booking.check_out|date:"d M Y" }}
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3">
+            <a href="{% url 'profile' %}"
+               class="w-full sm:w-32 px-5 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
+               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                Go to My Profile
+            </a>
+            <a href="{% url 'payment' booking_id=booking.id %}"
+               class="w-full sm:w-32 px-5 py-2 bg-red-400 text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
+               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                Payment
+            </a>
+        </div>
     </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 600, once: true });
+</script>
 {% endblock %}

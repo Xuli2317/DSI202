@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<script>
+    window.location.href = "{% url 'home' %}";  // Redirect ไปยังหน้าแรก
+</script>
+{% endblock %}

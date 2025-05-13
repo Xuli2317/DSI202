@@ -2,145 +2,155 @@
 {% load static %}
 
 {% block content %}
-
 <!-- Hero Section -->
-<section class="relative w-full h-[600px] bg-cover bg-center"
-    style="background-image: url('{% static 'image/hero1.jpg' %}');">
+<section class="relative w-full h-[550px] bg-cover bg-center"
+         style="background-image: url('{% static 'image/hero1.jpg' %}');">
     <div class="absolute inset-0 bg-gradient-to-t from-gray-800/80 via-[#0000]/30 to-transparent"></div>
-    <div
-        class="relative z-10 flex flex-col justify-center items-center text-white text-center h-full px-4 pt-16 sm:pt-0">
-        <div class="max-w-2xl mb-8" data-aos="fade-up" data-aos-duration="1000">
-            <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white"
-                style="font-family: 'Poppins', sans-serif;">
+    <div class="relative z-10 flex flex-col justify-center items-center text-white text-center h-full px-4 pt-12 sm:pt-0">
+        <div class="max-w-2xl mb-6" data-aos="fade-up" data-aos-duration="600">
+            <h1 class="text-xl sm:text-2xl md:text-4xl font-bold mb-3 text-white"
+                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                 Find Your Perfect Place to Stay with Us
             </h1>
-            <p class="text-base sm:text-lg md:text-xl text-gray-200" style="font-family: 'Inter', sans-serif;">
+            <p class="text-sm sm:text-base md:text-lg text-gray-200"
+               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                 Discover a variety of affordable and comfortable rooms just for you
             </p>
         </div>
 
         <!-- Search Form -->
-        <!-- Search Form -->
         <form action="{% url 'home' %}#room-list" method="get"
-            class="w-full max-w-3xl mx-auto bg-white/95 rounded-2xl p-6 space-y-6 shadow-lg" data-aos="fade-up"
-            data-aos-delay="200">
-
+              class="w-full max-w-2xl mx-auto bg-white/95 rounded-2xl p-5 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="200">
             <div class="space-y-2">
-                <p class="text-lg font-semibold text-gray-700" style="font-family: 'Inter', sans-serif;">
+                <p class="text-base font-semibold text-gray-700"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Find Your Room
                 </p>
                 <input type="text" name="description" placeholder="Search for location, type, or keyword..."
-                    class="w-full px-5 py-3 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition duration-300 shadow-sm"
-                    value="{{ request.GET.description }}">
+                       class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition duration-300 shadow-sm text-sm"
+                       value="{{ request.GET.description }}">
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
                 <input type="text" id="dorm_name" name="dorm_name" placeholder="Dorm Name"
-                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
-                    value="{{ request.GET.dorm_name }}">
+                       class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                       value="{{ request.GET.dorm_name }}">
                 <input type="number" id="min_price" name="min_price" placeholder="Min Price" min="0"
-                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
-                    value="{{ request.GET.min_price }}">
+                       class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                       value="{{ request.GET.min_price }}">
                 <input type="number" id="max_price" name="max_price" placeholder="Max Price"
-                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
-                    value="{{ request.GET.max_price }}">
+                       class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                       value="{{ request.GET.max_price }}">
             </div>
-
-            <div class="text-center">
+            <div class="text-center mt-4">
                 <button type="submit"
-                    class="inline-block px-8 py-3 text-white bg-[#4285f4] hover:bg-blue-600 rounded-full font-semibold transition duration-300 shadow-md hover:shadow-lg">
+                        class="inline-block px-6 py-2 text-white bg-[#4285f4] hover:bg-blue-600 rounded-3xl font-semibold text-xs transition duration-300 flex items-center justify-center mx-auto"
+                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Search
                 </button>
             </div>
         </form>
-
     </div>
 </section>
 
 <!-- Room List Intro -->
-<section id="room-list" class="container mx-auto px-4 py-12 text-center bg-[#f8f9fa]">
-    <div class="max-w-3xl mx-auto">
+<section id="room-list" class="container mx-auto px-4 py-10 text-center bg-[#f8f9fa]">
+    <div class="max-w-2xl mx-auto">
         <!-- Useful Info Section -->
-        <div class="flex justify-center space-x-8 mb-10">
+        <div class="flex justify-center space-x-6 mb-8">
             <div class="text-center">
-                <i class="fas fa-home text-2xl text-[#4285f4] mb-2"></i>
-                <h4 class="font-semibold text-lg text-[#4285f4]">100+ Rooms Available</h4>
-                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">A variety of options to suit
-                    your needs</p>
+                <i class="fas fa-home text-xl text-[#4285f4] mb-1"></i>
+                <h4 class="font-semibold text-base text-[#4285f4]"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    100+ Rooms Available
+                </h4>
+                <p class="text-xs text-gray-500"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    A variety of options to suit your needs
+                </p>
             </div>
             <div class="text-center">
-                <i class="fas fa-map-marker-alt text-2xl text-[#4285f4] mb-2"></i>
-                <h4 class="font-semibold text-lg text-[#4285f4]">Top-Rated Locations</h4>
-                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">All near TU with easy access
-                    to campus</p>
+                <i class="fas fa-map-marker-alt text-xl text-[#4285f4] mb-1"></i>
+                <h4 class="font-semibold text-base text-[#4285f4]"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Top-Rated Locations
+                </h4>
+                <p class="text-xs text-gray-500"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    All near TU with easy access to campus
+                </p>
             </div>
             <div class="text-center">
-                <i class="fas fa-wallet text-2xl text-[#4285f4] mb-2"></i>
-                <h4 class="font-semibold text-lg text-[#4285f4]">Affordable Prices</h4>
-                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">Find rooms within your budget
+                <i class="fas fa-wallet text-xl text-[#4285f4] mb-1"></i>
+                <h4 class="font-semibold text-base text-[#4285f4]"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Affordable Prices
+                </h4>
+                <p class="text-xs text-gray-500"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Find rooms within your budget
                 </p>
             </div>
         </div>
-        <div class="h-1 w-24 mx-auto bg-[#4285f4] rounded-full mb-6"></div>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4" style="font-family: 'Poppins', sans-serif;">
+        <div class="h-1 w-20 mx-auto bg-[#4285f4] rounded-full mb-4"></div>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3"
+            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
             Available Rooms for Rent
         </h2>
-        <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6" style="font-family: 'Inter', sans-serif;">
-            Browse our curated selection of rooms near TU. From cozy, budget-friendly stays to modern luxury, there's
-            something for everyone.
+        <p class="text-sm sm:text-base md:text-lg text-gray-600 mb-4"
+           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+            Browse our curated selection of rooms near TU. From cozy, budget-friendly stays to modern luxury, there's something for everyone.
         </p>
     </div>
 </section>
 
 <!-- Room List -->
-<section class="container mx-auto px-4 py-8 w-full max-w-7xl bg-[#f8f9fa]">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+<section class="container mx-auto px-4 py-6 w-full max-w-6xl bg-[#f8f9fa]">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {% for room in rooms %}
         <a href="{% url 'room_detail' pk=room.pk %}"
-            class="relative block bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl border border-gray-100"
-            data-aos="fade-up" data-aos-duration="600">
-            <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+           class="relative block bg-white/95 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-100"
+           data-aos="fade-up" data-aos-duration="600">
+            <div class="relative h-44 sm:h-48 overflow-hidden">
                 {% if room.image %}
                 <img src="{{ room.image.url }}" alt="Room Image"
-                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                 {% else %}
-                <div
-                    class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-sm font-medium">
+                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-xs font-medium">
                     No Image Available
                 </div>
                 {% endif %}
             </div>
-            <div class="p-4 text-center">
-                <h3 class="text-sm sm:text-base font-semibold text-gray-900 truncate"
-                    style="font-family: 'Inter', sans-serif;">
+            <div class="p-3 text-center">
+                <h3 class="text-sm font-semibold text-gray-900 truncate"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     {{ room.dorm_name }}
                 </h3>
-                <p class="text-sm text-gray-500 mt-1" style="font-family: 'Inter', sans-serif;">
+                <p class="text-xs text-gray-500 mt-0.5"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Room {{ room.room_name }}
                 </p>
-                <div
-                    class="absolute top-4 right-4 bg-[#4285f4] text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
+                <div class="absolute top-3 right-3 bg-[#4285f4] text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
                     {{ room.price|floatformat:0 }} THB
                 </div>
             </div>
         </a>
         {% empty %}
-        <div class="col-span-full text-center py-8">
-            <p class="text-base text-gray-500" style="font-family: 'Inter', sans-serif;">
+        <div class="col-span-full text-center py-6">
+            <p class="text-sm text-gray-500"
+               style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                 No rooms found.
             </p>
         </div>
         {% endfor %}
     </div>
 </section>
-
 {% endblock content %}
 
 {% block scripts %}
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 <script>
-    AOS.init();
+    AOS.init({ duration: 600, once: true });
 
     const hamburgerIcon = document.getElementById('hamburger-icon');
     const mobileMenu = document.getElementById('mobile-menu');

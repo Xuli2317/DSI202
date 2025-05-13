@@ -2,114 +2,286 @@
 {% load static %}
 
 {% block head %}
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    .pending-status { color: #f59e0b; } /* Amber for pending */
+    .confirmed-status { color: #10b981; } /* Emerald for confirmed */
+    .canceled-status { color: #ef4444; } /* Red for canceled */
+</style>
 {% endblock %}
 
 {% block content %}
-<section class="relative w-full min-h-[600px] bg-cover bg-center"
-         style="background-image: url('{% static 'image/hero1.jpg' %}');">
-    <div class="absolute inset-0 bg-gradient-to-t from-gray-800/70 to-transparent"></div>
+<section class="relative w-full min-h-screen bg-cover bg-center"
+    style="background-image: url('{% static 'image/hero1.jpg' %}');">
+    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
 
-    <div class="relative z-10 flex flex-col h-full justify-between px-4 md:px-8 py-6">
-        <!-- Back Button -->
-        <div>
-            <a href="{% url 'home' %}"
-               class="group flex items-center space-x-2 hover:text-blue-300 font-medium text-sm md:text-base transition duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="w-5 h-5 text-black group-hover:text-blue-300"
-                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                <span>Back to Home</span>
-            </a>
-        </div>
-    <div class="relative z-10 flex flex-col justify-center items-center h-full px-4 py-8">
+    <div class="relative z-10 flex flex-col justify-center items-center px-4 md:px-6 py-8">
         <!-- Profile Card -->
-        <div class="w-full max-w-2xl bg-white/90 rounded-xl shadow-md p-6"
-             data-aos="fade-up" data-aos-duration="800">
-            
+        <div class="w-full max-w-2xl bg-white/95 rounded-2xl shadow-lg border border-gray-100 p-5 sm:p-6"
+            data-aos="fade-up" data-aos-duration="800">
+            <!-- Title -->
+            <h2 class="text-xl md:text-2xl font-bold text-center text-gray-800 mb-6"
+                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                My Profile
+            </h2>
+
             <!-- Tabs -->
             <div class="flex border-b border-gray-200 mb-6">
-                <div class="flex-1 text-center py-3 font-semibold text-gray-800 cursor-pointer tab active bg-[#4285f4] text-white rounded-t-md"
-                     onclick="showTab('profile')"
-                     style="font-family: 'Poppins', sans-serif;">
+                <div class="flex-1 text-center py-3 font-semibold text-gray-800 cursor-pointer tab active bg-[#4285f4] text-white rounded-t-lg"
+                    onclick="showTab('profile')"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Profile
                 </div>
                 <div class="flex-1 text-center py-3 font-semibold text-gray-800 cursor-pointer tab hover:bg-gray-100"
-                     onclick="showTab('management')"
-                     style="font-family: 'Poppins', sans-serif;">
+                    onclick="showTab('management')"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     Management
                 </div>
             </div>
 
             <!-- Profile Section -->
             <div class="section" id="profile">
-                <h1 class="text-2xl font-bold mb-6 text-center text-gray-800"
-                    style="font-family: 'Poppins', sans-serif;">
-                    My Profile
-                </h1>
-
-                <!-- Profile Info -->
-                <div class="mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="text-xl font-semibold text-gray-800"
-                        style="font-family: 'Poppins', sans-serif;">
-                        {{ user.username }}
-                    </h2>
-                    <p class="text-sm text-gray-600" style="font-family: 'Inter', sans-serif;">
-                        {{ user.email|default:"No email set" }}
-                    </p>
-                    <p class="text-sm text-gray-600" style="font-family: 'Inter', sans-serif;">
-                        Role: {{ user.get_role_display }}
-                    </p>
-                    <p class="text-sm text-gray-600" style="font-family: 'Inter', sans-serif;">
-                        Phone: {{ user.phone|default:"Not set" }}
-                    </p>
-                </div>
-
-                <!-- Tenant Information -->
-                {% if user.role == 'tenant' and user.tenant %}
-                <hr class="border-gray-200 my-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="mt-4" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3"
-                        style="font-family: 'Poppins', sans-serif;">
-                        Tenant Information
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600"
-                         style="font-family: 'Inter', sans-serif;">
-                        <span class="font-medium text-gray-800">Budget:</span>
-                        <span>{{ user.tenant.budget|default:"Not set" }}</span>
-                        <span class="font-medium text-gray-800">Preferences:</span>
-                        <span>{{ user.tenant.preferences|default:"Not set" }}</span>
+                <form id="profile-form" method="post"
+                    action="{% if user.role == 'tenant' %}{% url 'profile_edit' %}{% else %}{% url 'landlord_profile_edit' %}{% endif %}">
+                    {% csrf_token %}
+                    <div class="mb-6 bg-gray-50/80 rounded-xl p-5 shadow-sm border border-gray-100" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            {{ user.username }}
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-envelope text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Email
+                                    </p>
+                                    <input type="email" name="email" value="{{ user.email|default_if_none:'' }}"
+                                        readonly
+                                        class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="email-field">
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-phone text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Phone
+                                    </p>
+                                    <input type="text" name="phone" value="{{ user.phone|default_if_none:'' }}" readonly
+                                        class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="phone-field">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                {% endif %}
 
-                <!-- Landlord Information -->
-                {% if user.role == 'landlord' and user.landlord_profile %}
-                <hr class="border-gray-200 my-6" data-aos="fade-up" data-aos-delay="400">
-                <div class="mt-4" data-aos="fade-up" data-aos-delay="500">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3"
-                        style="font-family: 'Poppins', sans-serif;">
-                        Landlord Information
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600"
-                         style="font-family: 'Inter', sans-serif;">
-                        <span class="font-medium text-gray-800">Phone Number:</span>
-                        <span>{{ user.landlord_profile.phone_number|default:"Not set" }}</span>
+                    <!-- Tenant Information -->
+                    {% if user.role == 'tenant' and user.tenant %}
+                    <div class="mb-6 bg-gray-50/80 rounded-xl p-5 shadow-sm border border-gray-100" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Tenant Information
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-wallet text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Budget
+                                    </p>
+                                    <input type="number" name="budget"
+                                        value="{{ user.tenant.budget|default_if_none:'' }}" readonly
+                                        class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="budget-field">
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:col-span-2">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-list text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Preferences
+                                    </p>
+                                    <textarea name="preferences" readonly
+                                        class="w-full px-4 py-2 rounded-lg border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="preferences-field">{{ user.tenant.preferences|default_if_none:'' }}</textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                {% endif %}
+                    {% endif %}
 
-                <!-- Apply To Be landlord -->
-                <hr class="border-gray-200 my-6">
-                <div class="text-center" >
+                    <!-- Landlord Information -->
+                    {% if user.role == 'landlord' and user.landlord_profile %}
+                    <div class="mb-6 bg-gray-50/80 rounded-xl p-5 shadow-sm border border-gray-100" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Landlord Information
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-phone text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Phone Number
+                                    </p>
+                                    <input type="text" name="phone_number"
+                                        value="{{ user.landlord_profile.phone_number|default_if_none:'' }}" readonly
+                                        class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="phone-number-field">
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-home text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Dorm Name
+                                    </p>
+                                    <input type="text" name="dorm_name"
+                                        value="{{ user.landlord_profile.dorm_name|default_if_none:'' }}" readonly
+                                        class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="dorm-name-field">
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:col-span-2">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-map-marker-alt text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Address
+                                    </p>
+                                    <textarea name="address" readonly
+                                        class="w-full px-4 py-2 rounded-lg border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="address-field">{{ user.landlord_profile.address|default_if_none:'' }}</textarea>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-university text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Bank Name
+                                    </p>
+                                    <input type="text" name="bank_name"
+                                        value="{{ user.landlord_profile.bank_name|default_if_none:'' }}" readonly
+                                        class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="bank-name-field">
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-credit-card text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Bank Account Number
+                                    </p>
+                                    <input type="text" name="bank_account_number"
+                                        value="{{ user.landlord_profile.bank_account_number|default_if_none:'' }}"
+                                        readonly
+                                        class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="bank-account-number-field">
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 sm:col-span-2">
+                                <div
+                                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                    <i class="fas fa-user text-[#4285f4] text-base" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                        Account Holder Name
+                                    </p>
+                                    <input type="text" name="account_holder_name"
+                                        value="{{ user.landlord_profile.account_holder_name|default_if_none:'' }}"
+                                        readonly
+                                        class="w-full px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm text-sm"
+                                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                        id="account-holder-name-field">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Edit and Save Buttons -->
+                    <div class="text-center mt-6 flex flex-col sm:flex-row justify-center gap-4">
+                        <button type="button" id="edit-button"
+                            class="inline-block px-6 py-2 bg-[#4285f4] hover:bg-blue-600 text-white rounded-3xl font-semibold text-sm transition duration-300"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                            onclick="toggleEditMode(true)">
+                            Edit
+                        </button>
+                        <button type="submit" id="save-button"
+                            class="hidden inline-block px-6 py-2 bg-emerald-400 hover:bg-emerald-500 text-white rounded-3xl font-semibold text-sm transition duration-300"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Save Changes
+                        </button>
+                        <button type="button" id="cancel-button"
+                            class="hidden inline-block px-6 py-2 bg-red-400 hover:bg-red-500 text-white rounded-3xl font-semibold text-sm transition duration-300"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Apply To Be Landlord (Only for Tenants) -->
+                {% if user.role == 'tenant' %}
+                <div class="text-center mt-6">
                     <a href="{% url 'apply_landlord' %}"
-                       class="inline-block px-6 py-2 text-white bg-[#4285f4] hover:bg-blue-600 rounded-lg font-medium text-sm transition duration-300 shadow-sm hover:shadow-md"
-                       style="font-family: 'Inter', sans-serif;">
-                        Apply To Be landlord 
+                        class="inline-block px-6 py-2 bg-[#4285f4] hover:bg-blue-600 text-white rounded-3xl font-semibold text-sm transition duration-300"
+                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                        Apply To Be Landlord
                     </a>
                 </div>
+                {% endif %}
             </div>
 
             <!-- Management Section -->
@@ -118,163 +290,75 @@
                     {% if user.role == 'landlord' %}
                     <!-- Bookings Section for Landlord -->
                     {% if bookings %}
-                    <div class="overflow-x-auto rounded-lg shadow-sm">
-                        <table class="w-full text-sm text-gray-600 bg-white rounded-lg">
-                            <thead>
-                                <tr class="border-b border-gray-200 bg-gray-50">
-                                    <th class="py-2 px-4 text-left font-semibold text-gray-800">Room</th>
-                                    <th class="py-2 px-4 text-left font-semibold text-gray-800">Tenant</th>
-                                    <th class="py-2 px-4 text-left font-semibold text-gray-800">Check-In</th>
-                                    <th class="py-2 px-4 text-left font-semibold text-gray-800">Check-Out</th>
-                                    <th class="py-2 px-4 text-left font-semibold text-gray-800">Status</th>
-                                    <th class="py-2 px-4 text-left font-semibold text-gray-800">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for booking in bookings %}
-                                <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-200">
-                                    <td class="py-2 px-4">
-                                        {{ booking.room.dorm_name }} - {{ booking.room.room_name }}
-                                    </td>
-                                    <td class="py-2 px-4">
-                                        {{ booking.tenant.user.username|default:booking.full_name }}
-                                    </td>
-                                    <td class="py-2 px-4">
-                                        {{ booking.check_in|date:"d M Y"|default:"Not set" }}
-                                    </td>
-                                    <td class="py-2 px-4">
-                                        {{ booking.check_out|date:"d M Y"|default:"Not set" }}
-                                    </td>
-                                    <td class="py-2 px-4"
-                                        {% if booking.status == 'pending' %}class="text-amber-400"
-                                        {% elif booking.status == 'confirmed' %}class="text-emerald-400"
-                                        {% elif booking.status == 'canceled' %}class="text-red-400"
-                                        {% endif %}>
-                                        {{ booking.status|title }}
-                                    </td>
-                                    <td class="py-2 px-4 flex space-x-2">
-                                        {% if booking.status == 'pending' %}
-                                        <a href="{% url 'booking_confirm' booking.id %}"
-                                           class="bg-emerald-400 hover:bg-emerald-500 text-white py-1 px-3 rounded-lg text-sm font-medium transition duration-300 hover:shadow-md">
-                                            Confirm
-                                        </a>
-                                        <a href="{% url 'booking_cancel' booking.id %}"
-                                           class="bg-red-400 hover:bg-red-500 text-white py-1 px-3 rounded-lg text-sm font-medium transition duration-300 hover:shadow-md">
-                                            Cancel
-                                        </a>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    {% endif %}
-
-                    <!-- Rooms Section -->
-                    <div id="rooms" class="space-y-4">
-                        <div class="flex justify-between items-center mb-3">
-                            <h2 class="text-2xl font-bold text-gray-800"
-                                style="font-family: 'Poppins', sans-serif;">
-                                My Rooms
-                            </h2>
-                            <a href="{% url 'room_create' %}"
-                               class="inline-block px-6 py-2 text-white bg-[#4285f4] hover:bg-blue-600 rounded-lg font-medium text-sm transition duration-300 shadow-sm hover:shadow-md"
-                               style="font-family: 'Inter', sans-serif;">
-                                Add New Room
-                            </a>
-                        </div>
-
-                        {% if rooms %}
+                    <div class="bg-gray-50/80 rounded-xl p-5 shadow-sm border border-gray-100" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Bookings
+                        </h3>
                         <div class="overflow-x-auto rounded-lg shadow-sm">
                             <table class="w-full text-sm text-gray-600 bg-white rounded-lg">
                                 <thead>
                                     <tr class="border-b border-gray-200 bg-gray-50">
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Dorm Name</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Room Name</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Price</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Lease Duration</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Available</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for room in rooms %}
-                                    <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-200">
-                                        <td class="py-2 px-4">{{ room.dorm_name }}</td>
-                                        <td class="py-2 px-4">{{ room.room_name }}</td>
-                                        <td class="py-2 px-4">{{ room.price }}</td>
-                                        <td class="py-2 px-4">{{ room.lease_duration_months }} months</td>
-                                        <td class="py-2 px-4">{{ room.available|yesno:"Yes,No" }}</td>
-                                        <td class="py-2 px-4 flex space-x-2">
-                                            <a href="{% url 'room_edit' room.id %}"
-                                               class="bg-[#4285f4] hover:bg-blue-600 text-white py-1 px-3 rounded-lg text-sm font-medium transition duration-300 hover:shadow-md">
-                                                Edit
-                                            </a>
-                                            <a href="{% url 'room_delete' room.id %}"
-                                               class="bg-red-400 hover:bg-red-500 text-white py-1 px-3 rounded-lg text-sm font-medium transition duration-300 hover:shadow-md"
-                                               onclick="return confirm('Are you sure you want to delete this room?')">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        {% else %}
-                        <p class="text-center text-gray-500 text-sm" style="font-family: 'Inter', sans-serif;">
-                            No rooms found. Add a room to get started!
-                        </p>
-                        {% endif %}
-                    </div>
-
-                    {% else %}
-                    <!-- Tenant View -->
-                    <div id="tenant-bookings" class="space-y-4">
-                        <h2 class="text-2xl font-bold text-gray-800"
-                            style="font-family: 'Poppins', sans-serif;">
-                            Your Bookings
-                        </h2>
-                        {% if bookings %}
-                        <div class="overflow-x-auto rounded-lg shadow-sm">
-                            <table class="w-full text-sm text-gray-600 bg-white rounded-lg">
-                                <thead>
-                                    <tr class="border-b border-gray-200 bg-gray-50">
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Room</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Check-In</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Check-Out</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Status</th>
-                                        <th class="py-2 px-4 text-left font-semibold text-gray-800">Actions</th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Room
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Tenant
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Check-In
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Check-Out
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Status
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Actions
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for booking in bookings %}
                                     <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-200">
-                                        <td class="py-2 px-4">
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                                             {{ booking.room.dorm_name }} - {{ booking.room.room_name }}
                                         </td>
-                                        <td class="py-2 px-4">
-                                            {{ booking.check_in|date:"d M Y"|default:"Not set" }}
-                                        </td>
-                                        <td class="py-2 px-4">
-                                            {{ booking.check_out|date:"d M Y"|default:"Not set" }}
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Kaur', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ booking.tenant.user.username|default:booking.full_name }}
                                         </td>
                                         <td class="py-2 px-4"
-                                            {% if booking.status == 'pending' %}class="text-amber-400"
-                                            {% elif booking.status == 'confirmed' %}class="text-emerald-400"
-                                            {% elif booking.status == 'canceled' %}class="text-red-400"
-                                            {% endif %}>
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ booking.check_in|date:"d M Y"|default:"Not set" }}
+                                        </td>
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ booking.check_out|date:"d M Y"|default:"Not set" }}
+                                        </td>
+                                        <td class="py-2 px-4 {{ booking.status|default:'pending' }}-status"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                                             {{ booking.status|title }}
                                         </td>
                                         <td class="py-2 px-4 flex space-x-2">
                                             {% if booking.status == 'pending' %}
-                                            <a href="{% url 'booking_payment' booking.id %}"
-                                               class="bg-amber-400 hover:bg-amber-500 text-white py-1 px-3 rounded-lg text-sm font-medium transition duration-300 hover:shadow-md">
-                                                Pay
+                                            <a href="{% url 'booking_confirm' booking.id %}"
+                                                class="bg-emerald-400 hover:bg-emerald-500 text-white py-1 px-3 rounded-3xl text-xs font-semibold transition duration-300 shadow-md"
+                                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                                Confirm
                                             </a>
                                             <a href="{% url 'booking_cancel' booking.id %}"
-                                               class="bg-red-400 hover:bg-red-500 text-white py-1 px-3 rounded-lg text-sm font-medium transition duration-300 hover:shadow-md">
+                                                class="bg-red-400 hover:bg-red-500 text-white py-1 px-3 rounded-3xl text-xs font-semibold transition duration-300 shadow-md"
+                                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                                                 Cancel
                                             </a>
                                             {% endif %}
@@ -284,11 +368,183 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p class="text-center text-gray-500 text-sm mt-3" style="font-family: 'Inter', sans-serif;">
-                            Note: If check-in/check-out dates are not set, please contact the landlord to confirm your booking details.
+                    </div>
+                    {% endif %}
+
+                    <!-- Rooms Section -->
+                    <div id="rooms" class="space-y-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-semibold text-gray-800"
+                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                My Rooms
+                            </h3>
+                            <a href="{% url 'room_create' %}"
+                                class="inline-block px-6 py-2 bg-[#4285f4] hover:bg-blue-600 text-white rounded-3xl font-semibold text-sm transition duration-300"
+                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                Add New Room
+                            </a>
+                        </div>
+
+                        {% if rooms %}
+                        <div class="overflow-x-auto rounded-lg shadow-sm">
+                            <table class="w-full text-sm text-gray-600 bg-white rounded-lg">
+                                <thead>
+                                    <tr class="border-b border-gray-200 bg-gray-50">
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: define UI Symbol', 'Noto Color Emoji';">
+                                            Dorm Name
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Room Name
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Price
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Lease Duration
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Available
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for room in rooms %}
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-200">
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ room.dorm_name }}
+                                        </td>
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ room.room_name }}
+                                        </td>
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ room.price }}
+                                        </td>
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ room.lease_duration_months }} months
+                                        </td>
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ room.available|yesno:"Yes,No" }}
+                                        </td>
+                                        <td class="py-2 px-4 flex space-x-2">
+                                            <a href="{% url 'room_edit' room.id %}"
+                                                class="bg-[#4285f4] hover:bg-blue-600 text-white py-1 px-3 rounded-3xl text-xs font-semibold transition duration-300 shadow-md"
+                                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                                Edit
+                                            </a>
+                                            <a href="{% url 'room_delete' room.id %}"
+                                                class="bg-red-400 hover:bg-red-500 text-white py-1 px-3 rounded-3xl text-xs font-semibold transition duration-300 shadow-md"
+                                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
+                                                onclick="return confirm('Are you sure you want to delete this room?')">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <p class="text-center text-gray-500 text-sm"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            No rooms found. Add a room to get started!
+                        </p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Tenant View -->
+                    {% else %}
+                    <div id="tenant-bookings" class="space-y-4" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-lg font-semibold text-gray-800"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Your Bookings
+                        </h3>
+                        {% if bookings %}
+                        <div class="overflow-x-auto rounded-lg shadow-sm">
+                            <table class="w-full text-sm text-gray-600 bg-white rounded-lg">
+                                <thead>
+                                    <tr class="border-b border-gray-200 bg-gray-50">
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Room
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Check-In
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Check-Out
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Status
+                                        </th>
+                                        <th class="py-2 px-4 text-left font-semibold text-gray-800"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for booking in bookings %}
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-200">
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ booking.room.dorm_name }} - {{ booking.room.room_name }}
+                                        </td>
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ booking.check_in|date:"d M Y"|default:"Not set" }}
+                                        </td>
+                                        <td class="py-2 px-4"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ booking.check_out|date:"d M Y"|default:"Not set" }}
+                                        </td>
+                                        <td class="py-2 px-4 {{ booking.status|default:'pending' }}-status"
+                                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                            {{ booking.status|title }}
+                                        </td>
+                                        <td class="py-2 px-4 flex space-x-2">
+                                            {% if booking.status == 'pending' %}
+                                            <a href="{% url 'booking_payment' booking.id %}"
+                                                class="bg-amber-400 hover:bg-amber-500 text-white py-1 px-3 rounded-3xl text-xs font-semibold transition duration-300 shadow-md"
+                                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                                Pay
+                                            </a>
+                                            <a href="{% url 'booking_cancel' booking.id %}"
+                                                class="bg-red-400 hover:bg-red-500 text-white py-1 px-3 rounded-3xl text-xs font-semibold transition duration-300 shadow-md"
+                                                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                                                Cancel
+                                            </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-center text-gray-500 text-sm mt-3"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                            Note: If check-in/check-out dates are not set, please contact the landlord to confirm your
+                            booking details.
                         </p>
                         {% else %}
-                        <p class="text-center text-gray-500 text-sm" style="font-family: 'Inter', sans-serif;">
+                        <p class="text-center text-gray-500 text-sm"
+                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                             No bookings found.
                         </p>
                         {% endif %}
@@ -303,14 +559,54 @@
 <script>
     function showTab(tabName) {
         document.querySelectorAll('.tab').forEach(tab => {
-            tab.classList.remove('active', 'bg-[#4285f4]', 'text-white', 'rounded-t-md');
+            tab.classList.remove('active', 'bg-[#4285f4]', 'text-white', 'rounded-t-lg');
             tab.classList.add('hover:bg-gray-100');
         });
         document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
         document.getElementById(tabName).classList.remove('hidden');
         const activeTab = document.querySelector(`[onclick="showTab('${tabName}')"]`);
-        activeTab.classList.add('active', 'bg-[#4285f4]', 'text-white', 'rounded-t-md');
+        activeTab.classList.add('active', 'bg-[#4285f4]', 'text-white', 'rounded-t-lg');
         activeTab.classList.remove('hover:bg-gray-100');
+    }
+
+    function toggleEditMode(enable) {
+        const fields = [
+            'email-field', 'phone-field',
+            {% if user.role == 'tenant' %}
+            'budget-field', 'preferences-field',
+            {% else %}
+            'phone-number-field', 'dorm-name-field', 'address-field',
+            'bank-name-field', 'bank-account-number-field', 'account-holder-name-field'
+            {% endif %}
+        ];
+        const editButton = document.getElementById('edit-button');
+        const saveButton = document.getElementById('save-button');
+        const cancelButton = document.getElementById('cancel-button');
+
+        fields.forEach(id => {
+            const field = document.getElementById(id);
+            if (field) {
+                if (enable) {
+                    field.removeAttribute('readonly');
+                    field.classList.remove('bg-[#f8f9fa]');
+                    field.classList.add('bg-white', 'border-gray-300');
+                } else {
+                    field.setAttribute('readonly', 'readonly');
+                    field.classList.add('bg-[#f8f9fa]');
+                    field.classList.remove('bg-white', 'border-gray-300');
+                }
+            }
+        });
+
+        if (enable) {
+            editButton.classList.add('hidden');
+            saveButton.classList.remove('hidden');
+            cancelButton.classList.remove('hidden');
+        } else {
+            editButton.classList.remove('hidden');
+            saveButton.classList.add('hidden');
+            cancelButton.classList.add('hidden');
+        }
     }
 </script>
 {% endblock %}
@@ -318,6 +614,6 @@
 {% block scripts %}
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-    AOS.init();
+    AOS.init({ duration: 800, once: true });
 </script>
 {% endblock %}

@@ -1,10 +1,9 @@
-from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Room, Booking, Landlord, Tenant
-from allauth.account.forms import SignupForm
 from django.core.exceptions import ValidationError
 from datetime import date
+from django import forms
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField()
@@ -16,7 +15,7 @@ class CustomUserCreationForm(UserCreationForm):
 class LandlordApplicationForm(forms.ModelForm):
     class Meta:
         model = Landlord
-        fields = ['phone_number', 'dorm_name', 'bank_name', 'bank_account_number', 'account_holder_name']
+        fields = ['phone_number', 'dorm_name', 'address', 'bank_name', 'bank_account_number', 'account_holder_name']
         widgets = {
             'phone_number': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border rounded-lg',
@@ -25,6 +24,11 @@ class LandlordApplicationForm(forms.ModelForm):
             'dorm_name': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border rounded-lg',
                 'placeholder': 'Dorm Name'
+            }),
+            'address': forms.Textarea(attrs={
+                'class': 'w-full px-4 py-3 border rounded-lg',
+                'placeholder': 'Enter full address (e.g., 123 Main St, Bangkok, Thailand)',
+                'rows': 4
             }),
             'bank_name': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border rounded-lg',
@@ -198,19 +202,6 @@ class BookingForm(forms.ModelForm):
             raise forms.ValidationError({"email": "Email is required for guest bookings."})
         
         return cleaned_data
-
-class CustomSignupForm(SignupForm):
-    ROLE_CHOICES = (
-        ('tenant', 'Tenant'),
-        ('landlord', 'Landlord'),
-    )
-    role = forms.ChoiceField(choices=ROLE_CHOICES, widget=forms.RadioSelect)
-
-    def save(self, request):
-        user = super().save(request)
-        user.role = self.cleaned_data['role']
-        user.save()
-        return user
 
 class TenantProfileForm(forms.ModelForm):
     phone = forms.CharField(max_length=15, required=False, label="Phone Number")

@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from datetime import date
 from dateutil.relativedelta import relativedelta
+from myapp.allauth_forms import CustomSignupForm
 
 def home(request):
     max_price = request.GET.get('max_price')
@@ -307,10 +308,43 @@ def profile_edit(request):
     if request.method == 'POST':
         form = TenantProfileForm(request.POST, instance=tenant, user=request.user)
         if form.is_valid():
+            request.user.email = request.POST.get('email', request.user.email)
+            request.user.phone = request.POST.get('phone', request.user.phone)
+            request.user.save()
             form.save()
             messages.success(request, "Profile updated successfully.")
             return redirect('profile')
+        else:
+            messages.error(request, "Please correct the errors below.")
     else:
         form = TenantProfileForm(instance=tenant, user=request.user)
     
-    return redirect('profile')
+    return render(request, 'profile.html', {'form': form})
+
+@login_required
+def landlord_profile_edit(request):
+    if request.user.role != 'landlord':
+        messages.error(request, "Only landlords can edit landlord profiles.")
+        return redirect('profile')
+    
+    try:
+        landlord = request.user.landlord_profile
+    except Landlord.DoesNotExist:
+        messages.error(request, "Landlord profile not found.")
+        return redirect('profile')
+    
+    if request.method == 'POST':
+        form = LandlordApplicationForm(request.POST, instance=landlord)
+        if form.is_valid():
+            request.user.email = request.POST.get('email', request.user.email)
+            request.user.phone = request.POST.get('phone_number', request.user.phone)
+            request.user.save()
+            form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect('profile')
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = LandlordApplicationForm(instance=landlord)
+    
+    return render(request, 'profile.html', {'form': form})
