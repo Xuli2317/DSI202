@@ -2,64 +2,71 @@
 {% load static %}
 
 {% block content %}
-<style>
-    .payment-container {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
-        min-height: 100vh;
-        padding: 2rem 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .payment-card {
-        background: #fff;
-        border-radius: 1rem;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-        max-width: 32rem;
-        width: 100%;
-        padding: 2rem;
-        text-align: center;
-    }
-    .button {
-        display: inline-block;
-        background: #10b981;
-        color: #fff;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 500;
-        transition: background 0.3s ease, transform 0.3s ease;
-        margin: 0.5rem;
-    }
-    .button:hover {
-        background: #059669;
-        transform: translateY(-2px);
-    }
-    .button.cancel {
-        background: #ef4444;
-    }
-    .button.cancel:hover {
-        background: #dc2626;
-    }
-</style>
-
-<div class="payment-container">
-    <div class="payment-card">
-        <h2 class="text-2xl font-bold mb-4" style="font-family: 'Poppins', sans-serif; color: #1f2937;">
-            Payment for Booking #{{ booking.id }}
-        </h2>
-        <p class="text-gray-600 mb-4">
-            Booking: {{ booking.room.dorm_name }} - {{ booking.room.room_name }}<br>
-            Amount: {{ booking.room.price }} THB<br>
-            Check-In: {{ booking.check_in|date:"d M Y" }}<br>
-            Check-Out: {{ booking.check_out|date:"d M Y" }}
-        </p>
-        <form method="post" action="{% url 'booking_payment_confirm' booking.id %}">
-            {% csrf_token %}
-            <button type="submit" class="button">Confirm Payment</button>
-        </form>
-        <a href="{% url 'profile' %}" class="button cancel">Back to Profile</a>
-    </div>
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center relative px-4 py-12"
+    style="background-image: url('{% static 'image/hero1.jpg' %}');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+<!-- Back Button -->
+<div class="flex justify-start px-4 md:px-8 py-6">
+    <a href="{% url 'profile' %}"
+       class="group flex items-center space-x-2 text-gray-700 hover:text-indigo-600 font-medium text-sm md:text-base transition-all duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-hover:text-indigo-600" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span>Back to Profile</span>
+    </a>
 </div>
+
+<!-- Payment Section -->
+<section class="max-w-5xl mx-auto px-4 md:px-8 py-12">
+    <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md mx-auto" data-aos="fade-up" data-aos-duration="800">
+        <!-- Title -->
+        <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6" style="font-family: 'Poppins', sans-serif;">
+            Payment for Booking 
+        </h2>
+
+        <!-- QR Image -->
+        <img src="{% static 'image/qr.jpg' %}" alt="QR Code for Payment" class="mx-auto mb-6 rounded-lg shadow-md">
+
+        <!-- Booking Details -->
+        <div class="text-gray-600 mb-6 text-base leading-relaxed text-center space-y-3" style="font-family: 'Inter', sans-serif;">
+            <p><span class="font-semibold text-gray-800">Room:</span> {{ booking.room.dorm_name }} - {{ booking.room.room_name }}</p>
+            <p><span class="font-semibold text-gray-800">Amount:</span> {{ booking.room.price }} THB</p>
+            <p><span class="font-semibold text-gray-800">Check-In:</span> {{ booking.check_in|date:"d M Y" }}</p>
+            <p><span class="font-semibold text-gray-800">Check-Out:</span> {{ booking.check_out|date:"d M Y" }}</p>
+        </div>
+
+        <!-- Payment Form and Buttons -->
+        <form method="post" action="{% url 'booking_payment_confirm' booking.id %}" class="space-y-4">
+            {% csrf_token %}
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button type="submit"
+                        class="w-full sm:w-auto text-center bg-indigo-600 text-white font-semibold text-base px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02]"
+                        style="font-family: 'Inter', sans-serif;"
+                        data-aos="fade-up" data-aos-delay="100">
+                    Confirm Payment
+                </button>
+                <a href="{% url 'profile' %}"
+                   class="w-full sm:w-auto text-center bg-red-500 text-white font-semibold text-base px-6 py-3 rounded-xl hover:bg-red-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02]"
+                   style="font-family: 'Inter', sans-serif;"
+                   data-aos="fade-up" data-aos-delay="200">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ duration: 800, once: true });
+        } else {
+            console.error("AOS library failed to load.");
+        }
+    });
+</script>
 {% endblock %}

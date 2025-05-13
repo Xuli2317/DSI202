@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.dispatch import receiver
+from django.db import transaction
+from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save, post_delete
 from django.core.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
@@ -93,8 +95,8 @@ class Booking(models.Model):
         return f"Booking {self.id} for {self.room.room_name}"
 
     def clean(self):
-        if not self.tenant and not (self.full_name and self.phone):
-            raise ValidationError("Either a tenant or guest details (full_name and phone) must be provided.")
+        if not self.tenant and not (self.full_name and self.phone and self.email):
+            raise ValidationError("Either a tenant or guest details (full_name, phone, and email) must be provided.")
         if self.check_in and self.check_out:
             if self.check_out <= self.check_in:
                 raise ValidationError({"check_out": "Check-out date must be after check-in date."})
@@ -111,7 +113,6 @@ class Booking(models.Model):
         if self.check_in and not self.check_out and self.room and self.status != 'canceled':
             self.check_out = self.check_in + relativedelta(months=self.room.lease_duration_months)
         super().save(*args, **kwargs)
-
 
 class Review(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='reviews')
@@ -148,9 +149,16 @@ def update_room_availability_on_booking_delete(sender, instance, **kwargs):
         instance.room.available = True
         instance.room.save()
 
+User = get_user_model()
+
 @receiver(post_save, sender=CustomUser)
 def create_profile_based_on_role(sender, instance, created, **kwargs):
-    if instance.role == 'tenant':
-        Tenant.objects.get_or_create(user=instance)
-    elif instance.role == 'landlord':
-        Landlord.objects.get_or_create(user=instance)
+    with transaction.atomic():
+        if instance.role == 'tenant':
+            # ลบโปรไฟล์ Landlord ถ้ามี
+            Landlord.objects.filter(user=instance).delete()
+            Tenant.objects.get_or_create(user=instance)
+        elif instance.role == 'landlord':
+            # ลบโปรไฟล์ Tenant ถ้ามี
+            Tenant.objects.filter(user=instance).delete()
+            Landlord.objects.get_or_create(user=instance, defaults={'phone_number': instance.phone})

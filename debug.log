@@ -754,3 +754,1896 @@ Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
 Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
 Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
 Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Watching for file changes with StatReloader
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /rooms/19/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'booking_payment_confirm' with arguments '('',)' not found. 1 pattern(s) tried: ['booking/(?P<booking_id>[0-9]+)/payment/confirm/\\Z']
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /booking/19/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 129, in booking_create
+    form = GuestBookingForm(request.POST, request=request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseModelForm.__init__() got an unexpected keyword argument 'request'
+Internal Server Error: /booking/19/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 129, in booking_create
+    form = GuestBookingForm(request.POST, request=request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseModelForm.__init__() got an unexpected keyword argument 'request'
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Internal Server Error: /rooms/20/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 228, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'extra_js' appears more than once
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /rooms/20/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 590, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 5: 'block'. Looking for one of: endblock.
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /booking/19/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 129, in booking_create
+    form = BookingForm(request.POST, request=request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseForm.__init__() got an unexpected keyword argument 'request'
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /booking/19/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 129, in booking_create
+    form = BookingForm(request.POST, request=request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseForm.__init__() got an unexpected keyword argument 'request'
+Internal Server Error: /booking/19/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 157, in booking_create
+    form = BookingForm(request=request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseForm.__init__() got an unexpected keyword argument 'request'
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /booking/21/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 129, in booking_create
+    form = BookingForm(request.POST, request=request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BaseForm.__init__() got an unexpected keyword argument 'request'
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /booking/19/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: booking_create() got an unexpected keyword argument 'pk'
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 43, in home
+    return render(request, 'home.html', {'rooms': rooms})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'room_detail' with keyword arguments '{'pk': 19}' not found. 1 pattern(s) tried: ['rooms/(?P<room_id>[0-9]+)/\\Z']
+Internal Server Error: /rooms/25/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\views\generic\detail.py", line 112, in get
+    self.object = self.get_object()
+                  ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\views\generic\detail.py", line 46, in get_object
+    raise AttributeError(
+AttributeError: Generic detail view RoomDetailView must be called with either an object pk or a slug in the URLconf.
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /booking/25/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: booking_create() got an unexpected keyword argument 'pk'
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /booking/19/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: booking_create() got an unexpected keyword argument 'pk'
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /room/19/book/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: booking_create() got an unexpected keyword argument 'booking_id'
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /booking/16/static/image/qr.jpg
+Not Found: /booking/16/static/image/qr.jpg
+Not Found: /booking/16/static/image/qr.jpg
+Not Found: /booking/16/static/image/qr.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /profile/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 179, in profile_view
+    return render(request, 'profile.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ' if not user else ''' from '' bg-center relative px-4 py-12' if not user else '''
+Not Found: /favicon.ico
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /apply-landlord/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: myapp_landlord.user_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 64, in apply_landlord
+    landlord.save()
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\query.py", line 1854, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1881, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: myapp_landlord.user_id
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /favicon.ico
+Internal Server Error: /apply-landlord/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: myapp_landlord.user_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 64, in apply_landlord
+    landlord.save()
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\query.py", line 1854, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1881, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: myapp_landlord.user_id
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /apply-landlord/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 68, in apply_landlord
+    return redirect('success-page')
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'success-page' not found. 'success-page' is not a valid view function or pattern name.
+Internal Server Error: /apply-landlord/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 58, in apply_landlord
+    return redirect('some-other-page')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'some-other-page' not found. 'some-other-page' is not a valid view function or pattern name.
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /apply-landlord/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 58, in apply_landlord
+    return redirect('some-other-page')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'some-other-page' not found. 'some-other-page' is not a valid view function or pattern name.
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Watching for file changes with StatReloader
+/app/myapp/views.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/app/myapp/models.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/app/myapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+/app/myapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/app/myapp/models.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/app/myapp/views.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/app/myapp/models.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/app/myapp/forms.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /room/add/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'volante'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 144, in room_create
+    return render(request, 'room_create.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 57: 'volante', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+Internal Server Error: /room/add/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'volante'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 144, in room_create
+    return render(request, 'room_create.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 57: 'volante', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+Internal Server Error: /room/add/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'volante'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 144, in room_create
+    return render(request, 'room_create.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 63: 'volante', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Internal Server Error: /room/add/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 144, in room_create
+    return render(request, 'room_create.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\smartif.py", line 198, in parse
+    raise self.error_class(
+django.template.exceptions.TemplateSyntaxError: Unused ''_count'' at end of if expression.
+Internal Server Error: /room/add/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 144, in room_create
+    return render(request, 'room_create.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\smartif.py", line 198, in parse
+    raise self.error_class(
+django.template.exceptions.TemplateSyntaxError: Unused ''chair_count_count'' at end of if expression.
+Internal Server Error: /room/add/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 144, in room_create
+    return render(request, 'room_create.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\smartif.py", line 198, in parse
+    raise self.error_class(
+django.template.exceptions.TemplateSyntaxError: Unused ''chair_count'' at end of if expression.
+Internal Server Error: /room/add/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 144, in room_create
+    return render(request, 'room_create.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 140: 'endblock', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+Internal Server Error: /room/add/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 144, in room_create
+    return render(request, 'room_create.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 142: 'endblock', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+/app/myapp/forms.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+/app/myapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+/app/myapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/app/myapp/views.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/app/myapp/views.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\models.py changed, reloading.
+/app/myapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Xuli\dsi202_2025\myapp\forms.py changed, reloading.
+/app/myapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /room/
+Not Found: /favicon.ico
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Internal Server Error: /profile/
+Traceback (most recent call last):
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\dsi202_2025\myapp\views.py", line 252, in profile_view
+    return render(request, 'profile.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xuli\anaconda3\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'profile_edit' not found. 'profile_edit' is not a valid view function or pattern name.
+/app/myapp/urls.py changed, reloading.
+C:\Users\Xuli\dsi202_2025\myapp\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/3d-rendering-luxury-modern-bedroom-suite-hotel-with-tv-cabinet_EkFYQmI.jpg
+Not Found: /media/room_images/minimalistic-bed-with-interior-plant_bgJWPV5.jpg
+Not Found: /media/room_images/bedroom-decor-with-potted-plants_Nhyjwxe.jpg

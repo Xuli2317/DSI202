@@ -21,53 +21,32 @@
     }
 
     .profile-container {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+        color: #4285f4;
+        background-size: cover;
+        background-position: center;
         min-height: 100vh;
         padding: 2rem 1rem;
+        position: relative;
     }
 
-    .profile-card {
-        background: #fff;
-        border-radius: 1rem;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-        max-width: 32rem;
-        width: 100%;
-        margin: 0 auto;
-        padding: 2rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .profile-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #f8f9fa;
+        opacity: 0.5;
+        z-index: 0;
     }
 
-    .profile-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    }
-
-    .profile-picture {
-        width: 5rem;
-        height: 5rem;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #e5e7eb;
-        transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .profile-picture:hover {
-        transform: scale(1.05);
-        border-color: #4285f4;
-    }
-
-    .profile-info h2 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #1f2937;
-    }
-
-    .profile-info p {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.875rem;
-        color: #6b7280;
-        margin-top: 0.25rem;
+    .content-wrapper {
+        background: #f8f9fa;
+        border-radius: 0; /* Remove border-radius for full-width look */
+        width: 100%; /* Full width */
+        margin: 0; /* Remove centering */
+        padding: 2rem; /* Keep padding for inner spacing */
+        position: relative;
+        z-index: 1;
+        margin-top: -30px;
     }
 
     .tabs {
@@ -83,9 +62,10 @@
         font-family: 'Poppins', sans-serif;
         font-size: 1rem;
         font-weight: 500;
-        color: #6b7280;
+        color: #4285f4;
         cursor: pointer;
         transition: color 0.3s ease, border-bottom 0.3s ease;
+        margin-top: -30px;
     }
 
     .tab.active {
@@ -107,6 +87,20 @@
         font-weight: 600;
         color: #1f2937;
         margin-bottom: 1rem;
+    }
+
+    .profile-info h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    .profile-info p {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
     }
 
     .info-section {
@@ -201,11 +195,8 @@
         font-weight: 500;
         transition: background 0.3s ease, transform 0.3s ease;
         margin-right: 0.5rem;
-        /* Add margin between buttons */
         display: inline-block;
-        /* Ensure buttons stay inline */
         white-space: nowrap;
-
     }
 
     .action-button:last-child {
@@ -224,12 +215,12 @@
     .action-button.cancel {
         background: #ef4444;
         color: #fff;
-        padding: auto;
     }
 
     .action-button.edit {
         background: #4285f4;
         color: #fff;
+        margin-bottom: 10px;
     }
 
     .action-button.delete {
@@ -240,7 +231,6 @@
     .action-button.pay {
         background: #f59e0b;
         color: #fff;
-        padding: auto;
         margin-bottom: 10px;
     }
 
@@ -305,13 +295,8 @@
     }
 
     @media (max-width: 640px) {
-        .profile-card {
-            padding: 1.5rem;
-        }
-
-        .profile-picture {
-            width: 4rem;
-            height: 4rem;
+        .content-wrapper {
+            padding: 1rem; /* Reduce padding for smaller screens */
         }
 
         .profile-info h2 {
@@ -330,14 +315,13 @@
         }
 
         .action-button {
-            padding: 0.4rem 0.8rem;
+            padding: 0.4rem 0.8Slava Ukraini! 0.8rem;
             font-size: 0.75rem;
         }
     }
 </style>
-
 <div class="profile-container">
-    <div class="profile-card animate-on-load" style="--i:1">
+    <div class="content-wrapper animate-on-load" style="--i:1">
         <!-- Tabs -->
         <div class="tabs">
             <div class="tab active" onclick="showTab('profile')">Profile</div>
@@ -386,161 +370,147 @@
             </div>
             {% endif %}
 
-            <!-- Back to Home -->
-            <hr class="animate-on-load" style="--i:7">
-            <div class="text-center animate-on-load" style="--i:8">
-                <a href="{% url 'home' %}" class="back-button">Back to Home</a>
-            </div>
-        </div>
-
         <!-- Management Section -->
         <div class="section" id="management">
-            {% if user.role == 'landlord' %}
-            <!-- Tabs for Landlords within Management -->
-            <div class="tabs">
-                <div class="tab active" onclick="showSubTab('bookings')">Bookings</div>
-                <div class="tab" onclick="showSubTab('rooms')">My Rooms</div>
-            </div>
-
-            <!-- Bookings Section -->
-            <div class="section active" id="bookings">
-                <h3>Bookings for Your Rooms</h3>
+            <div class="space-y-10">
+                {% if user.role == 'landlord' %}
+                <!-- Bookings Section for Landlord -->
                 {% if bookings %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Room</th>
-                            <th>Tenant</th>
-                            <th>Check-In</th>
-                            <th>Check-Out</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for booking in bookings %}
-                        <tr>
-                            <td>{{ booking.room.dorm_name }} - {{ booking.room.room_name }}</td>
-                            <td>{{ booking.tenant.user.username|default:booking.full_name }}</td>
-                            <td>{{ booking.check_in|date:"d M Y"|default:"Not set" }}</td>
-                            <td>{{ booking.check_out|date:"d M Y"|default:"Not set" }}</td>
-                            <td class="status-{{ booking.status }}">{{ booking.status|title }}</td>
-                            <td>
-                                {% if booking.status == 'pending' %}
-                                <a href="{% url 'booking_confirm' booking.id %}"
-                                    class="action-button confirm">Confirm</a>
-                                <a href="{% url 'booking_cancel' booking.id %}" class="action-button cancel">Cancel</a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                {% else %}
-                <p class="text-center text-gray-500">No bookings found for your rooms.</p>
-                {% endif %}
-            </div>
-
-            <!-- Rooms Section -->
-            <div class="section" id="rooms">
-                <div class="flex justify-between items-center mb-4">
-                    <h3>My Rooms</h3>
-                    <a href="{% url 'room_create' %}" class="add-room-button">Add New Room</a>
+                <div class="overflow-x-auto">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Room</th>
+                                <th>Tenant</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                            <tr>
+                                <td>{{ booking.room.dorm_name }} - {{ booking.room.room_name }}</td>
+                                <td>{{ booking.tenant.user.username|default:booking.full_name }}</td>
+                                <td>{{ booking.check_in|date:"d M Y"|default:"Not set" }}</td>
+                                <td>{{ booking.check_out|date:"d M Y"|default:"Not set" }}</td>
+                                <td class="status-{{ booking.status }}">{{ booking.status|title }}</td>
+                                <td>
+                                    {% if booking.status == 'pending' %}
+                                    <a href="{% url 'booking_confirm' booking.id %}"
+                                        class="action-button confirm">Confirm</a>
+                                    <a href="{% url 'booking_cancel' booking.id %}"
+                                        class="action-button cancel">Cancel</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-                {% if rooms %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Dorm Name</th>
-                            <th>Room Name</th>
-                            <th>Price</th>
-                            <th>Lease Duration</th>
-                            <th>Available</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for room in rooms %}
-                        <tr>
-                            <td>{{ room.dorm_name }}</td>
-                            <td>{{ room.room_name }}</td>
-                            <td>{{ room.price }}</td>
-                            <td>{{ room.lease_duration_months }} months</td>
-                            <td>{{ room.available|yesno:"Yes,No" }}</td>
-                            <td>
-                                <a href="{% url 'room_edit' room.id %}" class="action-button edit">Edit</a>
-                                <a href="{% url 'room_delete' room.id %}" class="action-button delete"
-                                    onclick="return confirm('Are you sure you want to delete this room?')">Delete</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
                 {% else %}
-                <p class="text-center text-gray-500">No rooms found. Add a room to get started!</p>
+                {% endif %}
+
+                <!-- Rooms Section -->
+                <div id="rooms" class="space-y-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h2 class="text-2xl font-bold text-gray-800" style="font-family: 'Poppins', sans-serif;">My
+                            Rooms</h2>
+                        <a href="{% url 'room_create' %}" class="add-room-button">Add New Room</a>
+                    </div>
+
+                    {% if rooms %}
+                    <div class="overflow-x-auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Dorm Name</th>
+                                    <th>Room Name</th>
+                                    <th>Price</th>
+                                    <th>Lease Duration</th>
+                                    <th>Available</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for room in rooms %}
+                                <tr>
+                                    <td>{{ room.dorm_name }}</td>
+                                    <td>{{ room.room_name }}</td>
+                                    <td>{{ room.price }}</td>
+                                    <td>{{ room.lease_duration_months }} months</td>
+                                    <td>{{ room.available|yesno:"Yes,No" }}</td>
+                                    <td>
+                                        <a href="{% url 'room_edit' room.id %}" class="action-button edit">Edit</a>
+                                        <a href="{% url 'room_delete' room.id %}" class="action-button delete"
+                                            onclick="return confirm('Are you sure you want to delete this room?')">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-center text-gray-500">No rooms found. Add a room to get started!</p>
+                    {% endif %}
+                </div>
+
+                {% else %}
+                <!-- Tenant View -->
+                <div id="tenant-bookings" class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800" style="font-family: 'Poppins', sans-serif;">Your
+                        Bookings</h2>
+                    {% if bookings %}
+                    <div class="overflow-x-auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Room</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for booking in bookings %}
+                                <tr>
+                                    <td>{{ booking.room.dorm_name }} - {{ booking.room.room_name }}</td>
+                                    <td>{{ booking.check_in|date:"d M Y"|default:"Not set" }}</td>
+                                    <td>{{ booking.check_out|date:"d M Y"|default:"Not set" }}</td>
+                                    <td class="status-{{ booking.status }}">{{ booking.status|title }}</td>
+                                    <td>
+                                        {% if booking.status == 'pending' %}
+                                        <a href="{% url 'booking_payment' booking.id %}"
+                                            class="action-button pay">Pay</a>
+                                        <a href="{% url 'booking_cancel' booking.id %}"
+                                            class="action-button cancel">Cancel</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-center text-gray-500 mt-2">Note: If check-in/check-out dates are not set, please
+                        contact the landlord to confirm your booking details.</p>
+                    {% else %}
+                    <p class="text-center text-gray-500">No bookings found.</p>
+                    {% endif %}
+                </div>
                 {% endif %}
             </div>
-            {% else %}
-            <!-- For Tenants: Only Show Bookings -->
-            <h3>Your Bookings</h3>
-            {% if bookings %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Room</th>
-                        <th>Check-In</th>
-                        <th>Check-Out</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for booking in bookings %}
-                    <tr>
-                        <td>{{ booking.room.dorm_name }} - {{ booking.room.room_name }}</td>
-                        <td>{{ booking.check_in|date:"d M Y"|default:"Not set" }}</td>
-                        <td>{{ booking.check_out|date:"d M Y"|default:"Not set" }}</td>
-                        <td class="status-{{ booking.status }}">{{ booking.status|title }}</td>
-                        <td>
-                            {% if booking.status == 'pending' %}
-                            <a href="{% url 'booking_payment' booking.id %}" class="action-button pay">Pay</a>
-                            <a href="{% url 'booking_cancel' booking.id %}" class="action-button cancel">Cancel</a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <p class="text-center text-gray-500 mt-2">Note: If check-in/check-out dates are not set, please contact the
-                landlord to confirm your booking details.</p>
-            {% else %}
-            <p class="text-center text-gray-500">No bookings found.</p>
-            {% endif %}
-            {% endif %}
         </div>
     </div>
-</div>
 
-<script>
-    function showTab(tabName) {
-        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-        document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
-        document.getElementById(tabName).classList.add('active');
-    }
-
-    function showSubTab(tabName) {
-        document.querySelectorAll('.tabs:last-child .tab').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('#management .section').forEach(section => section.classList.remove('active'));
-        document.querySelector(`[onclick="showSubTab('${tabName}')"]`).classList.add('active');
-        document.getElementById(tabName).classList.add('active');
-    }
-
-    window.onload = function () {
-        showTab('profile');
-        if ('{{ user.role }}' === 'landlord') {
-            showSubTab('bookings');
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tabs:first-child .tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
         }
-    };
-</script>
+    </script>
+</div>
 {% endblock %}

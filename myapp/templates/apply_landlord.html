@@ -2,22 +2,49 @@
 {% load static %}
 
 {% block content %}
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Apply to be a Landlord</h1>
-    {% if messages %}
-        <ul class="mb-4">
-            {% for message in messages %}
-                <li class="text-{{ message.tags }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <form method="post" enctype="multipart/form-data" class="max-w-lg">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
-            Submit Application
-        </button>
-    </form>
-    <a href="{% url 'home' %}" class="mt-4 inline-block text-blue-600 hover:underline">Back to Home</a>
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center relative px-4 py-12"
+    style="background-image: url('{% static 'image/hero1.jpg' %}');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+
+    <div class="relative z-10 w-full max-w-lg bg-white bg-opacity-90 rounded-xl shadow-lg p-8 text-black"
+        data-aos="fade-up" data-aos-duration="1000">
+
+        <!-- Title -->
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-6" style="font-family: 'Poppins', sans-serif;">
+            Apply to be a Landlord
+        </h2>
+        <!-- Form -->
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+            <div class="space-y-4">
+                {{ form.as_p }}
+                {% if form.errors %}
+                <div class="text-red-600 text-sm">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>{{ field.label }}: {{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="text-center">
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-sm font-semibold transition duration-200"
+                    style="font-family: 'Inter', sans-serif;">
+                    Submit Application
+                </button>
+            </div>
+        </form>
+
+        <!-- Cancel Link -->
+        <div class="mt-6 text-center">
+            <a href="{% url 'home' %}" class="text-blue-600 hover:underline" style="font-family: 'Inter', sans-serif;">
+                Back to Home
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}

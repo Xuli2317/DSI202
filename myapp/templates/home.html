@@ -7,9 +7,11 @@
 <section class="relative w-full h-[600px] bg-cover bg-center"
     style="background-image: url('{% static 'image/hero1.jpg' %}');">
     <div class="absolute inset-0 bg-gradient-to-t from-gray-800/80 via-[#0000]/30 to-transparent"></div>
-    <div class="relative z-10 flex flex-col justify-center items-center text-white text-center h-full px-4 pt-16 sm:pt-0">
+    <div
+        class="relative z-10 flex flex-col justify-center items-center text-white text-center h-full px-4 pt-16 sm:pt-0">
         <div class="max-w-2xl mb-8" data-aos="fade-up" data-aos-duration="1000">
-            <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white" style="font-family: 'Poppins', sans-serif;">
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white"
+                style="font-family: 'Poppins', sans-serif;">
                 Find Your Perfect Place to Stay with Us
             </h1>
             <p class="text-base sm:text-lg md:text-xl text-gray-200" style="font-family: 'Inter', sans-serif;">
@@ -18,25 +20,29 @@
         </div>
 
         <!-- Search Form -->
+        <!-- Search Form -->
         <form action="{% url 'home' %}#room-list" method="get"
-            class="w-full max-w-3xl mx-auto bg-white/95 rounded-2xl p-6 space-y-6 shadow-lg"
-            data-aos="fade-up" data-aos-delay="200">
+            class="w-full max-w-3xl mx-auto bg-white/95 rounded-2xl p-6 space-y-6 shadow-lg" data-aos="fade-up"
+            data-aos-delay="200">
+
             <div class="space-y-2">
-                <p class="text-lg font-semibold text-gray-700" style="font-family: 'Inter', sans-serif;">Find Your Room</p>
+                <p class="text-lg font-semibold text-gray-700" style="font-family: 'Inter', sans-serif;">
+                    Find Your Room
+                </p>
                 <input type="text" name="description" placeholder="Search for location, type, or keyword..."
-                    class="w-full px-5 py-3 rounded-full border border-gray-200 bg-[#f8f9fa] focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition duration-300 shadow-sm"
+                    class="w-full px-5 py-3 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition duration-300 shadow-sm"
                     value="{{ request.GET.description }}">
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <input type="text" id="dorm_name" name="dorm_name" placeholder="Dorm Name"
-                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
+                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
                     value="{{ request.GET.dorm_name }}">
                 <input type="number" id="min_price" name="min_price" placeholder="Min Price" min="0"
-                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
+                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
                     value="{{ request.GET.min_price }}">
                 <input type="number" id="max_price" name="max_price" placeholder="Max Price"
-                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
+                    class="px-4 py-2 rounded-full border border-gray-200 bg-[#f8f9fa] text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4285f4] transition shadow-sm"
                     value="{{ request.GET.max_price }}">
             </div>
 
@@ -47,6 +53,7 @@
                 </button>
             </div>
         </form>
+
     </div>
 </section>
 
@@ -58,17 +65,20 @@
             <div class="text-center">
                 <i class="fas fa-home text-2xl text-[#4285f4] mb-2"></i>
                 <h4 class="font-semibold text-lg text-[#4285f4]">100+ Rooms Available</h4>
-                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">A variety of options to suit your needs</p>
+                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">A variety of options to suit
+                    your needs</p>
             </div>
             <div class="text-center">
                 <i class="fas fa-map-marker-alt text-2xl text-[#4285f4] mb-2"></i>
                 <h4 class="font-semibold text-lg text-[#4285f4]">Top-Rated Locations</h4>
-                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">All near TU with easy access to campus</p>
+                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">All near TU with easy access
+                    to campus</p>
             </div>
             <div class="text-center">
                 <i class="fas fa-wallet text-2xl text-[#4285f4] mb-2"></i>
                 <h4 class="font-semibold text-lg text-[#4285f4]">Affordable Prices</h4>
-                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">Find rooms within your budget</p>
+                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">Find rooms within your budget
+                </p>
             </div>
         </div>
         <div class="h-1 w-24 mx-auto bg-[#4285f4] rounded-full mb-6"></div>
@@ -76,7 +86,8 @@
             Available Rooms for Rent
         </h2>
         <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6" style="font-family: 'Inter', sans-serif;">
-            Browse our curated selection of rooms near TU. From cozy, budget-friendly stays to modern luxury, there's something for everyone.
+            Browse our curated selection of rooms near TU. From cozy, budget-friendly stays to modern luxury, there's
+            something for everyone.
         </p>
     </div>
 </section>

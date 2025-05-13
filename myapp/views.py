@@ -2,20 +2,16 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Booking, CustomUser, Tenant, Landlord
-from .forms import RoomCreateForm, RoomForm, BookingForm, GuestBookingForm, LandlordApplicationForm
+from .forms import RoomCreateForm, RoomForm, BookingForm, LandlordApplicationForm, TenantProfileForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from django.utils import translation
-
-def set_language(request):
-    if request.method == 'POST':
-        language = request.POST.get('language')
-        translation.activate(language)
-        request.session[translation.LANGUAGE_SESSION_KEY] = language
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
+from django.contrib.auth.models import Group
+from django.db import transaction
+from django.core.mail import send_mail
+from django.conf import settings
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 def home(request):
     max_price = request.GET.get('max_price')
@@ -51,26 +47,48 @@ def home(request):
 
     return render(request, 'home.html', {'rooms': rooms})
 
+from django.db import transaction
+
 @login_required
 def apply_landlord(request):
-    if request.user.role == 'landlord':
-        messages.error(request, "You are already a landlord.")
-        return redirect('home')
     if request.method == 'POST':
+        user = request.user
+        
+        # ตรวจสอบว่าเป็น Landlord แล้วหรือไม่
+        if user.role == 'landlord':
+            messages.error(request, 'You are already a landlord.')
+            return redirect('profile')
+        
         form = LandlordApplicationForm(request.POST, request.FILES)
         if form.is_valid():
-            Tenant.objects.filter(user=request.user).delete()
-            request.user.role = 'landlord'
-            request.user.save()
-            landlord = form.save(commit=False)
-            landlord.user = request.user
-            landlord.is_verified = False
-            landlord.save()
-            messages.success(request, "Your landlord application has been submitted.")
-            return redirect('home')
+            with transaction.atomic():
+                # ลบโปรไฟล์ Tenant ถ้ามี
+                Tenant.objects.filter(user=user).delete()
+                
+                # อัปเดต role ของผู้ใช้
+                user.role = 'landlord'
+                user.phone = form.cleaned_data['phone_number']
+                user.save()
+                
+                # สร้างหรืออัปเดตโปรไฟล์ Landlord
+                landlord, created = Landlord.objects.get_or_create(user=user)
+                landlord.phone_number = form.cleaned_data['phone_number']
+                landlord.save()
+                
+                # จัดการกลุ่ม
+                landlord_group, _ = Group.objects.get_or_create(name='Landlord')
+                user.groups.clear()
+                user.groups.add(landlord_group)
+                
+                messages.success(request, 'Your application has been submitted and you are now a Landlord.')
+                return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = LandlordApplicationForm()
+    
     return render(request, 'apply_landlord.html', {'form': form})
+
 
 class RoomDetailView(DetailView):
     model = Room
@@ -116,58 +134,88 @@ def room_create(request):
     if request.user.role != 'landlord':
         messages.error(request, "Only landlords can create rooms.")
         return redirect('home')
+    
+    try:
+        landlord_profile = request.user.landlord_profile
+    except Landlord.DoesNotExist:
+        messages.error(request, "Landlord profile not found. Please apply as a landlord first.")
+        return redirect('apply_landlord')
+
     if request.method == 'POST':
         form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             room = form.save(commit=False)
-            room.landlord = request.user.landlord_profile
+            room.landlord = landlord_profile
+            # Check for duplicate room name in the same dorm
+            if Room.objects.filter(landlord=landlord_profile, dorm_name=room.dorm_name, room_name=room.room_name).exists():
+                form.add_error('room_name', "A room with this name already exists in this dorm.")
+                return render(request, 'room_create.html', {'form': form})
             room.save()
             messages.success(request, "Room created successfully.")
-            return redirect('home')
+            return redirect('profile')
     else:
         form = RoomForm()
     return render(request, 'room_create.html', {'form': form})
 
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from .models import Booking, Room
-from .forms import GuestBookingForm
-
-@login_required
-def booking_create(request, pk):
-    room = get_object_or_404(Room, pk=pk)
+def booking_create(request, room_id):
+    room = get_object_or_404(Room, id=room_id)
     if not room.available:
-        messages.error(request, "This room is not available.")
-        return redirect('room_detail', pk=pk)
+        messages.error(request, "This room is not available for booking.")
+        return redirect('room_detail', pk=room_id)
+
     if request.method == 'POST':
-        form = GuestBookingForm(request.POST)
+        form = BookingForm(request.POST)
         if form.is_valid():
             booking = form.save(commit=False)
             booking.room = room
-            try:
-                tenant = request.user.tenant
-                booking.tenant = tenant
-                booking.full_name = request.user.get_full_name() or request.user.username
-                booking.phone = getattr(tenant, 'phone', '')
-                booking.email = request.user.email or ''
-            except AttributeError:
+            if request.user.is_authenticated and request.user.role == 'tenant':
+                try:
+                    booking.tenant = request.user.tenant
+                    booking.email = request.user.email
+                    booking.phone = request.user.phone or form.cleaned_data['phone']
+                    booking.full_name = request.user.username
+                except Tenant.DoesNotExist:
+                    messages.error(request, "Tenant profile not found. Please complete your profile.")
+                    return render(request, 'room_detail.html', {'room': room, 'form': form})
+            else:
                 booking.full_name = form.cleaned_data['full_name']
                 booking.phone = form.cleaned_data['phone']
-                booking.email = request.user.email or ''
-            if not booking.tenant and (not booking.full_name or not booking.phone):
-                messages.error(request, "Either a tenant profile or guest details (full name and phone) must be provided.")
-                return render(request, 'room_detail.html', {'form': form, 'room': room})
+                booking.email = form.cleaned_data.get('email', '')
+
+            # Set check_in and let Booking.save() handle check_out
             booking.check_in = form.cleaned_data['check_in']
-            booking.status = 'pending'
-            booking.save()
-            messages.success(request, "Booking created! Please proceed to payment.")
-            return redirect('booking_payment', booking_id=booking.id)
-        else:
-            messages.error(request, "Please correct the errors in the form.")
+            try:
+                booking.clean()  # Validate for overlapping bookings
+                booking.save()
+                
+                # Send email notification to landlord
+                if room.landlord and room.landlord.user.email:
+                    subject = f"New Booking for {room.dorm_name} - {room.room_name}"
+                    message = (
+                        f"Dear {room.landlord.user.username},\n\n"
+                        f"A new booking has been made for your room: {room.dorm_name} - {room.room_name}.\n"
+                        f"Tenant: {booking.full_name or booking.tenant.user.username}\n"
+                        f"Check-in: {booking.check_in}\n"
+                        f"Check-out: {booking.check_out}\n"
+                        f"Status: {booking.status.title()}\n\n"
+                        f"Please review and confirm the booking in your profile."
+                    )
+                    send_mail(
+                        subject,
+                        message,
+                        settings.DEFAULT_FROM_EMAIL,
+                        [room.landlord.user.email],
+                        fail_silently=True,
+                    )
+
+                messages.success(request, "Booking created successfully!")
+                return redirect('booking_complete', booking_id=booking.id)
+            except ValidationError as e:
+                form.add_error(None, e)
+        return render(request, 'room_detail.html', {'room': room, 'form': form})
     else:
-        form = GuestBookingForm()
-    return render(request, 'room_detail.html', {'form': form, 'room': room})
+        form = BookingForm(initial={'check_in': date.today()})
+    return render(request, 'room_detail.html', {'room': room, 'form': form})
 
 @login_required
 def booking_payment(request, booking_id):
@@ -187,20 +235,21 @@ def booking_payment_confirm(request, booking_id):
 @login_required
 def profile_view(request):
     user = request.user
-    context = {'user': user}
-    if user.role == 'tenant':
-        try:
-            bookings = Booking.objects.filter(tenant=user.tenant)
-        except Tenant.DoesNotExist:
-            bookings = Booking.objects.filter(email=user.email)
-        context['bookings'] = bookings
-    elif user.role == 'landlord':
-        bookings = Booking.objects.filter(room__landlord=user.landlord_profile)
-        rooms = Room.objects.filter(landlord=user.landlord_profile)
-        context['bookings'] = bookings
-        context['rooms'] = rooms
-    return render(request, 'profile.html', context)
+    context = {'user': user, 'bookings': [], 'rooms': []}
 
+    try:
+        if user.role == 'tenant':
+            tenant, created = Tenant.objects.get_or_create(user=user, defaults={'budget': 0})
+            context['bookings'] = Booking.objects.filter(tenant=tenant).select_related('room')
+            context['tenant_form'] = TenantProfileForm(instance=tenant, user=user)
+        elif user.role == 'landlord':
+            landlord_profile = user.landlord_profile
+            context['bookings'] = Booking.objects.filter(room__landlord=landlord_profile).select_related('room', 'tenant__user')
+            context['rooms'] = Room.objects.filter(landlord=landlord_profile)
+    except (Tenant.DoesNotExist, Landlord.DoesNotExist):
+        messages.error(request, "Profile not found. Please complete your profile setup.")
+    
+    return render(request, 'profile.html', context)
 
 @login_required
 def booking_confirm(request, pk):
@@ -251,4 +300,26 @@ def room_delete(request, pk):
         return redirect('profile')
     room.delete()
     messages.success(request, "Room deleted successfully.")
+    return redirect('profile')
+
+@login_required
+def profile_edit(request):
+    if request.user.role != 'tenant':
+        messages.error(request, "Only tenants can edit tenant profiles.")
+        return redirect('profile')
+    
+    try:
+        tenant = request.user.tenant
+    except Tenant.DoesNotExist:
+        tenant = Tenant.objects.create(user=request.user)
+    
+    if request.method == 'POST':
+        form = TenantProfileForm(request.POST, instance=tenant, user=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect('profile')
+    else:
+        form = TenantProfileForm(instance=tenant, user=request.user)
+    
     return redirect('profile')
