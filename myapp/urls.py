@@ -16,4 +16,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('login/', lambda request: redirect('/accounts/google/login/'), name='login'),
     path('apply-landlord/', views.apply_landlord, name='apply_landlord'),
+    path('booking/<int:pk>/confirm/', views.booking_confirm, name='booking_confirm'),
+    path('booking/<int:pk>/cancel/', views.booking_cancel, name='booking_cancel'),
+    path('room/<int:pk>/edit/', views.room_edit, name='room_edit'),
+    path('room/<int:pk>/delete/', views.room_delete, name='room_delete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

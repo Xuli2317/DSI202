@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 <!-- Back Button -->
 <div class="flex justify-start px-4 md:px-8 py-6">
-    <a href="{% url 'home' %}" class="group flex items-center space-x-2 text-gray-700 hover:text-indigo-600 font-medium text-sm md:text-base transition-all duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <a href="{% url 'home' %}"
+        class="group flex items-center space-x-2 text-gray-700 hover:text-indigo-600 font-medium text-sm md:text-base transition-all duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-hover:text-indigo-600" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
         <span>Back to Home</span>
@@ -18,63 +21,72 @@
         <!-- Room Image -->
         <div class="relative w-full" data-aos="fade-up">
             {% if room.image %}
-                <img src="{{ room.image.url }}" alt="Room Image" class="w-full h-64 md:h-96 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500">
+            <img src="{{ room.image.url }}" alt="Room Image"
+                class="w-full h-64 md:h-96 object-cover rounded-2xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500">
             {% else %}
-                <div class="w-full h-64 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 rounded-2xl shadow-lg">
-                    <span class="text-lg font-medium">No Image Available</span>
-                </div>
+            <div
+                class="w-full h-64 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 rounded-2xl shadow-lg">
+                <span class="text-lg font-medium">No Image Available</span>
+            </div>
             {% endif %}
         </div>
 
         <!-- Room Details -->
         <div class="space-y-6" data-aos="fade-up" data-aos-delay="100">
-            <!-- Name & Price -->
             <div>
                 <h1 class="text-2xl md:text-3xl font-bold text-gray-900">{{ room.dorm_name }} - Room {{ room.room_name }}</h1>
                 <p class="text-xl md:text-2xl text-indigo-600 font-semibold mt-2">{{ room.price }} THB / month</p>
             </div>
-
-            <!-- Availability Badge -->
             <div>
                 {% if room.available %}
-                    <span class="inline-flex items-center bg-green-100 text-green-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Available
-                    </span>
+                <span
+                    class="inline-flex items-center bg-green-100 text-green-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Available
+                </span>
                 {% else %}
-                    <span class="inline-flex items-center bg-red-100 text-red-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        Not Available
-                    </span>
+                <span
+                    class="inline-flex items-center bg-red-100 text-red-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                    Not Available
+                </span>
                 {% endif %}
             </div>
-
-            <!-- Room Info -->
             <div class="text-gray-600 space-y-3 text-base leading-relaxed">
                 <p><span class="font-semibold text-gray-800">Location:</span> {{ room.location }}</p>
                 <p><span class="font-semibold text-gray-800">Room Size:</span> {{ room.size }} m²</p>
+                <p><span class="font-semibold text-gray-800">Lease Duration:</span> {{ room.lease_duration_months }} months</p>
                 {% if room.description %}
-                    <p><span class="font-semibold text-gray-800">Description:</span> {{ room.description }}</p>
+                <p><span class="font-semibold text-gray-800">Description:</span> {{ room.description }}</p>
                 {% endif %}
+                
+</div>
             </div>
-
-            <!-- Furniture Section -->
             <div>
                 <h2 class="text-lg font-semibold text-gray-800 mb-4">Furniture Included</h2>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
+                    <div
+                        class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
                         <i class="fas fa-table text-indigo-600 text-lg"></i>
                         <span class="text-gray-700">{{ room.table_count }} Tables</span>
                     </div>
-                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
+                    <div
+                        class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
                         <i class="fas fa-bed text-indigo-600 text-lg"></i>
                         <span class="text-gray-700">{{ room.bed_count }} Beds</span>
                     </div>
-                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
+                    <div
+                        class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
                         <i class="fas fa-chair text-indigo-600 text-lg"></i>
                         <span class="text-gray-700">{{ room.chair_count }} Chairs</span>
                     </div>
-                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
+                    <div
+                        class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl shadow-sm hover:bg-indigo-50 transition-colors duration-300">
                         <i class="fas fa-snowflake text-indigo-600 text-lg"></i>
                         <span class="text-gray-700">{{ room.aircon_count }} Air Conditioners</span>
                     </div>
@@ -83,34 +95,112 @@
 
             <!-- Booking Button -->
             {% if room.available %}
-                <div class="pt-4">
-                    <a href="{% url 'booking_create' room.id %}" class="inline-block w-full text-center bg-indigo-600 text-white font-semibold text-base md:text-lg px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg">
-                        Book This Room
-                    </a>
-                </div>
+            <div class="pt-4">
+                {% if request.user.is_authenticated %}
+                <button onclick="showBookingPopup()"
+                    class="w-full text-center bg-indigo-600 text-white font-semibold text-base md:text-lg px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg">
+                    Book This Room
+                </button>
+                {% else %}
+                <a href="{% url 'login' %}?next={% url 'room_detail' pk=room.pk %}"
+                    class="block w-full text-center bg-indigo-600 text-white font-semibold text-base md:text-lg px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg">
+                    Book This Room
+                </a>
+                {% endif %}
+            </div>
             {% endif %}
         </div>
     </div>
 </section>
 
+<!-- Booking Popup (only for logged-in users) -->
+{% if request.user.is_authenticated %}
+<div id="booking-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <h2 class="text-lg font-semibold mb-4">Book This Room</h2>
+        {% if form.errors %}
+        <div class="bg-red-100 text-red-700 p-3 rounded-lg mb-4 border border-red-300">
+            <ul class="list-disc pl-5">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li class="text-sm">{{ field|title }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <form method="post" action="{% url 'booking_create' room.id %}">
+            {% csrf_token %}
+            <div class="space-y-4">
+                <div>
+                    <label for="check_in" class="block text-sm font-medium text-gray-700">Check-in Date</label>
+                    {{ form.check_in|add_class:"border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" }}
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Lease Duration: {{ room.lease_duration_months }} months</p>
+                    <p class="text-sm text-gray-600">Check-out date will be calculated automatically.</p>
+                </div>
+                <div>
+                    <label for="full_name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    {{ form.full_name|add_class:"border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" }}
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    {{ form.phone|add_class:"border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" }}
+                </div>
+                <button type="submit"
+                    class="w-full bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                    Confirm Booking
+                </button>
+            </div>
+        </form>
+        <button onclick="closeBookingPopup()"
+            class="mt-4 w-full text-center text-gray-600 hover:text-gray-800">Cancel</button>
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
 
-{% block scripts %}
-<!-- Scripts -->
+{% block extra_js %}
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-    AOS.init({
-        duration: 800,
-        once: true,
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ duration: 800, once: true });
+        } else {
+            console.error("AOS library failed to load.");
+        }
+
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (hamburgerIcon && mobileMenu) {
+            hamburgerIcon.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        window.showBookingPopup = function() {
+            const popup = document.getElementById('booking-popup');
+            if (popup) {
+                popup.classList.remove('hidden');
+            } else {
+                console.error("Booking popup element not found!");
+            }
+        };
+
+        window.closeBookingPopup = function() {
+            const popup = document.getElementById('booking-popup');
+            if (popup) {
+                popup.classList.add('hidden');
+            } else {
+                console.error("Booking popup element not found!");
+            }
+        };
+
+        // แสดง popup อัตโนมัติถ้ามี form errors
+        {% if form.errors %}
+        showBookingPopup();
+        {% endif %}
     });
-</script>
-<script>
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (hamburgerIcon && mobileMenu) {
-        hamburgerIcon.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
 </script>
 {% endblock %}

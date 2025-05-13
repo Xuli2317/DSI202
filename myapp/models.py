@@ -3,7 +3,8 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete
-
+from django.core.exceptions import ValidationError
+from dateutil.relativedelta import relativedelta
 User = settings.AUTH_USER_MODEL
 
 class CustomUser(AbstractUser):
@@ -49,6 +50,7 @@ class Room(models.Model):
     image = models.ImageField(upload_to='room_images/', blank=True, null=True) 
     price = models.DecimalField(max_digits=10, decimal_places=2)
     location = models.CharField(max_length=255)
+    lease_duration_months = models.PositiveIntegerField(default=1, verbose_name="Lease Duration (Months)")
      # เฟอร์นิเจอร์พร้อมจำนวน
     table_count = models.PositiveIntegerField(default=0, verbose_name="table_count")
     bed_count = models.PositiveIntegerField(default=0, verbose_name="bed_count")
@@ -95,6 +97,12 @@ class Booking(models.Model):
     def clean(self):
         if not self.tenant and not (self.full_name and self.phone):
             raise ValidationError("Either a tenant or guest details (full_name and phone) must be provided.")
+        
+    def save(self, *args, **kwargs):
+        if self.check_in and not self.check_out and self.room:
+            # Calculate check-out date based on lease duration
+            self.check_out = self.check_in + relativedelta(months=self.room.lease_duration_months)
+        super().save(*args, **kwargs)
 
 
 class Review(models.Model):

@@ -2,48 +2,449 @@
 {% load static %}
 
 {% block content %}
-<div class="container mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-6">My Profile</h1>
+<style>
+    /* Keep all existing CSS */
+    .animate-on-load {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-on-load:nth-child(n) {
+        animation-delay: calc(0.1s * var(--i));
+    }
+    .profile-container {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+        min-height: 100vh;
+        padding: 2rem 1rem;
+    }
+    .profile-card {
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        max-width: 32rem;
+        width: 100%;
+        margin: 0 auto;
+        padding: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .profile-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+    .profile-picture {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #e5e7eb;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .profile-picture:hover {
+        transform: scale(1.05);
+        border-color: #4285f4;
+    }
+    .profile-info h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+    }
+    .profile-info p {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+    }
+    .tabs {
+        display: flex;
+        border-bottom: 1px solid #e5e7eb;
+        margin: 1.5rem 0 1rem;
+    }
+    .tab {
+        flex: 1;
+        text-align: center;
+        padding: 0.75rem 0;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #6b7280;
+        cursor: pointer;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+    }
+    .tab.active {
+        color: #4285f4;
+        border-bottom: 2px solid #4285f4;
+    }
+    .section {
+        display: none;
+    }
+    .section.active {
+        display: block;
+    }
+    .section h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1rem;
+    }
+    .info-section {
+        margin-top: 1.5rem;
+    }
+    .info-section h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 0.75rem;
+    }
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 0.5rem 1rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #4b5563;
+    }
+    .info-grid .label {
+        font-weight: 500;
+        color: #374151;
+    }
+    .info-grid .value {
+        color: #6b7280;
+    }
+    .info-grid a {
+        color: #4285f4;
+        transition: color 0.3s ease;
+    }
+    .info-grid a:hover {
+        color: #2563eb;
+        text-decoration: underline;
+    }
+    hr {
+        border: 0;
+        border-top: 1px solid #e5e7eb;
+        margin: 1.5rem 0;
+    }
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #4b5563;
+    }
+    .table th, .table td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    .table th {
+        font-weight: 600;
+        color: #1f2937;
+    }
+    .table td {
+        color: #6b7280;
+    }
+    .table .status-pending { color: #f59e0b; }
+    .table .status-confirmed { color: #10b981; }
+    .table .status-canceled { color: #ef4444; }
+    .action-button {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .action-button.confirm {
+        background: #10b981;
+        color: #fff;
+    }
+    .action-button.cancel {
+        background: #ef4444;
+        color: #fff;
+    }
+    .action-button.edit {
+        background: #4285f4;
+        color: #fff;
+    }
+    .action-button.delete {
+        background: #dc2626;
+        color: #fff;
+    }
+    .action-button:hover {
+        transform: translateY(-2px);
+    }
+    .action-button.confirm:hover { background: #059669; }
+    .action-button.cancel:hover { background: #dc2626; }
+    .action-button.edit:hover { background: #2563eb; }
+    .action-button.delete:hover { background: #b91c1c; }
+    .add-room-button {
+        display: inline-block;
+        background: #4285f4;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .add-room-button:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+    }
+    .back-button {
+        display: inline-block;
+        background: #4285f4;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .back-button:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+    }
+    @media (max-width: 640px) {
+        .profile-card {
+            padding: 1.5rem;
+        }
+        .profile-picture {
+            width: 4rem;
+            height: 4rem;
+        }
+        .profile-info h2 {
+            font-size: 1.25rem;
+        }
+        .info-grid {
+            grid-template-columns: 1fr;
+            gap: 0.25rem;
+        }
+        .table th, .table td {
+            font-size: 0.75rem;
+            padding: 0.5rem;
+        }
+        .action-button {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+        }
+    }
+</style>
 
-    <div class="bg-white shadow-md rounded-lg p-6 max-w-xl">
-        <div class="flex items-center mb-4">
-            {% if user.profile_picture %}
-                <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4 object-cover">
-            {% else %}
-                <img src="{% static 'default_avatar.png' %}" alt="Default Avatar" class="w-20 h-20 rounded-full mr-4 object-cover">
+<div class="profile-container">
+    <div class="profile-card animate-on-load" style="--i:1">
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('profile')">Profile</div>
+            <div class="tab" onclick="showTab('management')">Management</div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="section active" id="profile">
+            <h1 class="text-2xl font-bold mb-6 text-center" style="font-family: 'Poppins', sans-serif; color: #1f2937;">
+                My Profile
+            </h1>
+
+            <!-- Profile Info -->
+            <div class="flex items-center mb-4 animate-on-load" style="--i:2">
+                <img src="{% static 'default_avatar.png' %}" alt="Default Avatar" class="profile-picture mr-4">
+                <div class="profile-info">
+                    <h2>{{ user.username }}</h2>
+                    <p>{{ user.email|default:"No email set" }}</p>
+                    <p>Role: {{ user.get_role_display }}</p>
+                    <p>Phone: {{ user.phone|default:"Not set" }}</p>
+                </div>
+            </div>
+
+            <!-- Tenant Information -->
+            {% if user.role == 'tenant' and user.tenant %}
+            <hr class="animate-on-load" style="--i:3">
+            <div class="info-section animate-on-load" style="--i:4">
+                <h3>Tenant Information</h3>
+                <div class="info-grid">
+                    <span class="label">Budget:</span>
+                    <span class="value">{{ user.tenant.budget|default:"Not set" }}</span>
+                    <span class="label">Preferences:</span>
+                    <span class="value">{{ user.tenant.preferences|default:"Not set" }}</span>
+                </div>
+            </div>
             {% endif %}
-            <div>
-                <h2 class="text-xl font-semibold">{{ user.username }}</h2>
-                <p class="text-gray-600">{{ user.email }}</p>
-                <p class="text-gray-600">Role: {{ user.get_role_display }}</p>
-                {% if user.phone %}
-                    <p class="text-gray-600">Phone: {{ user.phone }}</p>
-                {% endif %}
+
+            <!-- Landlord Information -->
+            {% if user.role == 'landlord' and user.landlord_profile %}
+            <hr class="animate-on-load" style="--i:5">
+            <div class="info-section animate-on-load" style="--i:6">
+                <h3>Landlord Information</h3>
+                <div class="info-grid">
+                    <span class="label">Phone Number:</span>
+                    <span class="value">{{ user.landlord_profile.phone_number|default:"Not set" }}</span>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Back to Home -->
+            <hr class="animate-on-load" style="--i:7">
+            <div class="text-center animate-on-load" style="--i:8">
+                <a href="{% url 'home' %}" class="back-button">Back to Home</a>
             </div>
         </div>
 
-        {% if user.role == 'tenant' and user.tenant %}
-        <hr class="my-4">
-        <h3 class="text-lg font-semibold mb-2">Tenant Information</h3>
-        <p>Budget: {{ user.tenant.budget }}</p>
-        <p>Move-in Date: {{ user.tenant.move_in_date }}</p>
-        <p>Income Range: {{ user.tenant.get_income_range_display }}</p>
-        {% endif %}
+        <!-- Management Section -->
+        <div class="section" id="management">
+            {% if user.role == 'landlord' %}
+            <!-- Tabs for Landlords within Management -->
+            <div class="tabs">
+                <div class="tab active" onclick="showSubTab('bookings')">Bookings</div>
+                <div class="tab" onclick="showSubTab('rooms')">My Rooms</div>
+            </div>
 
-        {% if user.role == 'landlord' and user.landlord_profile %}
-        <hr class="my-4">
-        <h3 class="text-lg font-semibold mb-2">Landlord Information</h3>
-        <p>Business Name: {{ user.landlord_profile.business_name }}</p>
-        {% if user.landlord_profile.verified_document %}
-            <p>
-                Verified Document: 
-                <a href="{{ user.landlord_profile.verified_document.url }}" class="text-blue-600 hover:underline" target="_blank">View</a>
-            </p>
-        {% endif %}
-        {% endif %}
+            <!-- Bookings Section -->
+            <div class="section active" id="bookings">
+                <h3>Bookings for Your Rooms</h3>
+                {% if bookings %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Room</th>
+                            <th>Tenant</th>
+                            <th>Check-In</th>
+                            <th>Check-Out</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.room }}</td>
+                            <td>{{ booking.tenant.user.username|default:booking.full_name }}</td>
+                            <td>{{ booking.check_in|date:"d M Y"|default:"Not set" }}</td>
+                            <td>{{ booking.check_out|date:"d M Y"|default:"Not set" }}</td>
+                            <td class="status-{{ booking.status }}">{{ booking.status|title }}</td>
+                            <td>
+                                {% if booking.status == 'pending' %}
+                                <a href="{% url 'booking_confirm' booking.id %}" class="action-button confirm">Confirm</a>
+                                <a href="{% url 'booking_cancel' booking.id %}" class="action-button cancel">Cancel</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-center text-gray-500">No bookings found for your rooms.</p>
+                {% endif %}
+            </div>
 
-        <hr class="my-4">
-        <a href="{% url 'home' %}" class="text-blue-600 hover:underline">Back to Home</a>
+            <!-- Rooms Section -->
+            <div class="section" id="rooms">
+                <div class="flex justify-between items-center mb-4">
+                    <h3>My Rooms</h3>
+                    <a href="{% url 'room_create' %}" class="add-room-button">Add New Room</a>
+                </div>
+                {% if rooms %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Dorm Name</th>
+                            <th>Room Name</th>
+                            <th>Price</th>
+                            <th>Lease Duration</th>
+                            <th>Available</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for room in rooms %}
+                        <tr>
+                            <td>{{ room.dorm_name }}</td>
+                            <td>{{ room.room_name }}</td>
+                            <td>{{ room.price }}</td>
+                            <td>{{ room.lease_duration_months }} months</td>
+                            <td>{{ room.available|yesno:"Yes,No" }}</td>
+                            <td>
+                                <a href="{% url 'room_edit' room.id %}" class="action-button edit">Edit</a>
+                                <a href="{% url 'room_delete' room.id %}" class="action-button delete" onclick="return confirm('Are you sure you want to delete this room?')">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-center text-gray-500">No rooms found. Add a room to get started!</p>
+                {% endif %}
+            </div>
+            {% else %}
+            <!-- For Tenants: Only Show Bookings -->
+            <h3>Your Bookings</h3>
+            {% if bookings %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Room</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ room.dorm_name }} {{ room.room_name }}</td>
+                        <td>{{ booking.check_in|date:"d M Y"|default:"Not set" }}</td>
+                        <td>{{ booking.check_out|date:"d M Y"|default:"Not set" }}</td>
+                        <td class="status-{{ booking.status }}">{{ booking.status|title }}</td>
+                        <td>
+                            {% if booking.status == 'pending' %}
+                            <a href="{% url 'booking_cancel' booking.id %}" class="action-button cancel">Cancel</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="text-center text-gray-500 mt-2">Note: If check-in/check-out dates are not set, please contact the landlord to confirm your booking dates.</p>
+            {% else %}
+            <p class="text-center text-gray-500">No bookings found.</p>
+            {% endif %}
+            {% endif %}
+        </div>
     </div>
 </div>
+
+<script>
+    function showTab(tabName) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+        document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+    }
+
+    function showSubTab(tabName) {
+        document.querySelectorAll('.tabs:last-child .tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('#management .section').forEach(section => section.classList.remove('active'));
+        document.querySelector(`[onclick="showSubTab('${tabName}')"]`).classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+    }
+
+    window.onload = function() {
+        showTab('profile');
+        if ('{{ user.role }}' === 'landlord') {
+            showSubTab('bookings');
+        }
+    };
+</script>
 {% endblock %}

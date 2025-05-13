@@ -112,8 +112,7 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Number of Beds</label>
                                     {{ room_form.bed_count }}
-                                    {% if room_form.bed_count.errors %}
-                                    {% include "partials/field_errors.html" with errors=room_form.bed_count.errors %}
+                                    {% if room_form.bed_count.errors %} {% include "partials/field_errors.html" with errors=room_form.bed_count.errors %}
                                     {% endif %}
                                 </div>
                                 <div>

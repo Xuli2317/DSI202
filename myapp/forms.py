@@ -2,9 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Room, Booking, Landlord
-from django.contrib.auth.forms import UserCreationForm
-from .models import Landlord
 from allauth.account.forms import SignupForm
+from django.core.exceptions import ValidationError
+from datetime import date
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField()
@@ -27,7 +27,6 @@ class RoomCreateForm(forms.ModelForm):
         ]
 
     size = forms.FloatField(required=True, label="Room Size")
-
 
 class RoomForm(forms.ModelForm):
     class Meta:
@@ -109,6 +108,10 @@ class RoomForm(forms.ModelForm):
             'image': forms.ClearableFileInput(attrs={
                 'class': 'w-full px-4 py-3 border-2 border-black rounded-lg bg-white'
             }),
+            'lease_duration_months': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-3 border-2 border-black rounded-lg',
+                'placeholder': 'Lease Duration (Months)',
+                'min': '1'}),
         }
 
 class BookingForm(forms.ModelForm):
@@ -129,10 +132,31 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ['room']
 
+
 class GuestBookingForm(forms.ModelForm):
+    full_name = forms.CharField(max_length=255, required=False, label="Full Name")
+    phone = forms.CharField(max_length=20, required=False, label="Phone Number")
+
     class Meta:
         model = Booking
-        fields = ['full_name', 'phone', 'email', 'check_in', 'check_out']
+        fields = ['check_in', 'full_name', 'phone']  # Remove check_out
+        widgets = {
+            'check_in': forms.DateInput(attrs={'type': 'date'}),
+            'full_name': forms.TextInput(attrs={'class': 'border p-2 w-full rounded-md'}),
+            'phone': forms.TextInput(attrs={'class': 'border p-2 w-full rounded-md'}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        check_in = cleaned_data.get('check_in')
+        full_name = cleaned_data.get('full_name')
+        phone = cleaned_data.get('phone')
+
+        if check_in and check_in < date.today():
+            raise ValidationError({"check_in": "Check-in date cannot be in the past."})
+        if (full_name and not phone) or (phone and not full_name):
+            raise ValidationError("Both full name and phone number must be provided together.")
+        return cleaned_data
 
 class CustomSignupForm(SignupForm):
     ROLE_CHOICES = (
