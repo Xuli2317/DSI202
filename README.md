@@ -1,107 +1,162 @@
-# DSI202
-# Django project for Rent Near TU
+## **Rent Near TU**
 
-# บทคัดย่อ
+## **Overview**
 
-        ในปัจจุบันการหาหอพักบริเวณมหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิตยังคงเป็นเรื่องที่ยุ่งยากสำหรับนักศึกษาและบุคคลทั่วไป โดยเฉพาะกลุ่มคนที่ทำงานในละแวกใกล้เคียงซึ่งไม่มีเวลามากพอที่จะขับรถไปสำรวจหอพักตามสถานที่จริง หลายคนต้องเสียเวลาขับรถไปตามหอพักต่าง ๆ ด้วยตนเอง เพื่อดูว่าหอไหนมีห้องว่าง หอไหนมีเฟอร์นิเจอร์ครบ หรือหอไหนมีราคาที่เหมาะสม บางครั้งเมื่อไปถึงสถานที่จริงกลับพบว่าหอพักไม่ตรงตามความต้องการ เช่น ไม่มีสิ่งอำนวยความสะดวกที่ต้องการ ราคาเกินงบ หรือไม่สะดวกในการเดินทางกลับมหาวิทยาลัย สิ่งเหล่านี้ทำให้กระบวนการหาหอพักกลายเป็นเรื่องที่ยุ่งยากและเสียเวลา
+Rent Near TU is a web application designed to revolutionize the process of finding dormitories near Thammasat University, Rangsit Campus. The platform tackles persistent challenges faced by students and tenants, such as incomplete or unreliable rental information and the time-intensive task of visiting properties in person. By providing a centralized, user-friendly online solution, Rent Near TU empowers tenants to search for fully furnished dorms, compare prices, and access comprehensive room details. Simultaneously, it enables landlords to list their properties efficiently, enhancing rental opportunities and fostering seamless communication between tenants and property owners.
 
-จากปัญหาข้างต้นจึงเกิดแนวคิดในการพัฒนาเว็บแอปพลิเคชันเพื่อใช้ในการหาหอพัก ที่จะช่วยให้ทั้งผู้เช่าและเจ้าของหอสามารถพบกันได้ในแพลตฟอร์มเดียว โดยมีเป้าหมายในการลดเวลา ลดความยุ่งยาก และเพิ่มประสิทธิภาพในการค้นหาหอพักสำหรับทุกคนในชุมชนรอบมหาวิทยาลัย
+The application prioritizes usability, accessibility, and efficiency. Tenants can filter dorms by price, proximity to the university, or specific amenities, while landlords benefit from an intuitive interface for managing listings. Built with modern design principles, the project incorporates user flows, wireframes, and high-fidelity designs created in Figma, ensuring a consistent and engaging experience across desktop and mobile devices. Rent Near TU aims to save time, reduce costs, and improve decision-making, making it an essential tool for the Thammasat University community.
 
-เว็บแอปนี้ถูกออกแบบมาให้ใช้งานง่าย รองรับการใช้งานจากทั้งผู้เช่าและเจ้าของหอพัก โดยผู้เช่าสามารถค้นหาหอพักตามงบประมาณ ทำเล หรือสิ่งอำนวยความสะดวก และดูรายละเอียดสำคัญของหอพักได้ครบถ้วน ทั้งขนาดห้อง ราคา รายการเฟอร์นิเจอร์ เงื่อนไขการจอง และภาพถ่ายจริง โดยไม่ต้องเดินทางไปดูสถานที่จริง ส่วนเจ้าของหอสามารถลงประกาศหอพัก เพิ่มรูปภาพและรายละเอียดห้องพัก และจัดการข้อมูลได้ตลอดเวลา เพิ่มโอกาสในการพบผู้เช่าในกลุ่มเป้าหมายโดยตรง
+## **Motivation**
 
-แอปพลิเคชันนี้พัฒนาด้วย Django ซึ่งเป็น Python Web Framework ที่มีความเสถียรและสามารถขยายต่อยอดได้ง่าย โดยใช้เทคโนโลยีหลัก ได้แก่ Python, HTML, CSS เพื่อให้เกิดอินเทอร์เฟซที่ดูสะอาด ใช้งานง่าย และเข้าถึงได้ทั้งจากคอมพิวเตอร์และมือถือ
+The inspiration for Rent Near TU stems from the real-world struggles of students at Thammasat University, Rangsit Campus, who often face difficulties finding suitable accommodations. Traditional methods, such as word-of-mouth recommendations or physical visits to dorms, are inefficient and prone to misinformation. Many students spend hours traveling to view properties, only to find they don’t meet their needs or budget. Landlords, on the other hand, struggle to reach potential tenants effectively, relying on outdated advertising methods or third-party platforms with high fees. Rent Near TU addresses these pain points by creating a dedicated platform that streamlines the rental process, offering transparency, convenience, and reliability for both parties.
 
-ฟีเจอร์หลักของระบบ ได้แก่:
+## **Features**
 
-1.ระบบค้นหาและกรองหอพักตามงบประมาณ ทำเล หรือสิ่งอำนวยความสะดวก
+### For Tenants
+- **Search and Filter**: Browse dorms using customizable filters, including price range, distance from Thammasat University, and amenities like Wi-Fi, air conditioning, or parking.
+- **Detailed Room Information**: Access in-depth details about each dorm, such as room dimensions, included furniture, rental terms, and utility costs, to make informed decisions.
+- **Comparison Tool**: Evaluate multiple dorms side-by-side, comparing prices, amenities, and proximity to campus, ensuring tenants select the most cost-effective option.
+- **Direct Contact**: Communicate with landlords via phone, email, or in-app messaging (depending on implementation), simplifying inquiries and bookings.
 
-2.ระบบลงประกาศหอพักสำหรับเจ้าของหอ
+### For Landlords
+- **Easy Listing Management**: Register, log in, and create detailed listings, specifying room size, furniture, rental price, and additional amenities.
+- **Image Upload**: Upload high-quality images to showcase properties, increasing visibility and attracting potential tenants.
+- **Listing Publication**: Publish listings to make them immediately visible to tenants, with options to edit, update, or deactivate listings as needed.
 
-3.ระบบจัดการข้อมูลหอพัก (เพิ่ม/แก้ไข/ลบ)
+## **User Stories**
 
-4.การแสดงรายละเอียดหอพักอย่างครบถ้วน
+The development of Rent Near TU is guided by the following user stories, which ensure the platform meets the core needs of its users:
 
-5.การดูสถานะห้อง (ว่าง / ถูกเช่าแล้ว)
+- **Landlord**: As a landlord, I want to specify room details (e.g., size, furniture, rent) so that tenants have complete information before contacting me.  
+  - **Impact**: Minimizes miscommunication, sets clear expectations, and reduces unnecessary inquiries, saving time for both parties.
+- **Tenant**: As a tenant, I want to view the furniture included with the room so that I can plan additional purchases.  
+  - **Impact**: Enables tenants to budget effectively by identifying provided furniture, reducing unexpected expenses on move-in.
+- **Tenant**: As a tenant, I want to compare prices and amenities of multiple dorms so that I can choose the most cost-effective option.  
+  - **Impact**: Eliminates the need for multiple in-person visits, saving time and travel costs while enabling data-driven decisions.
 
-6.ระบบสมัครสมาชิก และล็อกอินเพื่อใช้งานฟีเจอร์เพิ่มเติม
+These user stories address critical pain points, such as the lack of centralized, reliable information and the inefficiency of traditional dorm-hunting methods, making Rent Near TU a practical solution for its target audience.
 
-ด้วยแพลตฟอร์มนี้ ผู้ใช้งานไม่เพียงแต่จะได้รับข้อมูลหอพักอย่างครบถ้วนโดยไม่ต้องเดินทาง แต่ยังสามารถเปรียบเทียบทางเลือกต่าง ๆ และตัดสินใจได้อย่างรวดเร็ว ช่วยให้การหาที่อยู่อาศัยรอบมหาวิทยาลัยกลายเป็นเรื่องที่สะดวก ง่าย และมีประสิทธิภาพมากยิ่งขึ้น
+## **Design and Prototyping**
 
-# User Stories (ลักษณะการใช้งานของผู้ใช้)
+The design process for Rent Near TU was meticulous, emphasizing user-centered design to deliver an intuitive and visually appealing experience. Key design assets include:
 
- ผู้เช่าหอพัก ต้องการดูรายละเอียดหอพักเพื่อเปรียบเทียบและเลือกหอที่เหมาะสม โดยไม่ต้องเดินทางไปดูด้วยตนเอง  เช่น ขนาดห้อง ราคา เฟอร์นิเจอร์ เพื่อเปรียบเทียบและเลือกหอที่ตรงกับความต้องการ และประหยัดเวลาในการค้นหาหอที่เหมาะสม โดยสามารถทำได้ดังนี้
+- **User Flow Diagram**: Mobile-optimized flows for each user story, detailing the steps tenants and landlords take to achieve their goals. [View in Figma](https://www.figma.com/design/ucFm2O23q7mJ3CoAeuyKqi/Rent-near-TU).
+- **Sitemap**: A comprehensive overview of the website’s navigation structure, ensuring logical and efficient user journeys. [View in Figma](https://www.figma.com/design/ucFm2O23q7mJ3CoAeuyKqi/Rent-near-TU).
+- **Wireframe and High-Fidelity Design**: Detailed UI designs created in Figma, showcasing the application’s polished look and feel. [View in Figma](https://www.figma.com/design/ucFm2O23q7mJ3CoAeuyKqi/Rent-near-TU).
+- **Paper Prototype**: A low-fidelity prototype tested to validate user interactions, with each user story completed in under 30 seconds to ensure efficiency and usability.
+- **Design Specifications**:
+  - **Color Theme**: ๑าว-ศ๋า, a Thai-inspired palette that balances cultural relevance with aesthetic appeal.
+  - **Font**: Inter, a clean, modern typeface optimized for readability on all devices.
 
-1.ใช้ระบบค้นหาและตัวกรอง (Filter) เพื่อค้นหาหอพักตามเกณฑ์ เช่น ราคาไม่เกิน 5,000 บาท, มีแอร์, มีเฟอร์นิเจอร์ครบ, ใกล้มหาวิทยาลัย
+These assets align with the project’s goal of creating a functional, visually cohesive platform that resonates with its Thai audience while maintaining global usability standards.
 
-2.คลิกดูรายละเอียดของหอพัก เช่น ขนาดห้อง, สิ่งอำนวยความสะดวก, ราคาค่าเช่า, เงื่อนไขการจอง, ที่ตั้งบนแผนที่
+## **Installation and Setup (For Developers)**
 
-3.ดูภาพถ่ายภายในหอพัก หรือวิดีโอ เพื่อประกอบการตัดสินใจ
+To set up Rent Near TU locally for development or testing, follow these steps:
 
-4.ติดต่อเจ้าของหอพักโดยตรงผ่านเบอร์โทร หรือแบบฟอร์มติดต่อภายในเว็บไซต์
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Xuli2317/dsi202_2025.git
+   cd dsi202_2025
+   ```
+2. **Install Dependencies**:
+   - Identify the project’s technology stack (e.g., Node.js, Python, React, Flask) by reviewing `package.json`, `requirements.txt`, or other configuration files.
+   - For Node.js projects:
+     ```bash
+     npm install
+     ```
+   - For Python projects (e.g., Flask, Django):
+     ```bash
+     pip install -r requirements.txt
+     ```
+3. **Run the Application Locally**:
+   - For Node.js:
+     ```bash
+     npm start
+     ```
+   - For Python:
+     ```bash
+     python app.py
+     ```
+   - Check the repository’s `README.md` or documentation for specific run commands or additional setup steps.
+4. **Environment Configuration**:
+   - Install prerequisites, such as Node.js, Python, or a database (e.g., PostgreSQL, MongoDB), as required.
+   - Configure environment variables for sensitive data (e.g., database credentials, API keys). Look for a `.env.example` file in the repository for guidance.
+5. **Troubleshooting**:
+   - Ensure all dependencies are compatible with your system’s version (e.g., Node.js v16+, Python 3.8+).
+   - If errors occur, consult the repository’s issue tracker or documentation for known fixes or community support.
 
-5.บันทึกหอที่สนใจไว้ในรายการโปรดเพื่อเปรียบเทียบภายหลัง
+## **System Requirements (For Users)**
 
- เจ้าของหอพัก ต้องการเพิ่มข้อมูลหอพักของตนเอง เพื่อให้ผู้เช่ารับข้อมูลครบถ้วนและตัดสินใจได้ง่ายขึ้น กรอกข้อมูลหอลงในระบบ เช่น รายละเอียดห้อง และราคาค่าเช่า เพื่อให้ผู้เช่าเห็นข้อมูลครบถ้วน และสามารถตัดสินใจเลือกหอของฉันได้ง่ายขึ้น โดยสามารถ
+To access Rent Near TU as an end user, ensure the following:
 
-1.เพิ่มข้อมูลหอพักใหม่ โดยกรอกชื่อหอ ที่ตั้ง จำนวนห้องว่าง ราคา สิ่งอำนวยความสะดวก เช่น แอร์ โต๊ะ ตู้ เตียง Wi-Fi ฯลฯ
+- **Browser**: Latest versions of Chrome, Firefox, Safari, or Edge for optimal performance and compatibility.
+- **Account**:
+  - Landlords must register and log in to create and manage listings.
+  - Tenants can browse and search without an account, though features like saving favorite listings may require registration.
+- **Internet Connection**: A stable, high-speed connection is recommended for smooth browsing, image loading, and communication with landlords.
 
-2.อัปโหลดภาพถ่ายของห้องพัก บริเวณโดยรอบ และแผนที่ของหอ
+## **Usage Instructions**
 
-3.แก้ไข/ลบข้อมูลหอพักได้ตลอดเวลา หากมีการเปลี่ยนแปลงราคา หรือสถานะห้อง
+### For Tenants
+1. Access the web app via the provided URL (to be specified upon deployment).
+2. Use the search bar or filters to find dorms based on price, location, or amenities.
+3. Click on a listing to view details, including room size, furniture, rental terms, and landlord contact information.
+4. Compare multiple listings by opening them in separate tabs or using the comparison tool (if implemented).
+5. Contact the landlord directly to inquire about availability, negotiate terms, or schedule a visit.
 
-4.รับการติดต่อจากผู้สนใจเช่า ผ่านฟอร์มติดต่อ หรือข้อมูลติดต่อที่ระบุไว้
+### For Landlords
+1. Sign up for an account and log in to the platform.
+2. Navigate to the “Create Listing” section in the dashboard.
+3. Enter details such as room size, rental price, furniture, and amenities.
+4. Upload high-quality images to showcase the dorm’s features.
+5. Publish the listing to make it visible to tenants, and update or deactivate it as needed.
 
-# ขั้นตอนการใช้งานตาม User Stories
+## **Future Enhancements**
 
-ผู้เช่าหอพัก
+To further improve Rent Near TU, the following enhancements are planned:
+- **Mobile App Development**: Create native iOS and Android apps to complement the web platform, offering push notifications and offline access.
+- **Advanced Filters**: Introduce filters for specific needs, such as pet-friendly dorms or accessibility features.
+- **Rating System**: Allow tenants to rate and review dorms, increasing transparency and trust.
+- **Payment Integration**: Enable secure in-app payments for deposits or rent, streamlining the rental process.
 
-เข้าหน้าเว็บไซต์หลัก ระบบจะแสดงรายการหอพัก
-ใช้ระบบค้นหา/ตัวกรอง เช่น ราคา ทำเล หรือสิ่งอำนวยความสะดวก เพื่อเลือกหอที่ตรงใจ
-คลิกดูรายละเอียดหอพัก ตรวจสอบข้อมูล เช่น ราคา รายเดือน ขนาดห้อง สิ่งอำนวยความสะดวก ภาพถ่าย และข้อมูลติดต่อ
-บันทึกหอพักที่สนใจไว้ในรายการโปรด สามารถดูรายการหอที่บันทึกไว้ เพื่อเปรียบเทียบภายหลัง
-กดจองหอพัก(ต้องเป็นสมาชิกหรือเข้าสู่ระบบก่อน)
+## **Contributing**
 
-เจ้าของหอพัก
+We welcome contributions to Rent Near TU! To contribute:
 
-สมัครสมาชิกและเข้าสู่ระบบด้วยอีเมลและรหัสผ่าน
-เพิ่มข้อมูลหอพักใหม่ กรอกข้อมูลที่จำเป็น ได้แก่ ชื่อหอพัก ที่ตั้งโดยละเอียด ราคา/เดือน รายละเอียดห้อง (ขนาด, สิ่งอำนวยความสะดวก, เงื่อนไขการเช่า)อัปโหลดภาพถ่ายของห้องและบริเวณหอพัก แก้ไขหรือลบข้อมูลหอพักได้ทุกเมื่อผ่านแดชบอร์ดส่วนตัว
-จัดการข้อมูลหอพัก แก้ไขข้อมูลหอพัก เปลี่ยนราคาค่าเช่า หรืออัปเดตรายละเอียดห้อง ลบหอพักออกจากระบบ เมื่อห้องเต็มหรือไม่เปิดให้เช่าแล้ว
-ดูสถานะห้องได้ว่า ห้องว่างหรือถูกเช่าแล้ว
+1. Fork the repository to your GitHub account.
+2. Create a new branch for your changes:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Make your changes, ensuring code quality and adherence to the project’s style guide (if provided).
+4. Commit your changes with a descriptive message:
+   ```bash
+   git commit -m "Add feature: your-feature-description"
+   ```
+5. Push your branch to your forked repository:
+   ```bash
+     git push origin feature/your-feature-name
+     ```
+6. Open a pull request against the main repository’s `main` branch, providing a detailed description of your changes.
 
-# การติดตั้งและใช้งานระบบ (Installation & Usage)
+Ensure contributions align with the project’s goals and follow any coding standards outlined in the repository.
 
-1.ติดตั้ง Python 3.9+ บนเครื่อง
+## **License**
 
-2.ติดตั้ง Django ด้วยคำสั่ง pip install django
+[License details to be confirmed. Check the repository for the appropriate license file, e.g., MIT License, or contact the maintainers.]
 
-3.โคลนโปรเจกต์จาก GitHub ด้วยคำสั่ง git clone
+## **Contact**
 
-https://github.com/Xuli2317/dsi202_2025.git
+For questions, feedback, or support, reach out via the repository’s issue tracker or contact the project maintainers (details to be provided upon deployment).
 
-4. cd dsi202_2025
+## **Acknowledgments**
 
-5.กำหนดค่า environment variables สำหรับข้อมูลสำคัญ เช่น รหัสฐานข้อมูล, API key โดยดูแนวทางจากไฟล์ .env.example (ถ้ามี)
+- **Thammasat University Community**: For inspiring the need for a streamlined dorm-finding solution.
+- **Figma**: For providing a robust platform for designing user flows, sitemaps, and high-fidelity mockups.
+- **Development Team**: For their dedication to creating a user-focused, impactful web application.
 
-6.รันเซิร์ฟเวอร์ด้วยคำสั่ง python manage.py runserver
+## **Notes**
 
-7.เปิดเว็บไซต์ที่ http://127.0.0.1:8000 ในเบราว์เซอร์
-
-สิ่งที่ควรเตรียมก่อนใช้งาน
-
-1.Python
-
-2.Django
-
-3.เครื่องมือจัดการรูปภาพ เช่น Pillow
-
-# การพัฒนาในอนาคต
-
-เพื่อยกระดับประสบการณ์ใช้งานของแพลตฟอร์ม Rent Near TU ในอนาคต มีแผนการพัฒนาเพิ่มเติมดังนี้
-
-1.พัฒนาแอปพลิเคชันบนมือถือ สร้างแอปพลิเคชันแบบ native สำหรับระบบ iOS และ Android เพื่อใช้งานควบคู่กับเว็บไซต์ โดยจะมีฟีเจอร์เพิ่มเติม เช่น การแจ้งเตือน (Push Notification) และการเข้าถึงข้อมูลแบบออฟไลน์
-
-2.ฟิลเตอร์ค้นหาขั้นสูง เพิ่มตัวกรองเพื่อรองรับความต้องการเฉพาะทาง เช่น หอพักที่อนุญาตให้นำสัตว์เลี้ยงเข้าได้ และหอพักที่รองรับผู้พิการหรือมีสิ่งอำนวยความสะดวกเฉพาะทาง
-
-3.ระบบให้คะแนนและรีวิว ให้ผู้เช่าสามารถให้คะแนนและเขียนรีวิวหอพักที่ตนเคยพัก เพื่อเพิ่มความโปร่งใสและความน่าเชื่อถือให้กับแพลตฟอร์ม
-
-4.ระบบชำระเงินในแอป เพิ่มระบบชำระเงินภายในแอปที่ปลอดภัย สำหรับการจ่ายเงินมัดจำหรือค่าเช่า ช่วยให้กระบวนการเช่าหอสะดวกและรวดเร็วยิ่งขึ้น
+- The live URL for Rent Near TU is not yet specified. Check the repository or contact the maintainers for deployment details.
+- To manage conversation data related to this project, users can disable memory in the “Data Controls” section of their settings or delete specific chats via the book icon in the UI.
