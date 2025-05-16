@@ -148,60 +148,63 @@
             </div>
         </div>
 
-       <!-- Room Details -->
-<div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
-    <div>
-        <h1 class="text-xl md:text-2xl font-bold text-gray-900"
-            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-            {{ room.dorm_name }} - {{ room.room_name }}
-        </h1>
-        <p class="text-lg md:text-xl text-[#4285f4] font-semibold mt-1"
-           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-            {{ room.price }} THB / month
-        </p>
-    </div>
-    <div>
-        {% if room.available %}
-        <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
-            <i class="fas fa-check w-3 h-3 mr-1"></i>
-            Available
-        </span>
-        {% else %}
-        <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
-            <i class="fas fa-times w-3 h-3 mr-1"></i>
-            Not Available
-        </span>
-        {% endif %}
-    </div>
-    <div class="text-gray-600 space-y-2 text-sm leading-relaxed"
-         style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-        <p><span class="font-semibold text-gray-800">Location:</span> {{ room.location }}</p>
-        <p><span class="font-semibold text-gray-800">Room Size:</span> {{ room.size }} m²</p>
-        <p><span class="font-semibold text-gray-800">Lease Duration:</span> {{ room.lease_duration_months }} months</p>
-        {% if room.description %}
-        <p><span class="font-semibold text-gray-800">Description:</span> {{ room.description }}</p>
-        {% endif %}
-    </div>
+        <!-- Room Details -->
+        <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-900"
+                    style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    {{ room.dorm_name }} - {{ room.room_name }}
+                </h1>
+                <p class="text-lg md:text-xl text-[#4285f4] font-semibold mt-1"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    {{ room.price }} THB / month
+                </p>
+            </div>
+            <div>
+                {% if room.available %}
+                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+                    <i class="fas fa-check w-3 h-3 mr-1"></i>
+                    Available
+                </span>
+                {% else %}
+                <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+                    <i class="fas fa-times w-3 h-3 mr-1"></i>
+                    Not Available
+                </span>
+                {% endif %}
+            </div>
+            <div class="text-gray-600 space-y-2 text-sm leading-relaxed"
+                 style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                <p><span class="font-semibold text-gray-800">Landlord:</span> {{ room.landlord.account_holder_name|default:"N/A" }}</p>
+                <p><span class="font-semibold text-gray-800">Contact Number:</span> {{ room.landlord.phone_number|default:"N/A" }}</p>
+                <p><span class="font-semibold text-gray-800">Location:</span> {{ room.location }}</p>
+                <p><span class="font-semibold text-gray-800">Room Size:</span> {{ room.size }} m²</p>
+                <p><span class="font-semibold text-gray-800">Lease Duration:</span> {{ room.lease_duration_months }} months</p>
+                {% if room.description %}
+                <p><span class="font-semibold text-gray-800">Description:</span> {{ room.description }}</p>
+                {% endif %}
+            </div>
 
-    <!-- Booking Button (Adjusted Position) -->
-    {% if room.available %}
-    <div class="flex mt-18 margin-top:100px">
-        {% if request.user.is_authenticated %}
-        <button onclick="showBookingPopup()"
-                class="w-full sm:w-40 px-6 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-sm hover:bg-[#3267d6] transition duration-300 flex items-center justify-center mx-auto"
-                style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-            Book This Room
-        </button>
-        {% else %}
-        <a href="{% url 'account_login' %}?next={% url 'room_detail' pk=room.pk %}"
-           class="w-full sm:w-40 px-6 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-sm hover:bg-[#3267d6] transition duration-300 flex items-center justify-center mx-auto"
-           style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-            Book This Room
-        </a>
-        {% endif %}
+            <!-- Booking Button (Adjusted Position) -->
+            {% if room.available %}
+            <div class="flex mt-18 margin-top:100px">
+                {% if request.user.is_authenticated %}
+                <button onclick="showBookingPopup()"
+                        class="w-full sm:w-40 px-6 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-sm hover:bg-[#3267d6] transition duration-300 flex items-center justify-center mx-auto"
+                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Book This Room
+                </button>
+                {% else %}
+                <a href="{% url 'account_login' %}?next={% url 'room_detail' pk=room.pk %}"
+                   class="w-full sm:w-40 px-6 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-sm hover:bg-[#3267d6] transition duration-300 flex items-center justify-center mx-auto"
+                   style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                    Book This Room
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
     </div>
-    {% endif %}
-</div>
 </section>
 
 {% if request.user.is_authenticated %}
@@ -320,7 +323,7 @@
         }
 
         window.showBookingPopup = function () {
-            const popup = document.getElementById('booking-details-popup');
+            const popup = document.getElementById('booking:where(#booking-details-popup');
             if (popup) {
                 const errorDiv = document.getElementById('booking-form-errors');
                 const errorList = document.getElementById('error-list');
