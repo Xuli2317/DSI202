@@ -45,7 +45,7 @@ The design process for Rent Near TU was meticulous, emphasizing user-centered de
 - **Wireframe and High-Fidelity Design**: Detailed UI designs created in Figma, showcasing the application’s polished look and feel. [View in Figma](https://www.figma.com/design/ucFm2O23q7mJ3CoAeuyKqi/Rent-near-TU).
 - **Paper Prototype**: A low-fidelity prototype tested to validate user interactions, with each user story completed in under 30 seconds to ensure efficiency and usability.
 - **Design Specifications**:
-  - **Color Theme**: ๑าว-ศ๋า, a Thai-inspired palette that balances cultural relevance with aesthetic appeal.
+  - **Color Theme**: ขาว-ดำ, a Thai-inspired palette that balances cultural relevance with aesthetic appeal.
   - **Font**: Inter, a clean, modern typeface optimized for readability on all devices.
 
 These assets align with the project’s goal of creating a functional, visually cohesive platform that resonates with its Thai audience while maintaining global usability standards.
