@@ -132,8 +132,8 @@ To further elevate Rent Near TU, the following features are planned to enhance f
   Follow the same steps as in the Standard Setup (step 3) to obtain Google OAuth2 credentials.
   - Create or edit a .env file in the project’s root directory with:DEBUG=True
     ```env
-     SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=YOUR_CLIENT_ID
-     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=YOUR_CLIENT_SECRET
+      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=...
+      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=...
      ```
      Ensure .env is not committed to version control (add to .gitignore).
 
