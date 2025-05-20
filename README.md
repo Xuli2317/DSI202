@@ -98,8 +98,8 @@ To further elevate Rent Near TU, the following features are planned to enhance f
 - **Admin Page**: `http://localhost:8000/admin/`
 
 ## YouTube
-https://youtu.be/qqsSpwAAaU4 (Short Demo)
-https://youtu.be/T3dwY4cetqM (All Features Demo)
+- https://youtu.be/qqsSpwAAaU4 (Short Demo)
+- https://youtu.be/T3dwY4cetqM (All Features Demo)
 
 ## Conclusion
 Rent Near TU represents a transformative step toward making dormitories more accessible, affordable, and equitable for the Thammasat University community and beyond. By leveraging user-focused technology and a commitment to social impact, the platform bridges the gap between tenants and landlords, fostering a transparent, efficient, and inclusive dormitory ecosystem that empowers users and supports long-term community development.
