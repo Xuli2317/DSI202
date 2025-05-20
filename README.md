@@ -82,26 +82,36 @@ To further elevate Rent Near TU, the following features are planned to enhance f
 
 # Setup Instructions for Rent Near TU
 
+## Setup Instructions
+
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/xuli2317/dsi202_2025.git
    cd dsi202_2025
    ```
 
-2. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Set Up the Database**
+2. **Set Up the Database**
    ```bash
    python manage.py migrate
    ```
 
-4. **Create a Superuser (Optional)**
+3. **Create a Superuser (Optional)**
    ```bash
    python manage.py createsuperuser
    ```
+
+4. **Configure Google OAuth2 for Social Authentication** (For Developers)
+   To enable social login functionality via Google, developers must configure Google OAuth2 credentials:
+   - Go to the [Google Cloud Console](https://console.cloud.google.com/) and create or select a project.
+   - Navigate to **APIs & Services** > **Credentials** > **Create Credentials** > **OAuth 2.0 Client IDs**.
+   - Select **Web application**, and add `http://localhost:8000` to **Authorized JavaScript origins** and `http://localhost:8000/accounts/google/login/callback/` to **Authorized redirect URIs**.
+   - Copy the **Client ID** and **Client Secret**.
+   - In the project’s root directory, create or edit a `.env` file and add:
+     ```env
+     SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=YOUR_CLIENT_ID
+     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=YOUR_CLIENT_SECRET
+     ```
+   - Ensure `.env` is not committed to version control (add to `.gitignore`).
 
 5. **Run the Development Server**
    ```bash
@@ -110,6 +120,34 @@ To further elevate Rent Near TU, the following features are planned to enhance f
 
    Access the platform locally at `http://127.0.0.1:8000/`.
 
+## Docker Setup (Alternative)
+  This setup uses Docker to avoid manual installation of Python and dependencies.
+
+1. **Clone the Repository**
+  ```bash
+   git clone https://github.com/xuli2317/dsi202_2025.git
+   cd dsi202_2025
+   ```
+2.**Configure Google OAuth2 for Social AuthenticationTo enable social login via Google:**
+  Follow the same steps as in the Standard Setup (step 3) to obtain Google OAuth2 credentials.
+  - Create or edit a .env file in the project’s root directory with:DEBUG=True
+    ```env
+     SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=YOUR_CLIENT_ID
+     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=YOUR_CLIENT_SECRET
+     ```
+     Ensure .env is not committed to version control (add to .gitignore).
+
+3.**Run the Project with Docker ComposeBuild and start the Docker containers:**
+  ```docker compose up --build
+  ```
+  This command sets up the web application and any required services (e.g., database) defined in the docker-compose.yml file.
+
+4. **Set Up the DatabaseApply database migrations within the Docker container:**
+  ```docker compose exec web python manage.py migrate
+  ```
+5.**Create a Superuser (Optional) Create an admin user within the Docker container:**
+  ```docker compose exec web python manage.py createsuperuser
+  ```
 
 ## Accessing the Web App
 - **Home Page**: `http://localhost:8000/`
