@@ -128,7 +128,7 @@ To further elevate Rent Near TU, the following features are planned to enhance f
    git clone https://github.com/xuli2317/dsi202_2025.git
    cd dsi202_2025
    ```
-2.**Configure Google OAuth2 for Social AuthenticationTo enable social login via Google:**
+2. **Configure Google OAuth2 for Social AuthenticationTo enable social login via Google:**
   Follow the same steps as in the Standard Setup (step 3) to obtain Google OAuth2 credentials.
   - Create or edit a .env file in the project’s root directory with:DEBUG=True
     ```env
@@ -137,16 +137,19 @@ To further elevate Rent Near TU, the following features are planned to enhance f
      ```
      Ensure .env is not committed to version control (add to .gitignore).
 
-3.**Run the Project with Docker ComposeBuild and start the Docker containers:**
-  ```docker compose up --build
+3. **Run the Project with Docker ComposeBuild and start the Docker containers:**
+  ```
+  docker compose up --build
   ```
   This command sets up the web application and any required services (e.g., database) defined in the docker-compose.yml file.
 
 4. **Set Up the DatabaseApply database migrations within the Docker container:**
-  ```docker compose exec web python manage.py migrate
   ```
-5.**Create a Superuser (Optional) Create an admin user within the Docker container:**
-  ```docker compose exec web python manage.py createsuperuser
+  docker compose exec web python manage.py migrate
+  ```
+5. **Create a Superuser (Optional) Create an admin user within the Docker container:**
+  ```
+  docker compose exec web python manage.py createsuperuser
   ```
 
 ## Accessing the Web App
