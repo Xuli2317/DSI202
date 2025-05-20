@@ -16,19 +16,24 @@
             <!-- Title -->
             <h2 class="text-xl md:text-2xl font-bold text-center text-gray-800 mb-6"
                 style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                Payment for Booking
+                ชำระเงินสำหรับการจอง
             </h2>
 
-            <!-- QR Image -->
+            <!-- QR Code Container -->
+            {% if qr_image %}
             <div class="flex justify-center mb-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="relative w-40 h-40 bg-gray-50 rounded-xl p-2 shadow-sm border border-gray-100">
-                    <img src="{% static 'image/qr.jpg' %}" alt="QR Code for Payment"
-                         class="w-full h-full object-cover rounded-lg">
+                <div class="relative w-48 h-48 bg-gray-50 rounded-xl p-2 shadow-sm border border-gray-100">
+                    <img src="data:image/png;base64,{{ qr_image }}" class="w-full h-full" alt="PromptPay QR Code">
                     <div class="absolute -top-2 -left-2 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
                         <i class="fas fa-qrcode text-[#4285f4] text-[10px]"></i>
                     </div>
                 </div>
             </div>
+            {% else %}
+            <div class="text-center text-red-500 mb-6">
+                <p>ไม่สามารถสร้าง QR Code ได้ กรุณาติดต่อผู้ดูแลระบบ</p>
+            </div>
+            {% endif %}
 
             <!-- Booking Details -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 mb-6 bg-gray-50/80 rounded-xl p-5 max-w-2xl mx-auto shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
@@ -40,7 +45,7 @@
                     <div class="flex-1">
                         <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                            Room
+                            ห้อง
                         </p>
                         <p class="text-base text-gray-900 font-medium mt-0.5"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
@@ -56,11 +61,11 @@
                     <div class="flex-1">
                         <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                            Amount
+                            จำนวนเงิน
                         </p>
                         <p class="text-base text-gray-900 font-medium mt-0.5"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                            {{ booking.room.price|floatformat:0 }} THB
+                            {{ booking.room.price|floatformat:2 }} บาท
                         </p>
                     </div>
                 </div>
@@ -72,7 +77,7 @@
                     <div class="flex-1">
                         <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                            Check-In
+                            วันเช็คอิน
                         </p>
                         <p class="text-base text-gray-900 font-medium mt-0.5"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
@@ -88,7 +93,7 @@
                     <div class="flex-1">
                         <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                            Check-Out
+                            วันเช็คเอาท์
                         </p>
                         <p class="text-base text-gray-900 font-medium mt-0.5"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
@@ -108,7 +113,7 @@
                     <div class="flex-1">
                         <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                            Bank Name
+                            ชื่อธนาคาร
                         </p>
                         <p class="text-base text-gray-900 font-medium mt-0.5"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
@@ -124,7 +129,7 @@
                     <div class="flex-1">
                         <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                            Account Number
+                            เลขที่บัญชี
                         </p>
                         <p class="text-base text-gray-900 font-medium mt-0.5"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
@@ -140,7 +145,7 @@
                     <div class="flex-1">
                         <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                            Account Holder
+                            ชื่อบัญชี
                         </p>
                         <p class="text-base text-gray-900 font-medium mt-0.5"
                            style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
@@ -157,12 +162,12 @@
                     <button type="submit"
                             class="w-full sm:w-32 px-5 py-2 bg-[#4285f4] text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
                             style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                        Confirm Payment
+                        ยืนยันการชำระเงิน
                     </button>
                     <a href="{% url 'profile' %}"
                        class="w-full sm:w-32 px-5 py-2 bg-red-400 text-white rounded-3xl font-semibold text-xs flex items-center justify-center"
                        style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-                        Cancel
+                        ยกเลิก
                     </a>
                 </div>
             </form>
@@ -173,7 +178,4 @@
 
 {% block scripts %}
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-    AOS.init({ duration: 800, once: true });
-</script>
 {% endblock %}

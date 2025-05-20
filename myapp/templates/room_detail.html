@@ -323,13 +323,14 @@
         }
 
         window.showBookingPopup = function () {
-            const popup = document.getElementById('booking:where(#booking-details-popup');
+            const popup = document.getElementById('booking-details-popup');
             if (popup) {
                 const errorDiv = document.getElementById('booking-form-errors');
                 const errorList = document.getElementById('error-list');
                 errorDiv.classList.add('hidden');
                 errorList.innerHTML = '';
                 popup.classList.remove('hidden');
+                console.log("Booking popup opened"); // Debug log
             } else {
                 console.error("Booking details popup element not found!");
             }
@@ -339,6 +340,7 @@
             const popup = document.getElementById('booking-details-popup');
             if (popup) {
                 popup.classList.add('hidden');
+                console.log("Booking popup closed"); // Debug log
             }
         };
 
@@ -361,6 +363,7 @@
                 const errorList = document.getElementById('error-list');
                 errorList.innerHTML = errors.map(err => `<li>${err}</li>`).join('');
                 errorDiv.classList.remove('hidden');
+                console.log("Validation errors:", errors); // Debug log
                 return;
             }
 
@@ -376,25 +379,26 @@
 
             document.getElementById('booking-details-popup').classList.add('hidden');
             document.getElementById('booking-confirm-popup').classList.remove('hidden');
+            console.log("Proceeded to confirmation popup"); // Debug log
         };
 
         window.backToDetails = function () {
             document.getElementById('booking-confirm-popup').classList.add('hidden');
             document.getElementById('booking-details-popup').classList.remove('hidden');
+            console.log("Back to booking details"); // Debug log
         };
 
         {% if form.errors %}
         showBookingPopup();
         const errorDiv = document.getElementById('booking-form-errors');
         const errorList = document.getElementById('error-list');
-        errorList.innerHTML = `
-            {% for field, errors in form.errors.items %}
-                {% for error in errors %}
-                    <li>{{ field|title }}: {{ error }}</li>
-                {% endfor %}
+        errorList.innerHTML = `{% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                <li>{{ field|title }}: {{ error }}</li>
             {% endfor %}
-        `;
+        {% endfor %}`;
         errorDiv.classList.remove('hidden');
+        console.log("Form errors displayed:", errorList.innerHTML); // Debug log
         {% endif %}
     });
 </script>

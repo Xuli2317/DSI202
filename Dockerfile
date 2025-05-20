@@ -1,13 +1,6 @@
 FROM python:3.10
-
-# กำหนด working directory
 WORKDIR /app
-
-# คัดลอกไฟล์ทั้งหมดไปยัง container
 COPY . /app
-
-# ติดตั้ง dependency
-RUN pip install -r requirements.txt
-
-# รันเซิร์ฟเวอร์ Django
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

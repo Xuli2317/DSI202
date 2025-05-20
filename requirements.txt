@@ -1,3 +1,4 @@
+# Core Django and dependencies
 Django==5.1.6
 asgiref==3.8.1
 sqlparse==0.5.3
@@ -13,9 +14,14 @@ django-widget-tweaks
 django-allauth
 social-auth-app-django
 
+# Environment and utilities
 python-dotenv==0.21.0
 python-dateutil
 djangorestframework
 djangorestframework-simplejwt
 
-
+# QR Code support
+qrcode==8.2
+libscrc==1.8.1
+# Server
+gunicorn==22.0.0
