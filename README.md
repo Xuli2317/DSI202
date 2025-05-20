@@ -130,7 +130,7 @@ To further elevate Rent Near TU, the following features are planned to enhance f
    ```
 2. **Configure Google OAuth2 for Social AuthenticationTo enable social login via Google:**
   Follow the same steps as in the Standard Setup (step 3) to obtain Google OAuth2 credentials.
-  - Create or edit a .env file in the project’s root directory with:DEBUG=True
+  - Create or edit a .env file in the project’s root directory with:
     ```env
       SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=...
       SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=...
