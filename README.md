@@ -38,9 +38,27 @@ For landlords, Rent Near TU provides a powerful tool to showcase their propertie
 
 ### Tenants
 - **As a tenant**, I want to view detailed furniture information included with the room so that I can plan additional purchases effectively.
-- **As a tenant**, I want to use the search and filter system to find dormitories based on criteria such as a budget of no more than 5,000 THB, air conditioning, fully furnished rooms, and proximity to the university.
+  - **Usage Steps**:
+    1. Search using keywords, price, dormitory name, or browse rooms without searching.
+    2. Select the desired room for booking.
+    3. View room details, including price, furniture, contract duration, and landlord contact information.
+    4. Click the booking button to proceed.
+    5. Enter the move-in date.
+    6. Make a payment via QR code to confirm the reservation.
 ### Landlords
+- **As a tenant**, I want to change my role to landlord so that I can list dormitories for rent.
+  - **Usage Steps**:
+    1. Navigate to the profile page.
+    2. Click “Apply to be Landlord.”
+    3. Fill in additional required details.
+    4. Become a landlord.
+    5. Add rooms for rent.
+    6. Check room status on the profile page.
 - **As a landlord**, I want to specify room details such as size, furniture, and rental price so that tenants have comprehensive information before contacting me.
+  - **Usage Steps**:
+    1. Log in as a landlord.
+    2. Add a new room for rent, specifying details like name, location, number of available rooms, price, and amenities (e.g., air conditioning, desk, wardrobe, bed, Wi-Fi).
+    3. Check room status on the profile page.
 
 ## Design and Prototyping
 The design process for Rent Near TU prioritized user-centered design to deliver an intuitive and visually appealing experience. Key design assets include:
