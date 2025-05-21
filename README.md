@@ -26,8 +26,7 @@ Beyond its technological innovation, Rent Near TU is driven by a profound social
 4. **Detailed Listings**: Provides comprehensive property details, including photos, videos, and rental conditions.
 5. **Room Status**: Displays real-time availability (vacant or occupied).
 6. **User Authentication**: Offers a secure sign-up and login system to access advanced features.
-7. **Favorites List**: Enables tenants to save and compare preferred dormitories for informed decision-making.
-8. **QR Code Booking**: Facilitates secure booking through QR code-based payment confirmation.
+7. **QR Code Booking**: Facilitates secure booking through QR code-based payment confirmation.
 
 ## Community Impact
 Rent Near TU revolutionizes the dormitory search process by enabling tenants to explore options remotely, eliminating the need for costly and time-intensive physical visits. This is particularly impactful for students and low-income individuals who face financial and logistical constraints. By offering a centralized platform with robust filtering capabilities, tenants can efficiently compare dormitories based on price, amenities, and proximity to Thammasat University, ensuring they find accommodations that align with their needs and budgets. The inclusion of multimedia, such as photos
@@ -101,7 +100,7 @@ To further elevate Rent Near TU, the following features are planned to enhance f
    ```
 
 4. **Configure Google OAuth2 for Social Authentication** (For Developers)
-   To enable social login functionality via Google, developers must configure Google OAuth2 credentials:
+        To enable social login functionality via Google, developers must configure Google OAuth2 credentials:
    - Go to the [Google Cloud Console](https://console.cloud.google.com/) and create or select a project.
    - Navigate to **APIs & Services** > **Credentials** > **Create Credentials** > **OAuth 2.0 Client IDs**.
    - Select **Web application**, and add `http://localhost:8000` to **Authorized JavaScript origins** and `http://localhost:8000/accounts/google/login/callback/` to **Authorized redirect URIs**.
@@ -129,8 +128,8 @@ To further elevate Rent Near TU, the following features are planned to enhance f
    cd dsi202_2025
    ```
 2. **Configure Google OAuth2 for Social AuthenticationTo enable social login via Google:**
-  Follow the same steps as in the Standard Setup (step 3) to obtain Google OAuth2 credentials.
-  - Create or edit a .env file in the project’s root directory with:
+      - Follow the same steps as in the Standard Setup (step 3) to obtain Google OAuth2 credentials.
+      - Create or edit a .env file in the project’s root directory with:
     ```env
       SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=...
       SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=...
@@ -157,7 +156,7 @@ To further elevate Rent Near TU, the following features are planned to enhance f
 - **Admin Page**: `http://localhost:8000/admin/`
 
 ## YouTube
-- https://youtu.be/qqsSpwAAaU4 (Short Demo)
+- https://youtu.be/swL3ehpkniw (Short Demo)
 - https://youtu.be/T3dwY4cetqM (All Features Demo)
 
 ## Conclusion
